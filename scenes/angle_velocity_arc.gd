@@ -9,10 +9,6 @@ func inertia_value(): #TODO: call inertia_value only once
 
 func _process(_delta):
 	queue_redraw()
-	print(SHIP.linear_velocity)
-	
-#func _physics_process(delta):
-	#print(SHIP.angular_velocity / delta)
 	
 
 func _draw():
