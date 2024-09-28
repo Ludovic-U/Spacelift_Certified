@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqvm41iv6cjnk"]
+
+[ext_resource type="Script" path="res://scenes/carrier.gd" id="1_xlfg2"]
+[ext_resource type="PackedScene" uid="uid://ccyh8qopyw3oc" path="res://ship_interior_area_componant.tscn" id="2_6j8o8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s827w"]
+size = Vector2(354, 14)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_23oej"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yt5ce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je3r0"]
+size = Vector2(113.999, 349)
+
+[node name="carrier" type="RigidBody2D"]
+physics_interpolation_mode = 1
+position = Vector2(0, -22)
+collision_mask = 129
+mass = 1000.0
+center_of_mass_mode = 1
+script = ExtResource("1_xlfg2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -37)
+shape = SubResource("RectangleShape2D_s827w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 83)
+shape = SubResource("RectangleShape2D_s827w")
+
+[node name="floor" type="Sprite2D" parent="."]
+modulate = Color(0.830335, 0.830335, 0.830335, 1)
+position = Vector2(0.783813, 22.743)
+rotation = 1.5708
+scale = Vector2(106.9, 351.072)
+texture = SubResource("CanvasTexture_23oej")
+
+[node name="wall1" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0.470588, 1)
+position = Vector2(39.8202, 18.5284)
+rotation = 1.5708
+scale = Vector2(13.5, 353.442)
+texture = SubResource("CanvasTexture_yt5ce")
+offset = Vector2(-4.11852, 0.11018)
+
+[node name="wall2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0.470588, 1)
+position = Vector2(39.1453, 138.483)
+rotation = 1.5708
+scale = Vector2(13.5, 353.442)
+texture = SubResource("CanvasTexture_yt5ce")
+offset = Vector2(-4.11852, 0.11018)
+
+[node name="ShipInteriorArea" parent="." node_paths=PackedStringArray("SHIP") instance=ExtResource("2_6j8o8")]
+SHIP = NodePath("..")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShipInteriorArea"]
+position = Vector2(23, -1.50008)
+shape = SubResource("RectangleShape2D_je3r0")

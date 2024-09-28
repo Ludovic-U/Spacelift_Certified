@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm0tgqjulsjvf"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_pvo4o"]
+[ext_resource type="PackedScene" uid="uid://dr1gejnuvf3dm" path="res://magnetize_to_ship_componant.tscn" id="2_gw6yx"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_8ulb0"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4bngu"]
+texture_filter = 1
+
+[node name="player" type="CharacterBody2D"]
+process_mode = 4
+collision_layer = 16
+collision_mask = 25
+motion_mode = 1
+script = ExtResource("1_pvo4o")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5814
+polygon = PackedVector2Array(0, -18, 8, 0, -8, 0)
+
+[node name="mask" type="Sprite2D" parent="."]
+clip_children = 1
+position = Vector2(8.75, 0)
+scale = Vector2(18.5, 16)
+texture = SubResource("CanvasTexture_8ulb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="mask"]
+modulate = Color(0, 0.8, 0, 1)
+position = Vector2(-0.472973, 0)
+rotation = 2.69375
+scale = Vector2(1.10757, 1.10642)
+skew = -0.68519
+texture = SubResource("CanvasTexture_4bngu")
+
+[node name="MagnetizeToShipComponant" parent="." instance=ExtResource("2_gw6yx")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="demagnetizing_from_ship" from="MagnetizeToShipComponant" to="." method="_on_magnetize_to_ship_componant_demagnetizing_from_ship"]
+[connection signal="magnetizing_to_ship" from="MagnetizeToShipComponant" to="." method="_on_magnetize_to_ship_componant_magnetizing_to_ship"]

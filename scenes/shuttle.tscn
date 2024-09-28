@@ -1,0 +1,215 @@
+[gd_scene load_steps=18 format=3 uid="uid://d2h3fp2gopcue"]
+
+[ext_resource type="Script" path="res://scenes/shuttle.gd" id="1_esvum"]
+[ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://shuttle_prototype1.png" id="2_4jaf8"]
+[ext_resource type="PackedScene" uid="uid://ccyh8qopyw3oc" path="res://ship_interior_area_componant.tscn" id="2_a385m"]
+[ext_resource type="Script" path="res://scenes/navigation_vfx_componant.gd" id="2_rpf02"]
+[ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://shuttle_prototype1_normalmap.png" id="3_suqlb"]
+[ext_resource type="Script" path="res://scenes/ship_data.gd" id="3_yhjex"]
+[ext_resource type="Shader" path="res://scenes/shuttle.gdshader" id="3_ylv0h"]
+[ext_resource type="Texture2D" uid="uid://bp5j5gg01ju4l" path="res://noise_combined.png" id="4_eeee2"]
+[ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://rcs.png" id="5_bjmwb"]
+[ext_resource type="Script" path="res://scenes/angle_velocity_arc.gd" id="6_2ai0x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4f2l"]
+shader = ExtResource("3_ylv0h")
+shader_parameter/direction_r = Vector2(0.7, 3)
+shader_parameter/direction_g = Vector2(0, 2.5)
+shader_parameter/direction_b = Vector2(-0.7, 2)
+shader_parameter/alpha_strength = 10.0
+shader_parameter/smoke_color = Color(0.829825, 0.869796, 0.999998, 1)
+shader_parameter/noise_img = ExtResource("4_eeee2")
+
+[sub_resource type="Shader" id="Shader_e0v3e"]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_img: filter_nearest, repeat_enable;
+uniform vec2 direction_r;
+uniform vec2 direction_g;
+uniform vec2 direction_b;
+uniform float alpha_strength;
+uniform vec4 smoke_color: source_color;
+
+void fragment() {
+	vec2 uv_r = vec2(UV.x + (TIME * direction_r.x) , UV.y + (TIME * direction_r.y));
+	vec2 uv_g = vec2(UV.x + (TIME * direction_g.x) , UV.y + (TIME * direction_g.y));
+	vec2 uv_b = vec2(UV.x + (TIME * direction_b.x) , UV.y + (TIME * direction_b.y));
+	float noise_r = texture( noise_img, uv_r).r;
+	float noise_g = texture( noise_img, uv_g).g;
+	float noise_b = texture( noise_img, uv_b).b;
+
+	vec3 new_color = vec3(noise_r, noise_g, noise_b);
+	float new_alpha = noise_r * noise_g * noise_b;
+
+	COLOR.rgb = smoke_color.rgb;
+	COLOR.a = clamp(new_alpha * alpha_strength * texture(TEXTURE, UV).a, 0.0, 1.0);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_le1o2"]
+load_path = "res://.godot/imported/noise_combined.png-d344895d54fbfca518eb2ad845c53720.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsxps"]
+shader = SubResource("Shader_e0v3e")
+shader_parameter/direction_r = Vector2(0.7, 3)
+shader_parameter/direction_g = Vector2(0, 2.5)
+shader_parameter/direction_b = Vector2(-0.7, 2)
+shader_parameter/alpha_strength = 10.0
+shader_parameter/smoke_color = Color(1, 0.970844, 0.806967, 1)
+shader_parameter/noise_img = SubResource("CompressedTexture2D_le1o2")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_je3r0"]
+size = Vector2(33.6002, 121)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dejx0"]
+diffuse_texture = ExtResource("2_4jaf8")
+normal_texture = ExtResource("3_suqlb")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7wii"]
+radius = 35.2
+height = 103.2
+
+[node name="shuttle" type="RigidBody2D"]
+physics_interpolation_mode = 1
+collision_mask = 129
+mass = 4.0
+center_of_mass_mode = 1
+script = ExtResource("1_esvum")
+engine_thrust = 1000
+
+[node name="NavigationVFXComponant" type="Node2D" parent="." node_paths=PackedStringArray("SHIP", "Forward_Engine", "Backward_RCS", "Transverse_Left_RCS", "Transverse_Right_RCS", "Yaw_Right_RCS", "Yaw_Left_RCS")]
+script = ExtResource("2_rpf02")
+SHIP = NodePath("..")
+Forward_Engine = [NodePath("RCS-B")]
+Backward_RCS = [NodePath("RCS-T"), NodePath("RCS-T-2")]
+Transverse_Left_RCS = [NodePath("RCS-BL"), NodePath("RCS-TL")]
+Transverse_Right_RCS = [NodePath("RCS-TR"), NodePath("RCS-BR")]
+Yaw_Right_RCS = [NodePath("RCS-TL"), NodePath("RCS-BR")]
+Yaw_Left_RCS = [NodePath("RCS-TR"), NodePath("RCS-BL")]
+
+[node name="RCS-T" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, -29)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-T-2" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, 29)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-TL" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, -29)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-TR" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, 29)
+rotation = 3.14159
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-BL" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(-38, -35)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-BR" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(-38, 35)
+rotation = 3.14159
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="RCS-B" type="Sprite2D" parent="NavigationVFXComponant"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hsxps")
+position = Vector2(77, -1)
+rotation = -1.5708
+scale = Vector2(1.04, 1.04)
+texture = ExtResource("5_bjmwb")
+offset = Vector2(0, -256)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(41.6, -28.2)
+rotation = 1.5708
+polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -46.4002, 43.2003, 78.5998, 12.2003, 78.6, 13.1998, -47.4001)
+
+[node name="floor" type="Polygon2D" parent="."]
+position = Vector2(-2.21249, 1.74923)
+rotation = 1.5708
+scale = Vector2(59.7497, 80.8752)
+polygon = PackedVector2Array(0.221766, -1.07836, 0.539762, -0.460124, 0.539767, 0.430137, 0.456085, 0.553784, -0.497895, 0.529057, -0.54811, -0.534309, -0.280328, -1.07836)
+
+[node name="walls" type="Polygon2D" parent="."]
+position = Vector2(-2.21249, 1.74923)
+rotation = 1.5708
+scale = Vector2(59.7497, 80.8752)
+color = Color(0.3239, 0.425574, 0.479729, 1)
+polygon = PackedVector2Array(-0.0292738, 0.430138, -0.297058, 0.430139, -0.297065, -1.06599, -0.598319, -0.460121, -0.598314, 0.442504, -0.531368, 0.578516, 0.472821, 0.578514, 0.556503, 0.430137, 0.556499, -0.447759, 0.221766, -1.07836, 0.221773, 0.430138)
+
+[node name="ShipInteriorArea" parent="." node_paths=PackedStringArray("SHIP") instance=ExtResource("2_a385m")]
+position = Vector2(-0.399994, -0.199997)
+SHIP = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipInteriorArea"]
+position = Vector2(0, -21.9)
+shape = SubResource("RectangleShape2D_je3r0")
+
+[node name="Hull&Weapons" type="Node2D" parent="."]
+visible = false
+z_index = 90
+
+[node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
+position = Vector2(23, 0.999994)
+rotation = 1.57079
+scale = Vector2(0.295655, 0.295655)
+texture = SubResource("CanvasTexture_dejx0")
+
+[node name="ShipData" type="Node2D" parent="." node_paths=PackedStringArray("SHIP")]
+script = ExtResource("3_yhjex")
+SHIP = NodePath("..")
+
+[node name="angle_velocity_arc" type="Node2D" parent="ShipData"]
+script = ExtResource("6_2ai0x")
+
+[node name="ship_orientation_line" type="Line2D" parent="ShipData"]
+points = PackedVector2Array(131.4, 0.199997, 148.4, 0.199997)
+width = 1.0
+
+[node name="absolute_velocity_arrow" type="Polygon2D" parent="ShipData"]
+position = Vector2(-0.600006, 1.2)
+scale = Vector2(1.65264, -1.44654)
+polygon = PackedVector2Array(78.662, 4.14783, 78.662, -2.76522, 89.5537, 0.691305)
+
+[node name="InteractibleArea" type="Area2D" parent="ShipData"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipData/InteractibleArea"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_f7wii")
+
+[connection signal="mouse_entered" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_entered"]
+[connection signal="mouse_exited" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_exited"]
