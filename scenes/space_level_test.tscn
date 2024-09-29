@@ -1,19 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnj2am8omb5bw"]
+[gd_scene load_steps=4 format=3 uid="uid://cnj2am8omb5bw"]
 
 [ext_resource type="PackedScene" uid="uid://d2h3fp2gopcue" path="res://scenes/shuttle.tscn" id="1_gqvfs"]
-[ext_resource type="Script" path="res://scenes/camera_2d.gd" id="1_rxks3"]
-[ext_resource type="PackedScene" uid="uid://cm0tgqjulsjvf" path="res://scenes/player.tscn" id="2_7aqtg"]
-[ext_resource type="PackedScene" uid="uid://bcyqsumd4ogkr" path="res://scenes/box_rigid.tscn" id="3_jc6al"]
 [ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://scenes/costelacion.png" id="4_6dv7i"]
 
 [sub_resource type="Environment" id="Environment_04kat"]
 
 [node name="space" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(522, 217)
-position_smoothing_speed = 10.0
-script = ExtResource("1_rxks3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_04kat")
@@ -23,7 +15,7 @@ blend_mode = 2
 height = 0.4
 
 [node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
-position = Vector2(590.646, 300.612)
+position = Vector2(246, 187)
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -32,16 +24,3 @@ layer = -1
 position = Vector2(592, 350)
 scale = Vector2(1.38841, 1.38841)
 texture = ExtResource("4_6dv7i")
-
-[node name="rigid_box" parent="." instance=ExtResource("3_jc6al")]
-position = Vector2(281, 234)
-
-[node name="rigid_box2" parent="." instance=ExtResource("3_jc6al")]
-position = Vector2(280, 493)
-
-[node name="rigid_box3" parent="." instance=ExtResource("3_jc6al")]
-position = Vector2(539, 552)
-
-[node name="player" parent="." instance=ExtResource("2_7aqtg")]
-unique_name_in_owner = true
-position = Vector2(522, 217)

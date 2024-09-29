@@ -15,7 +15,7 @@ func magnetize_to_closest_ship():
 	#TODO: magnetize_to_closest_ship()
 	print("TODO: magnetize to closest ship", IsInside)
 
-#Called by ShipInteriorAreaComponant
+#Called by ShipInteriorAreaComponant (NOT ANYMORE - CURRENTLY NOT CALLED BY ANYTHING)
 func toggle_magnetize_to_ship_state(new_ship):
 	if PARENT is RigidBody2D:
 		if PARENT.freeze:
