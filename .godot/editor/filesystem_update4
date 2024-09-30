@@ -1,5 +1,5 @@
 res://scenes/space_level_test.tscn
-res://scenes/camera_2d.gd
 res://scenes/player.tscn
 res://scenes/shuttle.tscn
 res://ship_interior_area_componant.tscn
+res://scenes/entry_door.gd

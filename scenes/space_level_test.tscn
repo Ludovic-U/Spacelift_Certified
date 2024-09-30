@@ -23,8 +23,8 @@ height = 0.4
 [node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
 position = Vector2(246, 187)
 
-[node name="Hull&Weapons" parent="shuttle" index="2"]
-visible = true
+[node name="Hull&Weapons" parent="shuttle" index="3"]
+visible = false
 
 [node name="player" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="2" instance=ExtResource("3_ln5vg")]
 position = Vector2(56, 38)
