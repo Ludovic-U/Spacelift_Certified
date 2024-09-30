@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://d2h3fp2gopcue"]
+[gd_scene load_steps=19 format=3 uid="uid://d2h3fp2gopcue"]
 
 [ext_resource type="Script" path="res://scenes/shuttle.gd" id="1_esvum"]
 [ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://shuttle_prototype1.png" id="2_4jaf8"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://rcs.png" id="5_bjmwb"]
 [ext_resource type="Script" path="res://scenes/angle_velocity_arc.gd" id="6_2ai0x"]
 [ext_resource type="Script" path="res://scenes/ship_interior_world_container.gd" id="10_nwskq"]
-[ext_resource type="PackedScene" uid="uid://bcyqsumd4ogkr" path="res://scenes/box_rigid.tscn" id="11_xdnph"]
-[ext_resource type="PackedScene" uid="uid://cm0tgqjulsjvf" path="res://scenes/player.tscn" id="12_r3sp5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4f2l"]
 shader = ExtResource("3_ylv0h")
@@ -229,9 +227,6 @@ position = Vector2(2, -1.14441e-05)
 scale = Vector2(59.7497, 80.8752)
 polygon = PackedVector2Array(0.221766, -1.07836, 0.539762, -0.460124, 0.539767, 0.430137, 0.456085, 0.553784, -0.497894, 0.553787, -0.564841, 0.442504, -0.564845, -0.435392, -0.280328, -1.07836)
 
-[node name="rigid_box" parent="ShipInteriorWorldContainer/ShipInteriorWorld" instance=ExtResource("11_xdnph")]
-position = Vector2(85, 36)
-
 [node name="wallscoolision" type="StaticBody2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld"]
 
 [node name="walls" type="Polygon2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/wallscoolision"]
@@ -245,14 +240,6 @@ polygon = PackedVector2Array(-0.0292738, 0.430138, -0.297058, 0.430139, -0.29706
 position = Vector2(98, 11)
 rotation = 1.5708
 polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -46.4002, 43.2003, 78.5998, 12.2003, 78.6, 13.1998, -47.4001)
-
-[node name="player" parent="ShipInteriorWorldContainer/ShipInteriorWorld" instance=ExtResource("12_r3sp5")]
-position = Vector2(52.898, 43.27)
-
-[node name="Control" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
 
 [connection signal="mouse_entered" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_entered"]
 [connection signal="mouse_exited" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_exited"]
