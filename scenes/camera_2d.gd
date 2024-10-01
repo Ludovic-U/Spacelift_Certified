@@ -11,7 +11,6 @@ func _ready():
 	SPACE = $".."
 	PLAYER = SPACE.find_child("player", true, true)
 	print(find_true_position(PLAYER))
-	
 
 func _process(_delta):
 	if PLAYER != null:
@@ -27,5 +26,5 @@ func find_true_position(node) -> Vector2:
 		true_position = node.position
 	elif node.get_parent() is SubViewport:
 		var VPcontainer:ShipInteriorWorldContainer = node.get_parent().get_parent()
-		true_position = find_true_position(VPcontainer.SHIP) + node.position.rotated(VPcontainer.SHIP.rotation)
+		true_position = find_true_position(VPcontainer.SHIP) + (node.position + VPcontainer.position).rotated(VPcontainer.SHIP.rotation)
 	return true_position

@@ -93,10 +93,11 @@ position = Vector2(41.6, -28.2)
 rotation = 1.5708
 polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -47.4002, 43.1999, -29.4002, 13.1999, -29.4001, 13.1998, -47.4001)
 
-[node name="Entry_door" type="Area2D" parent="."]
+[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD")]
 rotation = 1.5708
 collision_mask = 57
 script = ExtResource("2_k6el6")
+SHIP_INTERIOR_WORLD = NodePath("../ShipInteriorWorldContainer/ShipInteriorWorld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entry_door"]
 position = Vector2(-0.000286102, -76.5)
@@ -181,7 +182,6 @@ texture = ExtResource("5_bjmwb")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
-visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
@@ -191,7 +191,6 @@ scale = Vector2(0.295655, 0.295655)
 texture = SubResource("CanvasTexture_dejx0")
 
 [node name="ShipData" type="Node2D" parent="." node_paths=PackedStringArray("SHIP")]
-visible = false
 script = ExtResource("3_yhjex")
 SHIP = NodePath("..")
 
@@ -224,7 +223,7 @@ SHIP = NodePath("..")
 [node name="ShipInteriorWorld" type="SubViewport" parent="ShipInteriorWorldContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(160, 160)
+size = Vector2i(190, 160)
 render_target_update_mode = 4
 
 [node name="ShipInteriorArea" parent="ShipInteriorWorldContainer/ShipInteriorWorld" node_paths=PackedStringArray("SHIP", "SHIP_INTERIOR") instance=ExtResource("2_a385m")]

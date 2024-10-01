@@ -21,7 +21,8 @@ func _on_body_exited(body):
 			body.call_deferred("reparent", outside_world.SHIP.get_parent())
 		else:
 			body.call_deferred("reparent", outside_world)
-			
+		
+		print(body.position, body.global_position)
 		body.position = SHIP.to_global(body.position) + $"../..".position.rotated(SHIP.rotation)
 		body.rotation = body.rotation + SHIP.rotation
 		if body is RigidBody2D:

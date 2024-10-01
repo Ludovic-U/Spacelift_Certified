@@ -20,18 +20,6 @@ environment = SubResource("Environment_04kat")
 blend_mode = 2
 height = 0.4
 
-[node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
-position = Vector2(246, 187)
-
-[node name="Hull&Weapons" parent="shuttle" index="3"]
-visible = false
-
-[node name="player" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="2" instance=ExtResource("3_ln5vg")]
-position = Vector2(56, 38)
-
-[node name="rigid_box" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="3" instance=ExtResource("4_ftyjs")]
-position = Vector2(90, 38)
-
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -39,5 +27,14 @@ layer = -1
 position = Vector2(592, 350)
 scale = Vector2(1.38841, 1.38841)
 texture = ExtResource("4_6dv7i")
+
+[node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
+position = Vector2(246, 187)
+
+[node name="player" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="2" instance=ExtResource("3_ln5vg")]
+position = Vector2(56, 38)
+
+[node name="rigid_box" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="3" instance=ExtResource("4_ftyjs")]
+position = Vector2(90, 38)
 
 [editable path="shuttle"]
