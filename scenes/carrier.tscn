@@ -1,60 +1,227 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqvm41iv6cjnk"]
+[gd_scene load_steps=20 format=3 uid="uid://cqvm41iv6cjnk"]
 
 [ext_resource type="Script" path="res://scenes/carrier.gd" id="1_xlfg2"]
-[ext_resource type="PackedScene" uid="uid://ccyh8qopyw3oc" path="res://ship_interior_area_componant.tscn" id="2_6j8o8"]
+[ext_resource type="Script" path="res://scenes/entry_door.gd" id="2_tyv7h"]
+[ext_resource type="Script" path="res://scenes/navigation_vfx_componant.gd" id="3_4fmly"]
+[ext_resource type="Shader" path="res://scenes/shuttle.gdshader" id="4_lvm86"]
+[ext_resource type="Texture2D" uid="uid://bp5j5gg01ju4l" path="res://noise_combined.png" id="5_m1cde"]
+[ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://rcs.png" id="6_okk0t"]
+[ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://shuttle_prototype1.png" id="7_08lf1"]
+[ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://shuttle_prototype1_normalmap.png" id="8_0mfne"]
+[ext_resource type="Script" path="res://scenes/ship_data.gd" id="9_ywxl6"]
+[ext_resource type="Script" path="res://scenes/angle_velocity_arc.gd" id="10_egd2q"]
+[ext_resource type="Script" path="res://scenes/ship_interior_world_container.gd" id="11_lyrys"]
+[ext_resource type="PackedScene" uid="uid://bbq825xbyifp7" path="res://scenes/ship_interior_world.tscn" id="12_awefk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s827w"]
-size = Vector2(354, 14)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hrmm"]
+size = Vector2(30, 11)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_23oej"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4f2l"]
+shader = ExtResource("4_lvm86")
+shader_parameter/direction_r = Vector2(0.7, 3)
+shader_parameter/direction_g = Vector2(0, 2.5)
+shader_parameter/direction_b = Vector2(-0.7, 2)
+shader_parameter/alpha_strength = 10.0
+shader_parameter/smoke_color = Color(0.829825, 0.869796, 0.999998, 1)
+shader_parameter/noise_img = ExtResource("5_m1cde")
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_yt5ce"]
+[sub_resource type="Shader" id="Shader_e0v3e"]
+code = "shader_type canvas_item;
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_je3r0"]
-size = Vector2(113.999, 349)
+uniform sampler2D noise_img: filter_nearest, repeat_enable;
+uniform vec2 direction_r;
+uniform vec2 direction_g;
+uniform vec2 direction_b;
+uniform float alpha_strength;
+uniform vec4 smoke_color: source_color;
+
+void fragment() {
+	vec2 uv_r = vec2(UV.x + (TIME * direction_r.x) , UV.y + (TIME * direction_r.y));
+	vec2 uv_g = vec2(UV.x + (TIME * direction_g.x) , UV.y + (TIME * direction_g.y));
+	vec2 uv_b = vec2(UV.x + (TIME * direction_b.x) , UV.y + (TIME * direction_b.y));
+	float noise_r = texture( noise_img, uv_r).r;
+	float noise_g = texture( noise_img, uv_g).g;
+	float noise_b = texture( noise_img, uv_b).b;
+
+	vec3 new_color = vec3(noise_r, noise_g, noise_b);
+	float new_alpha = noise_r * noise_g * noise_b;
+
+	COLOR.rgb = smoke_color.rgb;
+	COLOR.a = clamp(new_alpha * alpha_strength * texture(TEXTURE, UV).a, 0.0, 1.0);
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the CanvasItem.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_le1o2"]
+load_path = "res://.godot/imported/noise_combined.png-d344895d54fbfca518eb2ad845c53720.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsxps"]
+shader = SubResource("Shader_e0v3e")
+shader_parameter/direction_r = Vector2(0.7, 3)
+shader_parameter/direction_g = Vector2(0, 2.5)
+shader_parameter/direction_b = Vector2(-0.7, 2)
+shader_parameter/alpha_strength = 10.0
+shader_parameter/smoke_color = Color(1, 0.970844, 0.806967, 1)
+shader_parameter/noise_img = SubResource("CompressedTexture2D_le1o2")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_dejx0"]
+diffuse_texture = ExtResource("7_08lf1")
+normal_texture = ExtResource("8_0mfne")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7wii"]
+radius = 35.2
+height = 103.2
 
 [node name="carrier" type="RigidBody2D"]
 physics_interpolation_mode = 1
-position = Vector2(0, -22)
+position = Vector2(275.681, 135.166)
 collision_mask = 129
-mass = 1000.0
+mass = 4.0
 center_of_mass_mode = 1
 script = ExtResource("1_xlfg2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -37)
-shape = SubResource("RectangleShape2D_s827w")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(0, 83)
-shape = SubResource("RectangleShape2D_s827w")
-
-[node name="floor" type="Sprite2D" parent="."]
-modulate = Color(0.830335, 0.830335, 0.830335, 1)
-position = Vector2(0.783813, 22.743)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(41.6, -28.2)
 rotation = 1.5708
-scale = Vector2(106.9, 351.072)
-texture = SubResource("CanvasTexture_23oej")
+polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -47.4002, 43.1999, -29.4002, 13.1999, -29.4001, 13.1998, -47.4001)
 
-[node name="wall1" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0.470588, 1)
-position = Vector2(39.8202, 18.5284)
+[node name="Entry_door" type="Area2D" parent="."]
 rotation = 1.5708
-scale = Vector2(13.5, 353.442)
-texture = SubResource("CanvasTexture_yt5ce")
-offset = Vector2(-4.11852, 0.11018)
+collision_mask = 57
+script = ExtResource("2_tyv7h")
 
-[node name="wall2" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0.470588, 1)
-position = Vector2(39.1453, 138.483)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entry_door"]
+position = Vector2(-0.000286102, -76.5)
+shape = SubResource("RectangleShape2D_7hrmm")
+
+[node name="NavigationVFXComponant" type="Node2D" parent="." node_paths=PackedStringArray("SHIP", "Forward_Engine", "Backward_RCS", "Transverse_Left_RCS", "Transverse_Right_RCS", "Yaw_Right_RCS", "Yaw_Left_RCS")]
+visible = false
+script = ExtResource("3_4fmly")
+SHIP = NodePath("..")
+Forward_Engine = [NodePath("RCS-B")]
+Backward_RCS = [NodePath("RCS-T"), NodePath("RCS-T-2")]
+Transverse_Left_RCS = [NodePath("RCS-BL"), NodePath("RCS-TL")]
+Transverse_Right_RCS = [NodePath("RCS-TR"), NodePath("RCS-BR")]
+Yaw_Right_RCS = [NodePath("RCS-TL"), NodePath("RCS-BR")]
+Yaw_Left_RCS = [NodePath("RCS-TR"), NodePath("RCS-BL")]
+
+[node name="RCS-T" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, -29)
 rotation = 1.5708
-scale = Vector2(13.5, 353.442)
-texture = SubResource("CanvasTexture_yt5ce")
-offset = Vector2(-4.11852, 0.11018)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
 
-[node name="ShipInteriorArea" parent="." node_paths=PackedStringArray("SHIP") instance=ExtResource("2_6j8o8")]
+[node name="RCS-T-2" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, 29)
+rotation = 1.5708
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="RCS-TL" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, -29)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="RCS-TR" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(50, 29)
+rotation = 3.14159
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="RCS-BL" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(-38, -35)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="RCS-BR" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_d4f2l")
+position = Vector2(-38, 35)
+rotation = 3.14159
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="RCS-B" type="Sprite2D" parent="NavigationVFXComponant"]
+visible = false
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hsxps")
+position = Vector2(77, -1)
+rotation = -1.5708
+scale = Vector2(1.04, 1.04)
+texture = ExtResource("6_okk0t")
+offset = Vector2(0, -256)
+
+[node name="Hull&Weapons" type="Node2D" parent="."]
+visible = false
+z_index = 90
+
+[node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
+position = Vector2(23, 0.999994)
+rotation = 1.57079
+scale = Vector2(0.295655, 0.295655)
+texture = SubResource("CanvasTexture_dejx0")
+
+[node name="ShipData" type="Node2D" parent="." node_paths=PackedStringArray("SHIP")]
+visible = false
+script = ExtResource("9_ywxl6")
 SHIP = NodePath("..")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ShipInteriorArea"]
-position = Vector2(23, -1.50008)
-shape = SubResource("RectangleShape2D_je3r0")
+[node name="angle_velocity_arc" type="Node2D" parent="ShipData"]
+script = ExtResource("10_egd2q")
+
+[node name="ship_orientation_line" type="Line2D" parent="ShipData"]
+points = PackedVector2Array(131.4, 0.199997, 148.4, 0.199997)
+width = 1.0
+
+[node name="absolute_velocity_arrow" type="Polygon2D" parent="ShipData"]
+position = Vector2(-0.600006, 1.2)
+scale = Vector2(1.65264, -1.44654)
+polygon = PackedVector2Array(78.662, 4.14783, 78.662, -2.76522, 89.5537, 0.691305)
+
+[node name="InteractibleArea" type="Area2D" parent="ShipData"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipData/InteractibleArea"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_f7wii")
+
+[node name="ShipInteriorWorldContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("SHIP")]
+offset_left = -275.0
+offset_top = -135.0
+offset_right = 325.0
+offset_bottom = 59.0
+script = ExtResource("11_lyrys")
+SHIP = NodePath("..")
+
+[node name="ShipInteriorWorld" parent="ShipInteriorWorldContainer" instance=ExtResource("12_awefk")]
+
+[connection signal="body_entered" from="Entry_door" to="Entry_door" method="_on_body_entered"]
+[connection signal="mouse_entered" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_entered"]
+[connection signal="mouse_exited" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_exited"]
+
+[editable path="ShipInteriorWorldContainer/ShipInteriorWorld"]

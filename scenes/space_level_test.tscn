@@ -37,4 +37,22 @@ position = Vector2(56, 38)
 [node name="rigid_box" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="3" instance=ExtResource("4_ftyjs")]
 position = Vector2(90, 38)
 
+[node name="rigid_box" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(431.553, 295.528)
+
+[node name="rigid_box2" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(564.003, 343.794)
+
+[node name="rigid_box3" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(611.146, 291.038)
+
+[node name="rigid_box4" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(696.454, 276.446)
+
+[node name="rigid_box5" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(686.351, 418.999)
+
+[node name="rigid_box6" parent="." instance=ExtResource("4_ftyjs")]
+position = Vector2(822.169, 393.182)
+
 [editable path="shuttle"]

@@ -182,6 +182,7 @@ texture = ExtResource("5_bjmwb")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
+visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
@@ -215,8 +216,8 @@ shape = SubResource("CapsuleShape2D_f7wii")
 [node name="ShipInteriorWorldContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("SHIP")]
 offset_left = -57.0
 offset_top = -39.0
-offset_right = 93.0
-offset_bottom = 111.0
+offset_right = 133.0
+offset_bottom = 121.0
 script = ExtResource("10_nwskq")
 SHIP = NodePath("..")
 
@@ -236,9 +237,9 @@ position = Vector2(0.999908, -24)
 shape = SubResource("RectangleShape2D_je3r0")
 
 [node name="floor" type="Polygon2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorArea"]
-position = Vector2(2, -1.14441e-05)
+position = Vector2(2, 0)
 scale = Vector2(59.7497, 80.8752)
-polygon = PackedVector2Array(0.234306, -1.07573, 0.539762, -0.460124, 0.539767, 0.430137, 0.456085, 0.553784, -0.497894, 0.553787, -0.564841, 0.442504, -0.564845, -0.435392, -0.267789, -1.07573)
+polygon = PackedVector2Array(0.217569, -1.07573, 0.539762, -0.460124, 0.539767, 0.430137, 0.456085, 0.553784, -0.497894, 0.553787, -0.564841, 0.442504, -0.564845, -0.435392, -0.251053, -1.07573)
 
 [node name="wallscoolision" type="StaticBody2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld"]
 

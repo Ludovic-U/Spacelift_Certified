@@ -43,6 +43,7 @@ func get_input():
 func _process(_delta):
 	get_input()
 	#TODO: repair the magnetizing plate
+	#TODO: move "phantom" collisionshapes representing physic bodies in the inside world
 	#if Input.is_action_just_pressed("ui_accept"):
 		#ship_inventory= $ShipInteriorArea.get_overlapping_bodies()
 		#for body in ship_inventory:
