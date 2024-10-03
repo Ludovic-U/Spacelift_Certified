@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnj2am8omb5bw"]
 
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="1_0xtr1"]
-[ext_resource type="PackedScene" uid="uid://d2h3fp2gopcue" path="res://scenes/shuttle.tscn" id="1_gqvfs"]
+[ext_resource type="PackedScene" uid="uid://d2h3fp2gopcue" path="res://scenes/space_ship_template.tscn" id="1_gqvfs"]
 [ext_resource type="PackedScene" uid="uid://cm0tgqjulsjvf" path="res://scenes/player.tscn" id="3_ln5vg"]
 [ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://scenes/costelacion.png" id="4_6dv7i"]
 [ext_resource type="PackedScene" uid="uid://bcyqsumd4ogkr" path="res://scenes/box_rigid.tscn" id="4_ftyjs"]

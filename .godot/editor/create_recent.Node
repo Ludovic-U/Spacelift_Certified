@@ -1,4 +1,6 @@
 TileMapLayer
+Node2D
+ShipInteriorAreaComponant
 Sprite2D
 CollisionShape2D
 Polygon2D

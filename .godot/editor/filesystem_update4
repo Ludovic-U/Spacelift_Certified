@@ -1,5 +1,10 @@
 res://scenes/space_level_test.tscn
+res://scenes/interior_area.gd
 res://scenes/player.tscn
 res://scenes/shuttle.tscn
 res://scenes/carrier.tscn
 res://ship_interior_area_componant.tscn
+res://scenes/carrier_interior_area.tscn
+res://scenes/ship_interior_world_container.gd
+res://scenes/space_ship_template.tscn
+res://scenes/camera_2d.gd
