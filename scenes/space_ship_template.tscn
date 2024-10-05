@@ -81,7 +81,7 @@ size = Vector2(30, 126)
 
 [node name="SpaceShipTemplate" type="RigidBody2D"]
 physics_interpolation_mode = 1
-position = Vector2(57, 39)
+position = Vector2(58, 38)
 collision_mask = 129
 mass = 4.0
 center_of_mass_mode = 1
@@ -182,7 +182,6 @@ texture = ExtResource("5_bjmwb")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
-visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
@@ -224,7 +223,7 @@ SHIP = NodePath("..")
 [node name="ShipInteriorWorld" type="SubViewport" parent="ShipInteriorWorldContainer"]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(190, 160)
+size = Vector2i(190, 100)
 render_target_update_mode = 4
 
 [node name="ShipInteriorArea" parent="ShipInteriorWorldContainer/ShipInteriorWorld" node_paths=PackedStringArray("SHIP") instance=ExtResource("2_a385m")]

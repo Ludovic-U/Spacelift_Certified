@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://cqvm41iv6cjnk"]
 
-[ext_resource type="Script" path="res://scenes/carrier.gd" id="1_xlfg2"]
+[ext_resource type="Script" path="res://scenes/space_ship_template.gd" id="1_yb6lm"]
 [ext_resource type="Script" path="res://scenes/entry_door.gd" id="2_tyv7h"]
 [ext_resource type="Script" path="res://scenes/navigation_vfx_componant.gd" id="3_4fmly"]
 [ext_resource type="Shader" path="res://scenes/shuttle.gdshader" id="4_lvm86"]
@@ -11,10 +11,10 @@
 [ext_resource type="Script" path="res://scenes/ship_data.gd" id="9_ywxl6"]
 [ext_resource type="Script" path="res://scenes/angle_velocity_arc.gd" id="10_egd2q"]
 [ext_resource type="Script" path="res://scenes/ship_interior_world_container.gd" id="11_lyrys"]
-[ext_resource type="PackedScene" uid="uid://bbq825xbyifp7" path="res://scenes/ship_interior_world.tscn" id="12_awefk"]
+[ext_resource type="PackedScene" uid="uid://cmur1poabtgf7" path="res://scenes/carrier_interior_area.tscn" id="12_4a1t6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hrmm"]
-size = Vector2(30, 11)
+size = Vector2(181, 34.4997)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d4f2l"]
 shader = ExtResource("4_lvm86")
@@ -78,24 +78,27 @@ height = 103.2
 
 [node name="carrier" type="RigidBody2D"]
 physics_interpolation_mode = 1
-position = Vector2(275.681, 135.166)
+position = Vector2(275, 135)
 collision_mask = 129
 mass = 4.0
 center_of_mass_mode = 1
-script = ExtResource("1_xlfg2")
+script = ExtResource("1_yb6lm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(41.6, -28.2)
-rotation = 1.5708
-polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -47.4002, 43.1999, -29.4002, 13.1999, -29.4001, 13.1998, -47.4001)
+polygon = PackedVector2Array(-200, -108, 201, -108, 200, -91, 165, -90, 165, 92, 201, 92, 201, 112, -201, 111, -200, 93, -165, 93, -164, -90, -200, -91)
 
-[node name="Entry_door" type="Area2D" parent="."]
+[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD")]
 rotation = 1.5708
 collision_mask = 57
 script = ExtResource("2_tyv7h")
+SHIP_INTERIOR_WORLD = NodePath("../ShipInteriorWorldContainer/CarrierInteriorWorld")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entry_door"]
-position = Vector2(-0.000286102, -76.5)
+position = Vector2(0.499374, -182.25)
+shape = SubResource("RectangleShape2D_7hrmm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Entry_door"]
+position = Vector2(0.000662446, 182)
 shape = SubResource("RectangleShape2D_7hrmm")
 
 [node name="NavigationVFXComponant" type="Node2D" parent="." node_paths=PackedStringArray("SHIP", "Forward_Engine", "Backward_RCS", "Transverse_Left_RCS", "Transverse_Right_RCS", "Yaw_Right_RCS", "Yaw_Left_RCS")]
@@ -178,7 +181,6 @@ texture = ExtResource("6_okk0t")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
-visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
@@ -188,7 +190,6 @@ scale = Vector2(0.295655, 0.295655)
 texture = SubResource("CanvasTexture_dejx0")
 
 [node name="ShipData" type="Node2D" parent="." node_paths=PackedStringArray("SHIP")]
-visible = false
 script = ExtResource("9_ywxl6")
 SHIP = NodePath("..")
 
@@ -218,10 +219,16 @@ offset_bottom = 59.0
 script = ExtResource("11_lyrys")
 SHIP = NodePath("..")
 
-[node name="ShipInteriorWorld" parent="ShipInteriorWorldContainer" instance=ExtResource("12_awefk")]
+[node name="CarrierInteriorWorld" type="SubViewport" parent="ShipInteriorWorldContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(600, 300)
+render_target_update_mode = 4
+
+[node name="ShipInteriorAreaComponant" parent="ShipInteriorWorldContainer/CarrierInteriorWorld" node_paths=PackedStringArray("SHIP") instance=ExtResource("12_4a1t6")]
+position = Vector2(275, 136)
+SHIP = NodePath("../../..")
 
 [connection signal="body_entered" from="Entry_door" to="Entry_door" method="_on_body_entered"]
 [connection signal="mouse_entered" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_entered"]
 [connection signal="mouse_exited" from="ShipData/InteractibleArea" to="ShipData" method="_on_interactible_area_mouse_exited"]
-
-[editable path="ShipInteriorWorldContainer/ShipInteriorWorld"]

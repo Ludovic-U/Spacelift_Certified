@@ -1,12 +1,13 @@
+CollisionShape2D
+Area2D
+CollisionPolygon2D
+Camera2D
+SubViewport
 TileMapLayer
 Node2D
 ShipInteriorAreaComponant
 Sprite2D
-CollisionShape2D
 Polygon2D
-Area2D
-Camera2D
 StaticBody2D
 Control
 SubViewportContainer
-SubViewport

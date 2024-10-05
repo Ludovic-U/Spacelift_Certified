@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnj2am8omb5bw"]
+[gd_scene load_steps=8 format=3 uid="uid://cnj2am8omb5bw"]
 
 [ext_resource type="Script" path="res://scenes/camera_2d.gd" id="1_0xtr1"]
 [ext_resource type="PackedScene" uid="uid://d2h3fp2gopcue" path="res://scenes/space_ship_template.tscn" id="1_gqvfs"]
 [ext_resource type="PackedScene" uid="uid://cm0tgqjulsjvf" path="res://scenes/player.tscn" id="3_ln5vg"]
 [ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://scenes/costelacion.png" id="4_6dv7i"]
 [ext_resource type="PackedScene" uid="uid://bcyqsumd4ogkr" path="res://scenes/box_rigid.tscn" id="4_ftyjs"]
+[ext_resource type="PackedScene" uid="uid://cqvm41iv6cjnk" path="res://scenes/carrier.tscn" id="6_yskqj"]
 
 [sub_resource type="Environment" id="Environment_04kat"]
 
@@ -30,6 +31,7 @@ texture = ExtResource("4_6dv7i")
 
 [node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
 position = Vector2(246, 187)
+listen_to_inputs = true
 
 [node name="player" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="2" instance=ExtResource("3_ln5vg")]
 position = Vector2(56, 38)
@@ -54,5 +56,8 @@ position = Vector2(686.351, 418.999)
 
 [node name="rigid_box6" parent="." instance=ExtResource("4_ftyjs")]
 position = Vector2(822.169, 393.182)
+
+[node name="carrier" parent="." instance=ExtResource("6_yskqj")]
+position = Vector2(993, 698)
 
 [editable path="shuttle"]

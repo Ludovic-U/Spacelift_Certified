@@ -6,6 +6,7 @@ class_name SpaceShip
 @export var rcs_side_thrust:int = 300
 @export var spin_thrust:int = 20000
 @export var minimum_speed:int = 5
+@export var listen_to_inputs = false
 
 var thrust:Vector2
 var rotation_dir:int = 0
@@ -41,7 +42,8 @@ func get_input():
 			thrust.y = sign(rotated_velocity.y) * -rcs_side_thrust
 
 func _process(_delta):
-	get_input()
+	if listen_to_inputs:
+		get_input()
 	#TODO: repair the magnetizing plate
 	#TODO: move "phantom" collisionshapes representing physic bodies in the inside world
 	#if Input.is_action_just_pressed("ui_accept"):
