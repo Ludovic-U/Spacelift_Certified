@@ -87,11 +87,12 @@ script = ExtResource("1_yb6lm")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-200, -108, 201, -108, 200, -91, 165, -90, 165, 92, 201, 92, 201, 112, -201, 111, -200, 93, -165, 93, -164, -90, -200, -91)
 
-[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD")]
+[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD", "SHIP")]
 rotation = 1.5708
 collision_mask = 57
 script = ExtResource("2_tyv7h")
 SHIP_INTERIOR_WORLD = NodePath("../ShipInteriorWorldContainer/CarrierInteriorWorld")
+SHIP = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entry_door"]
 position = Vector2(0.499374, -182.25)
@@ -181,6 +182,7 @@ texture = ExtResource("6_okk0t")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
+visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]

@@ -93,11 +93,12 @@ position = Vector2(41.6, -28.2)
 rotation = 1.5708
 polygon = PackedVector2Array(-6.79997, 7.60002, -6.79971, 79.6, 2.20036, 98.6, 55.2004, 99.5998, 63.2003, 79.5998, 63.2, 6.59977, 43.1998, -47.4002, 43.1999, -29.4002, 13.1999, -29.4001, 13.1998, -47.4001)
 
-[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD")]
+[node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD", "SHIP")]
 rotation = 1.5708
 collision_mask = 57
 script = ExtResource("2_k6el6")
 SHIP_INTERIOR_WORLD = NodePath("../ShipInteriorWorldContainer/ShipInteriorWorld")
+SHIP = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entry_door"]
 position = Vector2(-0.000286102, -76.5)
@@ -226,15 +227,15 @@ handle_input_locally = false
 size = Vector2i(190, 100)
 render_target_update_mode = 4
 
-[node name="ShipInteriorArea" parent="ShipInteriorWorldContainer/ShipInteriorWorld" node_paths=PackedStringArray("SHIP") instance=ExtResource("2_a385m")]
+[node name="ShipInteriorAreaComponant" parent="ShipInteriorWorldContainer/ShipInteriorWorld" node_paths=PackedStringArray("SHIP") instance=ExtResource("2_a385m")]
 position = Vector2(58, 38)
 SHIP = NodePath("../../..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorAreaComponant"]
 position = Vector2(0.999908, -24)
 shape = SubResource("RectangleShape2D_je3r0")
 
-[node name="floor" type="Polygon2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorArea"]
+[node name="floor" type="Polygon2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorAreaComponant"]
 position = Vector2(2, 0)
 scale = Vector2(59.7497, 80.8752)
 polygon = PackedVector2Array(0.217569, -1.07573, 0.539762, -0.460124, 0.539767, 0.430137, 0.456085, 0.553784, -0.497894, 0.553787, -0.564841, 0.442504, -0.564845, -0.435392, -0.251053, -1.07573)

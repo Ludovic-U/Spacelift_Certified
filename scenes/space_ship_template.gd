@@ -8,6 +8,7 @@ class_name SpaceShip
 @export var minimum_speed:int = 5
 @export var listen_to_inputs = false
 
+var isReparenting:bool = false
 var thrust:Vector2
 var rotation_dir:int = 0
 var ship_inventory:Array[Node2D]

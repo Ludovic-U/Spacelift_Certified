@@ -1,7 +1,7 @@
-res://scenes/carrier.tscn
-res://scenes/carrier.gd
 res://scenes/space_level_test.tscn
+res://scenes/carrier.gd
 res://scenes/player.tscn
 res://scenes/space_ship_template.tscn
+res://scenes/carrier.tscn
 res://ship_interior_area_componant.tscn
 res://scenes/carrier_interior_area.tscn
