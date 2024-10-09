@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=4 uid="uid://cmur1poabtgf7"]
+[gd_scene load_steps=11 format=4 uid="uid://cmur1poabtgf7"]
 
 [ext_resource type="Script" path="res://scenes/interior_area.gd" id="1_c4hny"]
 [ext_resource type="Texture2D" uid="uid://c6txly6gdhvyc" path="res://simple64x_tiles6.png" id="2_hpvd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ro5xo"]
 size = Vector2(400, 187)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rws45"]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cjbwj"]
 texture = ExtResource("2_hpvd0")
@@ -18,6 +21,7 @@ texture_region_size = Vector2i(64, 64)
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:1/0 = 0
+1:1/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_rws45")
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 2:1/0 = 0
 3:1/0 = 0
@@ -25,9 +29,27 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_nkrdu"]
 tile_size = Vector2i(64, 64)
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 29
 sources/0 = SubResource("TileSetAtlasSource_cjbwj")
+
+[sub_resource type="Gradient" id="Gradient_wp3rc"]
+offsets = PackedFloat32Array(0, 0.511811, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_agxjh"]
+gradient = SubResource("Gradient_wp3rc")
+
+[sub_resource type="Gradient" id="Gradient_jfrkr"]
+offsets = PackedFloat32Array(0, 0.92126)
+colors = PackedColorArray(0.988686, 0.771766, 0.6727, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5rlpf"]
+gradient = SubResource("Gradient_jfrkr")
+fill = 1
+fill_from = Vector2(0.418848, 0.481675)
+fill_to = Vector2(1, 0.450262)
 
 [node name="ShipInteriorAreaComponant" type="Area2D"]
 collision_mask = 29
@@ -35,6 +57,7 @@ script = ExtResource("1_c4hny")
 metadata/_edit_horizontal_guides_ = [110.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_ro5xo")
 
@@ -51,8 +74,65 @@ scale = Vector2(0.2852, 0.2852)
 tile_map_data = PackedByteArray("AAAAAPr/AAABAAEAAAABAPr/AAABAAEAAAACAPr/AAABAAEAAAADAPr/AAABAAEAAAAEAPr/AAABAAEAAAAFAPr/AAABAAEAAAAGAPr/AAABAAEAAAAHAPr/AAABAAEAAAAIAPr/AAABAAEAAAAJAPr/AAABAAEAAAAKAPr/AAABAAEAAAD///r/AAABAAEAAAD+//r/AAABAAEAAAD9//r/AAABAAEAAAD8//r/AAABAAEAAAD7//r/AAABAAEAAAD6//r/AAABAAEAAAD5//r/AAABAAEAAAD4//r/AAABAAEAAAD3//r/AAABAAEAAAD2//r/AAABAAEAAAD1//r/AAABAAEAAAAKAAUAAAABAAEAAAAJAAUAAAABAAEAAAAIAAUAAAABAAEAAAAHAAUAAAABAAEAAAAGAAUAAAABAAEAAAAFAAUAAAABAAEAAAAEAAUAAAABAAEAAAADAAUAAAABAAEAAAACAAUAAAABAAEAAAABAAUAAAABAAEAAAAAAAUAAAABAAEAAAD//wUAAAABAAEAAAD+/wUAAAABAAEAAAD9/wUAAAABAAEAAAD8/wUAAAABAAEAAAD7/wUAAAABAAEAAAD6/wUAAAABAAEAAAD5/wUAAAABAAEAAAD4/wUAAAABAAEAAAD3/wUAAAABAAEAAAD2/wUAAAABAAEAAAD1/wUAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_nkrdu")
 
+[node name="Night" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [node name="Sun" type="DirectionalLight2D" parent="."]
-blend_mode = 2
+shadow_enabled = true
 height = 0.4
+
+[node name="door light" type="PointLight2D" parent="."]
+position = Vector2(-200, 0)
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_agxjh")
+height = 50.0
+
+[node name="door light2" type="PointLight2D" parent="."]
+position = Vector2(200, 0)
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_agxjh")
+height = 50.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-100, -55.5)
+scale = Vector2(3.125, 1.70312)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(100, -55.5)
+rotation = -3.14159
+scale = Vector2(3.125, 1.70312)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(101, 54.5003)
+rotation = 3.14159
+scale = Vector2(3.125, 1.70312)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(-100, 54)
+scale = Vector2(3.125, 1.70312)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
+
+[node name="PointLight2D5" type="PointLight2D" parent="."]
+position = Vector2(16, 0.999989)
+scale = Vector2(3.125, 1.70312)
+energy = 1.49
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

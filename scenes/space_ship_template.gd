@@ -13,6 +13,8 @@ var thrust:Vector2
 var rotation_dir:int = 0
 var ship_inventory:Array[Node2D]
 
+@onready var sun:DirectionalLight2D = self.find_child("Sun", true, true)
+
 func get_input():
 	#Longitudinal controles
 	if Input.is_action_pressed("W_key"):
@@ -45,6 +47,9 @@ func get_input():
 func _process(_delta):
 	if listen_to_inputs:
 		get_input()
+	
+	if sun:
+		sun.rotation = -self.global_rotation
 	#TODO: repair the magnetizing plate
 	#TODO: move "phantom" collisionshapes representing physic bodies in the inside world
 	#if Input.is_action_just_pressed("ui_accept"):
@@ -56,6 +61,7 @@ func _process(_delta):
 func _integrate_forces(state):
 	apply_central_force(thrust.rotated(rotation))
 	apply_torque(rotation_dir * spin_thrust)
+	#TODO: apply forces to bodies inside the ship
 	
 	if abs(angular_velocity) < 0.1 && abs(angular_velocity) != 0 && rotation_dir == 0:
 		state.angular_velocity = 0

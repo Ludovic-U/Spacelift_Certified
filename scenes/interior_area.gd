@@ -19,3 +19,4 @@ func _on_body_exited(body):
 		body.rotation = body.rotation + SHIP.rotation
 		if body is RigidBody2D:
 			body.linear_velocity = body.linear_velocity.rotated(SHIP.rotation) + SHIP.linear_velocity
+			#TODO: add or substract lineaer velocity depending on ship.angular velocity

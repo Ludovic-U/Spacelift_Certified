@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqvm41iv6cjnk"]
+[gd_scene load_steps=22 format=3 uid="uid://cqvm41iv6cjnk"]
 
 [ext_resource type="Script" path="res://scenes/space_ship_template.gd" id="1_yb6lm"]
 [ext_resource type="Script" path="res://scenes/entry_door.gd" id="2_tyv7h"]
@@ -75,6 +75,13 @@ normal_texture = ExtResource("8_0mfne")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f7wii"]
 radius = 35.2
 height = 103.2
+
+[sub_resource type="Gradient" id="Gradient_a1jp8"]
+offsets = PackedFloat32Array(0, 0.511811, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2n8f0"]
+gradient = SubResource("Gradient_a1jp8")
 
 [node name="carrier" type="RigidBody2D"]
 physics_interpolation_mode = 1
@@ -186,6 +193,7 @@ visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]
+visible = false
 position = Vector2(23, 0.999994)
 rotation = 1.57079
 scale = Vector2(0.295655, 0.295655)
@@ -212,6 +220,20 @@ polygon = PackedVector2Array(78.662, 4.14783, 78.662, -2.76522, 89.5537, 0.69130
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipData/InteractibleArea"]
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_f7wii")
+
+[node name="door light2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(201, -1)
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_2n8f0")
+height = 50.0
+
+[node name="door light3" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-200, -1)
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_2n8f0")
+height = 50.0
 
 [node name="ShipInteriorWorldContainer" type="SubViewportContainer" parent="." node_paths=PackedStringArray("SHIP")]
 offset_left = -384.0

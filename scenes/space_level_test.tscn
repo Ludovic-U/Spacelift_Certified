@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cqvm41iv6cjnk" path="res://scenes/carrier.tscn" id="6_yskqj"]
 
 [sub_resource type="Environment" id="Environment_04kat"]
+adjustment_enabled = true
 
 [node name="space" type="Node2D"]
 
@@ -17,8 +18,11 @@ script = ExtResource("1_0xtr1")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_04kat")
 
+[node name="Night" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
 [node name="Sun" type="DirectionalLight2D" parent="."]
-blend_mode = 2
+shadow_enabled = true
 height = 0.4
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -32,6 +36,9 @@ texture = ExtResource("4_6dv7i")
 [node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
 position = Vector2(246, 187)
 listen_to_inputs = true
+
+[node name="Hull&Weapons" parent="shuttle" index="3"]
+visible = true
 
 [node name="player" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="2" instance=ExtResource("3_ln5vg")]
 position = Vector2(56, 38)
@@ -59,6 +66,5 @@ position = Vector2(822.169, 393.182)
 
 [node name="carrier" parent="." instance=ExtResource("6_yskqj")]
 position = Vector2(642, 145)
-rotation = -0.885219
 
 [editable path="shuttle"]
