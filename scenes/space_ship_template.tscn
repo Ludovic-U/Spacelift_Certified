@@ -183,6 +183,7 @@ texture = ExtResource("5_bjmwb")
 offset = Vector2(0, -256)
 
 [node name="Hull&Weapons" type="Node2D" parent="."]
+visible = false
 z_index = 90
 
 [node name="ShuttlePrototype2" type="Sprite2D" parent="Hull&Weapons"]

@@ -18,4 +18,4 @@ func _on_body_entered(body):
 		print("entry door: ", body.name, " got reparented to ", SHIP.name)
 		body.rotation = body.rotation - SHIP.rotation
 		if body is RigidBody2D:
-			body.linear_velocity = body.linear_velocity.rotated(SHIP.rotation) - SHIP.linear_velocity.rotated(SHIP.rotation)
+			body.linear_velocity = body.linear_velocity.rotated(-SHIP.rotation) - SHIP.linear_velocity

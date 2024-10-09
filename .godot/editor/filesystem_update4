@@ -1,5 +1,6 @@
 res://scenes/space_level_test.tscn
 res://scenes/carrier.gd
+res://scenes/camera_2d.gd
 res://scenes/player.tscn
 res://scenes/space_ship_template.tscn
 res://scenes/carrier.tscn

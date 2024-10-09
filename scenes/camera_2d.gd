@@ -34,6 +34,7 @@ func find_global_position(node) -> Dictionary:
 	elif node.get_parent() is SubViewport:
 		var VPcontainer:ShipInteriorWorldContainer = node.get_parent().get_parent()
 		global_data = find_global_position(VPcontainer.SHIP)
-		global_data["position"] += (node.position + VPcontainer.position).rotated(VPcontainer.SHIP.rotation)
 		global_data["corrected_rotation"] += VPcontainer.SHIP.rotation
+		global_data["position"] += (node.position + VPcontainer.position).rotated(global_data["corrected_rotation"])
+		
 	return global_data

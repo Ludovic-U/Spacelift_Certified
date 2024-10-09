@@ -58,6 +58,7 @@ position = Vector2(686.351, 418.999)
 position = Vector2(822.169, 393.182)
 
 [node name="carrier" parent="." instance=ExtResource("6_yskqj")]
-position = Vector2(993, 698)
+position = Vector2(642, 145)
+rotation = -0.885219
 
 [editable path="shuttle"]
