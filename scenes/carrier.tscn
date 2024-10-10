@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqvm41iv6cjnk"]
+[gd_scene load_steps=23 format=3 uid="uid://cqvm41iv6cjnk"]
 
 [ext_resource type="Script" path="res://scenes/space_ship_template.gd" id="1_yb6lm"]
 [ext_resource type="Script" path="res://scenes/entry_door.gd" id="2_tyv7h"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" path="res://scenes/angle_velocity_arc.gd" id="10_egd2q"]
 [ext_resource type="Script" path="res://scenes/ship_interior_world_container.gd" id="11_lyrys"]
 [ext_resource type="PackedScene" uid="uid://cmur1poabtgf7" path="res://scenes/carrier_interior_area.tscn" id="12_4a1t6"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3byeq"]
+cull_mode = 2
+polygon = PackedVector2Array(-200, -109, -201, 109, 200, 111, 201, -110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hrmm"]
 size = Vector2(181, 34.4997)
@@ -76,12 +80,12 @@ normal_texture = ExtResource("8_0mfne")
 radius = 35.2
 height = 103.2
 
-[sub_resource type="Gradient" id="Gradient_a1jp8"]
-offsets = PackedFloat32Array(0, 0.511811, 1)
+[sub_resource type="Gradient" id="Gradient_nvqu1"]
+offsets = PackedFloat32Array(0, 0.511811, 0.519685)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2n8f0"]
-gradient = SubResource("Gradient_a1jp8")
+gradient = SubResource("Gradient_nvqu1")
 
 [node name="carrier" type="RigidBody2D"]
 physics_interpolation_mode = 1
@@ -93,6 +97,9 @@ script = ExtResource("1_yb6lm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-200, -108, 201, -108, 200, -91, 165, -90, 165, 92, 201, 92, 201, 112, -201, 111, -200, 93, -165, 93, -164, -90, -200, -91)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_3byeq")
 
 [node name="Entry_door" type="Area2D" parent="." node_paths=PackedStringArray("SHIP_INTERIOR_WORLD", "SHIP")]
 rotation = 1.5708
@@ -221,16 +228,17 @@ polygon = PackedVector2Array(78.662, 4.14783, 78.662, -2.76522, 89.5537, 0.69130
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_f7wii")
 
-[node name="door light2" type="PointLight2D" parent="."]
+[node name="door light3" type="PointLight2D" parent="."]
 visible = false
-position = Vector2(201, -1)
+position = Vector2(-201, -1)
 scale = Vector2(1, 2.82812)
 texture = SubResource("GradientTexture2D_2n8f0")
 height = 50.0
 
-[node name="door light3" type="PointLight2D" parent="."]
+[node name="door light4" type="PointLight2D" parent="."]
 visible = false
-position = Vector2(-200, -1)
+position = Vector2(202, -1)
+rotation = 3.14159
 scale = Vector2(1, 2.82812)
 texture = SubResource("GradientTexture2D_2n8f0")
 height = 50.0

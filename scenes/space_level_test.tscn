@@ -34,7 +34,8 @@ scale = Vector2(1.38841, 1.38841)
 texture = ExtResource("4_6dv7i")
 
 [node name="shuttle" parent="." instance=ExtResource("1_gqvfs")]
-position = Vector2(246, 187)
+position = Vector2(416, 617)
+rotation = -0.785397
 listen_to_inputs = true
 
 [node name="Hull&Weapons" parent="shuttle" index="3"]
@@ -46,25 +47,26 @@ position = Vector2(56, 38)
 [node name="rigid_box" parent="shuttle/ShipInteriorWorldContainer/ShipInteriorWorld" index="3" instance=ExtResource("4_ftyjs")]
 position = Vector2(90, 38)
 
+[node name="carrier" parent="." instance=ExtResource("6_yskqj")]
+position = Vector2(761, 251)
+rotation = -0.785397
+
 [node name="rigid_box" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(431.553, 295.528)
+position = Vector2(258.044, 399.166)
 
 [node name="rigid_box2" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(564.003, 343.794)
+position = Vector2(258.044, 399.166)
 
 [node name="rigid_box3" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(611.146, 291.038)
+position = Vector2(258.044, 399.166)
 
 [node name="rigid_box4" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(696.454, 276.446)
+position = Vector2(258.044, 399.166)
 
 [node name="rigid_box5" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(686.351, 418.999)
+position = Vector2(258.044, 399.166)
 
 [node name="rigid_box6" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(822.169, 393.182)
-
-[node name="carrier" parent="." instance=ExtResource("6_yskqj")]
-position = Vector2(642, 145)
+position = Vector2(258.044, 399.166)
 
 [editable path="shuttle"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cmur1poabtgf7"]
+[gd_scene load_steps=13 format=4 uid="uid://cmur1poabtgf7"]
 
 [ext_resource type="Script" path="res://scenes/interior_area.gd" id="1_c4hny"]
 [ext_resource type="Texture2D" uid="uid://c6txly6gdhvyc" path="res://simple64x_tiles6.png" id="2_hpvd0"]
@@ -51,6 +51,13 @@ fill = 1
 fill_from = Vector2(0.418848, 0.481675)
 fill_to = Vector2(1, 0.450262)
 
+[sub_resource type="Gradient" id="Gradient_a1jp8"]
+offsets = PackedFloat32Array(0, 0.511811, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_184th"]
+gradient = SubResource("Gradient_a1jp8")
+
 [node name="ShipInteriorAreaComponant" type="Area2D"]
 collision_mask = 29
 script = ExtResource("1_c4hny")
@@ -77,23 +84,23 @@ tile_set = SubResource("TileSet_nkrdu")
 [node name="Night" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
-[node name="Sun" type="DirectionalLight2D" parent="."]
-shadow_enabled = true
-height = 0.4
+[node name="Lights" type="Node2D" parent="."]
 
-[node name="door light" type="PointLight2D" parent="."]
+[node name="door light" type="PointLight2D" parent="Lights"]
+visible = false
 position = Vector2(-200, 0)
 scale = Vector2(1, 2.82812)
 texture = SubResource("GradientTexture2D_agxjh")
 height = 50.0
 
-[node name="door light2" type="PointLight2D" parent="."]
+[node name="door light2" type="PointLight2D" parent="Lights"]
+visible = false
 position = Vector2(200, 0)
 scale = Vector2(1, 2.82812)
 texture = SubResource("GradientTexture2D_agxjh")
 height = 50.0
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="Lights"]
 position = Vector2(-100, -55.5)
 scale = Vector2(3.125, 1.70312)
 energy = 1.49
@@ -101,7 +108,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_5rlpf")
 height = 50.0
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="Lights"]
 position = Vector2(100, -55.5)
 rotation = -3.14159
 scale = Vector2(3.125, 1.70312)
@@ -110,7 +117,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_5rlpf")
 height = 50.0
 
-[node name="PointLight2D3" type="PointLight2D" parent="."]
+[node name="PointLight2D3" type="PointLight2D" parent="Lights"]
 position = Vector2(101, 54.5003)
 rotation = 3.14159
 scale = Vector2(3.125, 1.70312)
@@ -119,7 +126,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_5rlpf")
 height = 50.0
 
-[node name="PointLight2D4" type="PointLight2D" parent="."]
+[node name="PointLight2D4" type="PointLight2D" parent="Lights"]
 position = Vector2(-100, 54)
 scale = Vector2(3.125, 1.70312)
 energy = 1.49
@@ -127,12 +134,31 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_5rlpf")
 height = 50.0
 
-[node name="PointLight2D5" type="PointLight2D" parent="."]
+[node name="PointLight2D5" type="PointLight2D" parent="Lights"]
 position = Vector2(16, 0.999989)
 scale = Vector2(3.125, 1.70312)
 energy = 1.49
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_5rlpf")
+height = 50.0
+
+[node name="Sun" type="DirectionalLight2D" parent="Lights"]
+shadow_enabled = true
+height = 0.4
+
+[node name="door light4" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-200, -1)
+rotation = 3.14159
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_184th")
+height = 50.0
+
+[node name="door light5" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(200, -1)
+scale = Vector2(1, 2.82812)
+texture = SubResource("GradientTexture2D_184th")
 height = 50.0
 
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

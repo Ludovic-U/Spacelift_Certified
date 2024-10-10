@@ -1,6 +1,7 @@
+LightOccluder2D
+Node2D
 PointLight2D
 Polygon2D
-LightOccluder2D
 CanvasModulate
 CollisionShape2D
 Area2D
@@ -8,7 +9,6 @@ CollisionPolygon2D
 Camera2D
 SubViewport
 TileMapLayer
-Node2D
 ShipInteriorAreaComponant
 Sprite2D
 StaticBody2D
