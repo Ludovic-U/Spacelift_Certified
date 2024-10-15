@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbq825xbyifp7"]
+
+[ext_resource type="PackedScene" uid="uid://ccyh8qopyw3oc" path="res://scenes/componants/ship_interior_area_componant.tscn" id="1_upcag"]
+
+[node name="ShipInteriorWorld" type="SubViewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(600, 250)
+render_target_update_mode = 4
+
+[node name="ShipInteriorArea" parent="." instance=ExtResource("1_upcag")]
+script = null
+
+[node name="wallscoolision" type="StaticBody2D" parent="."]

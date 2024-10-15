@@ -1,7 +1,6 @@
 res://scenes/space_level_test.tscn
-res://scenes/shuttle.gdshader
-res://scenes/carrier.gd
-res://scenes/player.tscn
-res://scenes/space_ship_template.tscn
-res://scenes/carrier.tscn
-res://scenes/carrier_interior_area.tscn
+res://scripts/shader_scripts/casted_shadow.gdshader
+res://scenes/ships/space_ship_template.tscn
+res://scenes/ships/carrier.tscn
+res://scenes/ships/carrier_interior_area.tscn
+res://scenes/objects/box_rigid.tscn

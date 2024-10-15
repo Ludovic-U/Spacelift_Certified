@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr1gejnuvf3dm"]
+
+[ext_resource type="Script" path="res://scripts/magnetize_to_ship_componant.gd" id="1_t8d3p"]
+
+[node name="MagnetizeToShipComponant" type="Node2D"]
+script = ExtResource("1_t8d3p")

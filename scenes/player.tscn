@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cm0tgqjulsjvf"]
 
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_pvo4o"]
-[ext_resource type="PackedScene" uid="uid://dr1gejnuvf3dm" path="res://magnetize_to_ship_componant.tscn" id="2_gw6yx"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_pvo4o"]
+[ext_resource type="PackedScene" uid="uid://dr1gejnuvf3dm" path="res://scenes/componants/magnetize_to_ship_componant.tscn" id="2_gw6yx"]
 
 [sub_resource type="Gradient" id="Gradient_mso4f"]
 offsets = PackedFloat32Array(0.95, 1)
@@ -22,6 +22,7 @@ motion_mode = 1
 script = ExtResource("1_pvo4o")
 
 [node name="MagnetizeToShipComponant" parent="." instance=ExtResource("2_gw6yx")]
+script = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.40625, 0.40625)
@@ -29,6 +30,3 @@ texture = SubResource("GradientTexture2D_fdijv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2jubj")
-
-[connection signal="demagnetizing_from_ship" from="MagnetizeToShipComponant" to="." method="_on_magnetize_to_ship_componant_demagnetizing_from_ship"]
-[connection signal="magnetizing_to_ship" from="MagnetizeToShipComponant" to="." method="_on_magnetize_to_ship_componant_magnetizing_to_ship"]

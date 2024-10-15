@@ -1,7 +1,8 @@
+Polygon2D
 LightOccluder2D
+Sprite2D
 Node2D
 PointLight2D
-Polygon2D
 CanvasModulate
 CollisionShape2D
 Area2D
@@ -10,5 +11,4 @@ Camera2D
 SubViewport
 TileMapLayer
 ShipInteriorAreaComponant
-Sprite2D
 StaticBody2D
