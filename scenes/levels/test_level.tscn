@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo2h0hh6y1jds"]
+
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
+[ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
+
+[sub_resource type="Gradient" id="Gradient_t4prs"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whfx0"]
+gradient = SubResource("Gradient_t4prs")
+fill = 1
+fill_from = Vector2(0.555556, 0.448718)
+fill_to = Vector2(0.794872, 0.217949)
+
+[node name="Test_level" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.4011, 0)
+projection = 1
+current = true
+size = 100.0
+far = 100.0
+script = ExtResource("1_lcav5")
+max_size = 5000.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.555802, 0.728373, -0.400696, -0.128898, 0.551681, 0.824035, 0.821261, -0.406351, 0.400511, 0, 3.90833, 4.01216)
+visible = false
+shadow_enabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999743, 0.0226875, 0, -0.0226875, 0.999743, 0, 3.81609, 6.66314)
+light_energy = 16.0
+light_projector = SubResource("GradientTexture2D_whfx0")
+shadow_enabled = true
+spot_range = 101.952
+spot_angle = 56.3504
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(-0.021588, 0.373338, -0.927444, 0, 0.92766, 0.373425, 0.999767, 0.0080615, -0.0200263, -6.36718, 4.75684, -0.494206)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 101.952
+spot_angle = 26.28
+
+[node name="floor" type="CSGBox3D" parent="."]
+transform = Transform3D(18.5, 0, 0, 0, 1, 0, 0, 0, 25.5, 0, -1, 0)
+
+[node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)

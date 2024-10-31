@@ -1,8 +1,8 @@
 extends Camera2D
 
 #The camera should always be a direct child of the current_scene
-@export var min_zoom:float = 0.1
-@export var max_zoom:float = 2.0
+@export var min_zoom:float = 0.001
+@export var max_zoom:float = 1.0
 @export var zoom_step:float = 0.1
 @export var zoom_smoothing:float = 0.1
 
@@ -21,9 +21,9 @@ func _process(_delta):
 		global_position = global_node_data["position"]
 		player_corrected_rotation = global_node_data["corrected_rotation"]
 	if Input.is_action_just_pressed("Mouse_Wheel_Down") && zoom_level > Vector2(min_zoom, min_zoom):
-		zoom_level -= Vector2(zoom_step, zoom_step)
+		zoom_level -= zoom_level * zoom_step
 	if Input.is_action_just_pressed("Mouse_Wheel_Up") && zoom_level < Vector2(max_zoom, max_zoom) :
-		zoom_level += Vector2(zoom_step, zoom_step)
+		zoom_level += zoom_level * zoom_step
 	self.zoom = lerp(self.zoom, zoom_level, zoom_smoothing)
 	
 #return the global node position and rotation even though it may be a parent of a subviewport

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccyh8qopyw3oc"]
 
-[ext_resource type="Script" path="res://scripts/interior_area.gd" id="1_0pmcw"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/interior_area.gd" id="1_0pmcw"]
 
 [node name="ShipInteriorAreaComponant" type="Area2D"]
 rotation = 1.5708

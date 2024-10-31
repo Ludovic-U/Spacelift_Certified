@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnj2am8omb5bw"]
+[gd_scene load_steps=12 format=3 uid="uid://cnj2am8omb5bw"]
 
 [ext_resource type="Script" path="res://scripts/camera_2d.gd" id="1_0xtr1"]
 [ext_resource type="PackedScene" uid="uid://d2h3fp2gopcue" path="res://scenes/ships/space_ship_template.tscn" id="1_gqvfs"]
@@ -8,11 +8,20 @@
 [ext_resource type="Shader" path="res://scripts/shader_scripts/casted_shadow.gdshader" id="4_vcw40"]
 [ext_resource type="PackedScene" uid="uid://cqvm41iv6cjnk" path="res://scenes/ships/carrier.tscn" id="6_yskqj"]
 
+[sub_resource type="Gradient" id="Gradient_p1vqt"]
+offsets = PackedFloat32Array(0, 0.2, 0.494737)
+colors = PackedColorArray(0, 0, 0, 1, 0.452632, 0.452632, 0.452632, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ma2am"]
+gradient = SubResource("Gradient_p1vqt")
+fill_to = Vector2(0.63522, 0.00628931)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qnroi"]
 shader = ExtResource("4_vcw40")
-shader_parameter/color = Color(1, 1, 0.984314, 0.529412)
+shader_parameter/color = Color(0.358083, 0.0275867, 0.0789854, 0.529412)
 shader_parameter/angle = 0.0
 shader_parameter/max_dist = 86.667
+shader_parameter/gradientTexture = SubResource("GradientTexture2D_ma2am")
 
 [sub_resource type="Environment" id="Environment_04kat"]
 adjustment_enabled = true
@@ -21,9 +30,12 @@ adjustment_enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_0xtr1")
+zoom_step = 0.05
+zoom_smoothing = 0.05
 
 [node name="casted shadows" type="Polygon2D" parent="Camera2D"]
-z_index = -1
+visible = false
+z_index = 1
 material = SubResource("ShaderMaterial_qnroi")
 position = Vector2(-24, 119)
 scale = Vector2(2.24058, 2.24058)
@@ -33,13 +45,12 @@ polygon = PackedVector2Array(-417.372, -343.214, -426.298, 207.089, 449.814, 208
 environment = SubResource("Environment_04kat")
 
 [node name="Night" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="Sun" type="DirectionalLight2D" parent="."]
-visible = false
 blend_mode = 2
 shadow_enabled = true
+shadow_item_cull_mask = 0
 height = 0.4
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -50,30 +61,43 @@ position = Vector2(957.156, 643.999)
 scale = Vector2(2.24058, 2.24058)
 texture = ExtResource("4_6dv7i")
 
-[node name="rigid_box" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(258.044, 399.166)
-
 [node name="rigid_box2" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(258.044, 399.166)
+position = Vector2(272, 370)
 
 [node name="rigid_box3" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(258.044, 399.166)
+position = Vector2(247, 417)
 
 [node name="rigid_box4" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(258.044, 399.166)
+position = Vector2(278, 411)
 
 [node name="rigid_box5" parent="." instance=ExtResource("4_ftyjs")]
-position = Vector2(709, 398)
+position = Vector2(551, 373)
 
 [node name="rigid_box6" parent="." instance=ExtResource("4_ftyjs")]
 position = Vector2(391, 215)
 
 [node name="carrier" parent="." instance=ExtResource("6_yskqj")]
-position = Vector2(748, 219)
+position = Vector2(749, 215)
+
+[node name="ShipInteriorWorldContainer" parent="carrier" index="6"]
+offset_left = -209.0
+offset_top = -105.0
+offset_right = 4499.0
+offset_bottom = 3991.0
+scale = Vector2(1.02226, 1.0095)
+stretch_shrink = 2
+
+[node name="CarrierInteriorWorld" parent="carrier/ShipInteriorWorldContainer" index="0"]
+size = Vector2i(2354, 2048)
+
+[node name="Camera2D" parent="carrier/ShipInteriorWorldContainer/CarrierInteriorWorld" index="1"]
+zoom = Vector2(0.5, 0.5)
 
 [node name="SpaceShipTemplate" parent="." instance=ExtResource("1_gqvfs")]
-position = Vector2(282, 214)
+position = Vector2(188, 162)
 listen_to_inputs = true
 
 [node name="player" parent="." instance=ExtResource("3_ln5vg")]
 position = Vector2(439, 216)
+
+[editable path="carrier"]

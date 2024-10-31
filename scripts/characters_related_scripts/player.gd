@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name Player
 
 
 const WALKING_SPEED:float = 50.0
@@ -19,11 +18,3 @@ func _physics_process(delta):
 		var collided_body:Object = get_slide_collision(i).get_collider()
 		if collided_body is RigidBody2D && collided_body.collision_layer == 8: #push only small rigidbodies
 			collided_body.apply_central_impulse(-get_slide_collision(i).get_normal() * PUSH_FORCE * delta)
-
-
-func _on_magnetize_to_ship_componant_demagnetizing_from_ship():
-	pass
-
-
-func _on_magnetize_to_ship_componant_magnetizing_to_ship(_ship:SpaceShip):
-	pass

@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://dim8abrokwye5"]
+
+[ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_wdjqb"]
+[ext_resource type="FontFile" uid="uid://jydw0k85lbaq" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf" id="2_nr6d0"]
+[ext_resource type="Texture2D" uid="uid://j6e3j44im88x" path="res://Assets/normalmap.png" id="3_nd7vc"]
+[ext_resource type="Texture2D" uid="uid://b5k2wbad7j43n" path="res://Assets/icon.svg" id="4_cv3t8"]
+[ext_resource type="PackedScene" uid="uid://b5vgg4gxsbwvi" path="res://Interface/menu/mission_details.tscn" id="5_og7hh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn0xd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rpho"]
+texture = ExtResource("3_nd7vc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cp3jj"]
+texture = ExtResource("4_cv3t8")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddn0"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="Interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_wdjqb")
+
+[node name="GameMenu" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Left_column" type="PanelContainer" parent="GameMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Main_menu" type="VBoxContainer" parent="GameMenu/Left_column"]
+layout_mode = 2
+theme = ExtResource("1_wdjqb")
+
+[node name="GameTitle" type="Label" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nr6d0")
+theme_override_font_sizes/font_size = 100
+text = "NuPhoenicis"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dn0xd")
+
+[node name="Missions" type="Label" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Standalone Missions
+"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameMenu/Left_column/Main_menu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Test_level" type="Button" parent="GameMenu/Left_column/Main_menu/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "Test_level"
+metadata/primary_objectives = ["Test things"]
+metadata/secondary_objectives = ["take notes", "have fun"]
+metadata/description = "as a developper, this level allow you to test what you just made, make sure everything is as expected"
+
+[node name="Test_level2" type="Button" parent="GameMenu/Left_column/Main_menu/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+text = "Mission 01"
+
+[node name="Campagnes" type="Label" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Campagnes"
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="GameMenu/Left_column/Main_menu"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameMenu/Left_column/Main_menu/ScrollContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="GameMenu/Left_column/Main_menu/ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_3rpho")
+text = "Chapter 1
+"
+
+[node name="Button2" type="Button" parent="GameMenu/Left_column/Main_menu/ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_cp3jj")
+text = "Chapter 2
+"
+
+[node name="Right_column" type="PanelContainer" parent="GameMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_wdjqb")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hddn0")
+
+[node name="Mission_details" parent="GameMenu/Right_column" instance=ExtResource("5_og7hh")]
+layout_mode = 2

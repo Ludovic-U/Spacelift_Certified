@@ -1,12 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcyqsumd4ogkr"]
 
 [ext_resource type="PackedScene" uid="uid://dr1gejnuvf3dm" path="res://scenes/componants/magnetize_to_ship_componant.tscn" id="1_g8jxy"]
-[ext_resource type="Script" path="res://scripts/box_rigid.gd" id="1_il12p"]
+[ext_resource type="Script" path="res://scripts/item_related_scripts/box_rigid.gd" id="1_il12p"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q1i0f"]
 polygon = PackedVector2Array(-11, -11, -11, 11, 11, 11, 11, -11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fltya"]
+size = Vector2(300, 299)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ubteh"]
 
@@ -15,20 +16,24 @@ collision_layer = 8
 collision_mask = 25
 freeze_mode = 1
 script = ExtResource("1_il12p")
+metadata/_edit_vertical_guides_ = [150.0]
+metadata/_edit_horizontal_guides_ = [150.0]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+scale = Vector2(13.5486, 13.4856)
 occluder = SubResource("OccluderPolygon2D_q1i0f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_fltya")
 
 [node name="border" type="Sprite2D" parent="."]
-scale = Vector2(22, 22)
+scale = Vector2(299.64, 298.397)
 texture = SubResource("CanvasTexture_ubteh")
 
 [node name="crate" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-scale = Vector2(20, 20)
+scale = Vector2(282.079, -279.171)
 texture = SubResource("CanvasTexture_ubteh")
 
 [node name="MagnetizeToShipComponant" parent="." instance=ExtResource("1_g8jxy")]

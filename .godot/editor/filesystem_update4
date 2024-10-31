@@ -1,6 +1,8 @@
-res://scenes/space_level_test.tscn
+res://Interface/interface.tscn
+res://Interface/themes/blue_theme.tres
 res://scripts/shader_scripts/casted_shadow.gdshader
-res://scenes/ships/space_ship_template.tscn
-res://scenes/ships/carrier.tscn
-res://scenes/ships/carrier_interior_area.tscn
-res://scenes/objects/box_rigid.tscn
+res://scenes/game.tscn
+res://scenes/player_3d.tscn
+res://scripts/game.gd
+res://Interface/menu/mission_details.tscn
+res://scripts/global.gd

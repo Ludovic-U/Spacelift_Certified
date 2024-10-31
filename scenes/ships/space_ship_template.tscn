@@ -1,17 +1,17 @@
 [gd_scene load_steps=21 format=3 uid="uid://d2h3fp2gopcue"]
 
-[ext_resource type="Script" path="res://scripts/space_ship_template.gd" id="1_esvum"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/space_ship_template.gd" id="1_esvum"]
 [ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://Assets/ships/shuttle_prototype1.png" id="2_4jaf8"]
 [ext_resource type="PackedScene" uid="uid://ccyh8qopyw3oc" path="res://scenes/componants/ship_interior_area_componant.tscn" id="2_a385m"]
-[ext_resource type="Script" path="res://scripts/entry_door.gd" id="2_k6el6"]
-[ext_resource type="Script" path="res://scripts/navigation_vfx_componant.gd" id="2_rpf02"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/entry_door.gd" id="2_k6el6"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/navigation_vfx_componant.gd" id="2_rpf02"]
 [ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://Assets/ships/shuttle_prototype1_normalmap.png" id="3_suqlb"]
-[ext_resource type="Script" path="res://scripts/ship_data.gd" id="3_yhjex"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/ship_data.gd" id="3_yhjex"]
 [ext_resource type="Shader" path="res://scripts/shader_scripts/shuttle.gdshader" id="3_ylv0h"]
 [ext_resource type="Texture2D" uid="uid://bp5j5gg01ju4l" path="res://Assets/vfx/noise_combined.png" id="4_eeee2"]
 [ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://Assets/vfx/rcs.png" id="5_bjmwb"]
-[ext_resource type="Script" path="res://scripts/angle_velocity_arc.gd" id="6_2ai0x"]
-[ext_resource type="Script" path="res://scripts/ship_interior_world_container.gd" id="10_nwskq"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/angle_velocity_arc.gd" id="6_2ai0x"]
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/ship_interior_world_container.gd" id="10_nwskq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7hrmm"]
 size = Vector2(30, 11)
@@ -228,9 +228,9 @@ handle_input_locally = false
 size = Vector2i(190, 100)
 render_target_update_mode = 4
 
-[node name="ShipInteriorAreaComponant" parent="ShipInteriorWorldContainer/ShipInteriorWorld" instance=ExtResource("2_a385m")]
+[node name="ShipInteriorAreaComponant" parent="ShipInteriorWorldContainer/ShipInteriorWorld" node_paths=PackedStringArray("SHIP") instance=ExtResource("2_a385m")]
 position = Vector2(58, 38)
-script = null
+SHIP = NodePath("../../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShipInteriorWorldContainer/ShipInteriorWorld/ShipInteriorAreaComponant"]
 position = Vector2(0.999908, -24)
