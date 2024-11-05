@@ -1,8 +1,10 @@
-res://Interface/interface.tscn
+res://scenes/game.tscn
+res://scripts/global.gd
 res://Interface/themes/blue_theme.tres
 res://scripts/shader_scripts/casted_shadow.gdshader
-res://scenes/game.tscn
 res://scenes/player_3d.tscn
-res://scripts/game.gd
-res://Interface/menu/mission_details.tscn
-res://scripts/global.gd
+res://Interface/interface.tscn
+res://scenes/levels/test_level.tscn
+res://scripts/camera_3d.gd
+res://scenes/levels/mission_01.tscn
+res://scripts/game_controler.gd

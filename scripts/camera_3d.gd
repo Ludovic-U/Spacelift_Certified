@@ -1,4 +1,4 @@
-extends Camera3D
+class_name OrthogonalCamera extends Camera3D
 
 @export var min_size:float = 10.0
 @export var max_size:float = 100.0
