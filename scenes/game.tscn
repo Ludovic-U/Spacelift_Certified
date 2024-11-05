@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmtq0rl670ogq"]
 
 [ext_resource type="Script" path="res://scripts/game_controler.gd" id="1_dbfim"]
-[ext_resource type="PackedScene" uid="uid://bwuwei3opgbby" path="res://scenes/levels/mission_01.tscn" id="2_qq3d1"]
+[ext_resource type="PackedScene" uid="uid://oay4go1bnrs2" path="res://scenes/levels/default_intro.tscn" id="2_nbcnw"]
 [ext_resource type="PackedScene" uid="uid://bwc2bhn5wyia6" path="res://Interface/menu/game_menu.tscn" id="3_1wugd"]
 
 [node name="Game_Controller" type="Node" node_paths=PackedStringArray("WORLD_3D", "INTERFACE")]
@@ -11,9 +11,10 @@ INTERFACE = NodePath("Interface")
 
 [node name="World3D" type="Node3D" parent="."]
 
-[node name="Mission01" parent="World3D" instance=ExtResource("2_qq3d1")]
+[node name="Default_Intro" parent="World3D" instance=ExtResource("2_nbcnw")]
 
 [node name="Interface" type="Control" parent="."]
+z_index = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,4 +23,5 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GameMenu" parent="Interface" instance=ExtResource("3_1wugd")]
+z_index = 1
 layout_mode = 1

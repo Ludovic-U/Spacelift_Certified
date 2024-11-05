@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwc2bhn5wyia6"]
+[gd_scene load_steps=11 format=3 uid="uid://bwc2bhn5wyia6"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_k6d6i"]
 [ext_resource type="FontFile" uid="uid://jydw0k85lbaq" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf" id="2_08xmo"]
+[ext_resource type="Script" path="res://scripts/Interface_scripts/game_menu.gd" id="2_a38wu"]
 [ext_resource type="Texture2D" uid="uid://j6e3j44im88x" path="res://Assets/normalmap.png" id="3_byfiy"]
+[ext_resource type="PackedScene" uid="uid://we0oedh2t5u1" path="res://Interface/menu/level_button.tscn" id="3_yfcf2"]
 [ext_resource type="Texture2D" uid="uid://b5k2wbad7j43n" path="res://Assets/icon.svg" id="4_2sadv"]
-[ext_resource type="PackedScene" uid="uid://b5vgg4gxsbwvi" path="res://Interface/menu/mission_details.tscn" id="5_hk0aa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn0xd"]
 
@@ -23,11 +24,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_k6d6i")
 theme_override_constants/separation = 0
+script = ExtResource("2_a38wu")
 
 [node name="Left_column" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_k6d6i")
 
 [node name="Main_menu" type="VBoxContainer" parent="Left_column"]
 layout_mode = 2
@@ -55,21 +59,25 @@ text = "Standalone Missions
 layout_mode = 2
 vertical_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Left_column/Main_menu/ScrollContainer"]
+[node name="Level_selector" type="HBoxContainer" parent="Left_column/Main_menu/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Test_level" type="Button" parent="Left_column/Main_menu/ScrollContainer/HBoxContainer"]
+[node name="level_button" parent="Left_column/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
-text = "Test_level"
-metadata/primary_objectives = ["Test things"]
-metadata/secondary_objectives = ["take notes", "have fun"]
-metadata/description = "as a developper, this level allow you to test what you just made, make sure everything is as expected"
+level = "res://scenes/levels/test_level.tscn"
 
-[node name="Test_level2" type="Button" parent="Left_column/Main_menu/ScrollContainer/HBoxContainer"]
+[node name="mission01" parent="Left_column/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
-text = "Mission 01"
+text = "Mission01"
+level = "res://scenes/levels/mission_01.tscn"
+details = {
+"Description": "Some context about the first mission",
+"Primary": "the very first objective",
+"Secondary": ["do aditionnal things", "have fun"],
+"Title": "First mission"
+}
 
 [node name="Campagnes" type="Label" parent="Left_column/Main_menu"]
 layout_mode = 2
@@ -104,6 +112,3 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_k6d6i")
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddn0")
-
-[node name="Mission_details" parent="Right_column" instance=ExtResource("5_hk0aa")]
-layout_mode = 2

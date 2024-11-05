@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://we0oedh2t5u1"]
+
+[ext_resource type="Script" path="res://scripts/Interface_scripts/level_button.gd" id="1_i84fj"]
+
+[node name="level_button" type="Button"]
+text = "Test_level"
+script = ExtResource("1_i84fj")
+metadata/primary_objectives = ["Test things"]
+metadata/secondary_objectives = ["take notes", "have fun"]
+metadata/description = "as a developper, this level allow you to test what you just made, make sure everything is as expected"
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

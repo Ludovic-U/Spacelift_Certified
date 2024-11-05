@@ -1,0 +1,20 @@
+class_name MissionDetails extends MarginContainer
+@onready var title = $VBoxContainer/HBoxContainer/level_title
+@onready var primary = $VBoxContainer/ScrollContainer/VBoxContainer/primary_text
+@onready var secondary = $VBoxContainer/ScrollContainer/VBoxContainer/secondary_text
+@onready var description = $VBoxContainer/ScrollContainer/VBoxContainer/description_text 
+
+func _ready():
+	#TODO make the parsing into a loop
+	if Global.mission_details != null:
+		title.text = Global.mission_details.details["Title"]
+		primary.text = Global.mission_details.details["Primary"]
+		secondary.text = str(Global.mission_details.details["Secondary"])
+		description.text = Global.mission_details.details["Description"]
+
+func _on_back_button_button_down():
+	Global.game_controller.change_scene(self.get_parent(), "", true, false)
+
+
+func _on_start_mission_button_down():
+	pass # Replace with function body.
