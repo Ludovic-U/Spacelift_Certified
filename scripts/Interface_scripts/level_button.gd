@@ -1,6 +1,6 @@
 class_name LevelButton extends Button
 
-@export var intro: String = "res://scenes/levels/default_intro.tscn"
+@export var intro: String = "res://scenes/levels/intro/default_intro.tscn"
 @export var level: String 
 @export var details: Dictionary = {
 	"Title":"Test Level",

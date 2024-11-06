@@ -12,9 +12,27 @@ func _ready():
 		secondary.text = str(Global.mission_details.details["Secondary"])
 		description.text = Global.mission_details.details["Description"]
 
-func _on_back_button_button_down():
-	Global.game_controller.change_scene(self.get_parent(), "", true, false)
+func _on_back_button_button_down(): 
+	Global.game_controller.change_scene( 
+		self.get_parent(),
+		"", #delete mission detail panel
+		true, false)
+	
+	Global.game_controller.change_scene( #load default intro
+		Global.game_controller.WORLD_3D,
+		"res://scenes/levels/intro/default_intro.tscn",
+		true, false)
 
 
 func _on_start_mission_button_down():
-	pass # Replace with function body.
+	Global.game_controller.current_state = Global.game_controller.GameStates.RUNNING
+	
+	Global.game_controller.change_scene( 
+		Global.game_controller.WORLD_3D,
+		Global.mission_details.level,
+		true, false)
+		
+	Global.game_controller.change_scene( 
+		Global.game_controller.INTERFACE,
+		"", #TODO load the right UI
+		true, false)
