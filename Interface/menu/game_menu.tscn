@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bwc2bhn5wyia6"]
+[gd_scene load_steps=8 format=3 uid="uid://bwc2bhn5wyia6"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_k6d6i"]
 [ext_resource type="FontFile" uid="uid://jydw0k85lbaq" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf" id="2_08xmo"]
 [ext_resource type="Script" path="res://scripts/Interface_scripts/game_menu.gd" id="2_a38wu"]
 [ext_resource type="PackedScene" uid="uid://we0oedh2t5u1" path="res://Interface/menu/level_button.tscn" id="3_yfcf2"]
+[ext_resource type="PackedScene" uid="uid://b0fvpg35lb5d8" path="res://Interface/menu/setting_quit.tscn" id="5_5mra7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn0xd"]
 
@@ -106,3 +107,6 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 theme = ExtResource("1_k6d6i")
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddn0")
+
+[node name="Setting_Quit" parent="Right_column" instance=ExtResource("5_5mra7")]
+layout_mode = 2

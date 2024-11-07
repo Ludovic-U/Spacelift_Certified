@@ -12,10 +12,14 @@ func _ready():
 		secondary.text = str(Global.mission_details.details["Secondary"])
 		description.text = Global.mission_details.details["Description"]
 
+func _unhandled_key_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		_on_back_button_button_down()
+
 func _on_back_button_button_down(): 
 	Global.game_controller.change_scene( 
 		self.get_parent(),
-		"", #delete mission detail panel
+		"res://Interface/menu/setting_quit.tscn",
 		true, false)
 	
 	Global.game_controller.change_scene( #load default intro
@@ -25,7 +29,7 @@ func _on_back_button_button_down():
 
 
 func _on_start_mission_button_down():
-	Global.game_controller.current_state = Global.game_controller.GameStates.RUNNING
+	Global.current_state = Global.GameStates.RUNNING
 	
 	Global.game_controller.change_scene( 
 		Global.game_controller.WORLD_3D,

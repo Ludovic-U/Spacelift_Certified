@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0fvpg35lb5d8"]
+
+[ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_q7n1b"]
+[ext_resource type="Script" path="res://scripts/Interface_scripts/setting_quit.gd" id="2_ugngb"]
+
+[node name="Setting_Quit" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -960.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q7n1b")
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+script = ExtResource("2_ugngb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="Settings" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+
+[node name="Quit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Quit
+"
+
+[connection signal="button_down" from="HBoxContainer/Settings" to="." method="_on_settings_button_down"]
+[connection signal="button_down" from="HBoxContainer/Quit" to="." method="_on_quit_button_down"]

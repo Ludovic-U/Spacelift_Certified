@@ -2,11 +2,8 @@ class_name GameController extends Node
 
 @export var WORLD_3D: Node3D
 var current_3D_scene_path: String = "res://scenes/levels/default_intro.tscn"
-
 @export var INTERFACE: Control
 
-enum GameStates {RUNNING, PAUSED, MENU}
-var current_state:GameStates = GameStates.MENU
 
 func _ready() :
 	Global.game_controller = self

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo2h0hh6y1jds"]
+[gd_scene load_steps=10 format=3 uid="uid://bo2h0hh6y1jds"]
 
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
 [ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
@@ -12,23 +12,42 @@ fill = 1
 fill_from = Vector2(0.555556, 0.448718)
 fill_to = Vector2(0.794872, 0.217949)
 
+[sub_resource type="Gradient" id="Gradient_pq4dk"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h4obu"]
+gradient = SubResource("Gradient_pq4dk")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oua8a"]
+albedo_color = Color(0.402075, 1, 0.809109, 1)
+albedo_texture = SubResource("GradientTexture2D_h4obu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_yb0he"]
+material = SubResource("StandardMaterial3D_oua8a")
+size = Vector3(32, 19, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0hcf"]
+points = PackedVector3Array(16, 2.5, 1.5, 16, 2.5, -1.5, -16, 2.5, 1.5, 16, -2.5, 1.5, 16, -2.5, -1.5, -16, 2.5, -1.5, -16, -2.5, 1.5, -16, -2.5, -1.5)
+
 [node name="Test_level" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.4011, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
 projection = 1
 current = true
 size = 100.0
-far = 100.0
+far = 49.69
 script = ExtResource("1_lcav5")
-max_size = 5000.0
+max_size = 5000.03
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.555802, 0.728373, -0.400696, -0.128898, 0.551681, 0.824035, 0.821261, -0.406351, 0.400511, 0, 3.90833, 4.01216)
 shadow_enabled = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.999743, 0.0226875, 0, -0.0226875, 0.999743, 0, 3.81609, 6.66314)
+transform = Transform3D(1, 0, 0, 0, 0.999743, 0.0226875, 0, -0.0226875, 0.999743, 0, 3.66702, 8.56859)
 light_energy = 16.0
 light_projector = SubResource("GradientTexture2D_whfx0")
 shadow_enabled = true
@@ -42,8 +61,20 @@ shadow_enabled = true
 spot_range = 101.952
 spot_angle = 26.28
 
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52874, 10.0024)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98844, 0.310357)
+mesh = SubResource("BoxMesh_yb0he")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.57441, 0.310357)
+shape = SubResource("ConvexPolygonShape3D_k0hcf")
+
 [node name="floor" type="CSGBox3D" parent="."]
-transform = Transform3D(18.5, 0, 0, 0, 1, 0, 0, 0, 25.5, 0, -1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(32, 1, 41)
 
 [node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
