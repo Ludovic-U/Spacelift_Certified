@@ -1,7 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://bo2h0hh6y1jds"]
+[gd_scene load_steps=21 format=3 uid="uid://bo2h0hh6y1jds"]
 
+[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="1_2e2au"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
+[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/starry_sky.jpeg" id="2_n6tgt"]
 [ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7bnma"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7vrah"]
+sky_material = SubResource("ProceduralSkyMaterial_7bnma")
+
+[sub_resource type="Environment" id="Environment_xu42s"]
+background_mode = 3
+background_canvas_max_layer = -1
+sky = SubResource("Sky_7vrah")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnmj6"]
+shader = ExtResource("1_2e2au")
+shader_parameter/dimensions = Vector2(1920, 1080)
+shader_parameter/small_stars = 50.0
+shader_parameter/small_stars_far_size = 0.2
+shader_parameter/small_stars_near_size = 0.1
+shader_parameter/large_stars = 8.0
+shader_parameter/large_stars_far_size = 0.2
+shader_parameter/large_stars_near_size = 0.1
+shader_parameter/far_stars_color = Color(1, 1, 1, 0.580392)
+shader_parameter/near_stars_color = Color(0.262745, 0, 0.980392, 0.458824)
+shader_parameter/base_scroll_speed = 0.0
+shader_parameter/additional_scroll_speed = 2.0
 
 [sub_resource type="Gradient" id="Gradient_t4prs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -31,7 +61,43 @@ size = Vector3(32, 19, 3)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0hcf"]
 points = PackedVector3Array(16, 2.5, 1.5, 16, 2.5, -1.5, -16, 2.5, 1.5, 16, -2.5, 1.5, 16, -2.5, -1.5, -16, 2.5, -1.5, -16, -2.5, 1.5, -16, -2.5, -1.5)
 
+[sub_resource type="Gradient" id="Gradient_a1bc5"]
+colors = PackedColorArray(0.00332709, 0.219238, 0.86734, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v2m2q"]
+gradient = SubResource("Gradient_a1bc5")
+fill_from = Vector2(1, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwb5b"]
+albedo_color = Color(0.402075, 1, 0.809109, 1)
+albedo_texture = SubResource("GradientTexture2D_v2m2q")
+
+[sub_resource type="BoxMesh" id="BoxMesh_dahmi"]
+material = SubResource("StandardMaterial3D_nwb5b")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l48bw"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
 [node name="Test_level" type="Node3D"]
+process_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+process_mode = 1
+environment = SubResource("Environment_xu42s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WorldEnvironment"]
+process_mode = 1
+layer = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldEnvironment/CanvasLayer"]
+process_mode = 1
+modulate = Color(0.823529, 1, 1, 1)
+self_modulate = Color(0.389287, 0.389287, 0.389287, 1)
+material = SubResource("ShaderMaterial_jnmj6")
+position = Vector2(961, 530)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_n6tgt")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
@@ -41,6 +107,7 @@ size = 100.0
 far = 49.69
 script = ExtResource("1_lcav5")
 max_size = 5000.03
+is_main_camera = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.555802, 0.728373, -0.400696, -0.128898, 0.551681, 0.824035, 0.821261, -0.406351, 0.400511, 0, 3.90833, 4.01216)
@@ -61,20 +128,55 @@ shadow_enabled = true
 spot_range = 101.952
 spot_angle = 26.28
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="redwall" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.52874, 10.0024)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="redwall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98844, 0.310357)
 mesh = SubResource("BoxMesh_yb0he")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="redwall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.57441, 0.310357)
 shape = SubResource("ConvexPolygonShape3D_k0hcf")
 
 [node name="floor" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(32, 1, 41)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
+projection = 1
+current = true
+size = 100.0
+far = 49.69
+script = ExtResource("1_lcav5")
+max_size = 5000.03
+
+[node name="bluebox" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5054, 3.52874, -5.23868)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/bluebox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.36278, 0.310357)
+mesh = SubResource("BoxMesh_dahmi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/bluebox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.36278, 0.310357)
+shape = SubResource("ConvexPolygonShape3D_l48bw")
 
 [node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)

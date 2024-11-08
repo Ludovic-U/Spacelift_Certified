@@ -35,21 +35,25 @@ skeleton = NodePath("../..")
 
 [node name="Head" type="MeshInstance3D" parent="Shadow_Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46522, -0.0477934)
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_ggki0")
 skeleton = NodePath("../..")
 
 [node name="Torso" type="MeshInstance3D" parent="Shadow_Meshes"]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_ggki0")
 skeleton = NodePath("../..")
 
 [node name="L-arm" type="MeshInstance3D" parent="Shadow_Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.560623, -1.02224)
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_ggki0")
 skeleton = NodePath("../..")
 
 [node name="R-arm" type="MeshInstance3D" parent="Shadow_Meshes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.556504, 0.976405)
+cast_shadow = 3
 mesh = SubResource("CapsuleMesh_ggki0")
 skeleton = NodePath("../..")
 

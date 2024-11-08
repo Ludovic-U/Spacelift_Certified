@@ -5,11 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://bwc2bhn5wyia6" path="res://Interface/menu/game_menu.tscn" id="3_1wugd"]
 
 [node name="Game_Controller" type="Node" node_paths=PackedStringArray("WORLD_3D", "INTERFACE")]
+process_mode = 3
 script = ExtResource("1_dbfim")
 WORLD_3D = NodePath("World3D")
 INTERFACE = NodePath("Interface")
 
 [node name="World3D" type="Node3D" parent="."]
+process_mode = 1
 
 [node name="Default_Intro" parent="World3D" instance=ExtResource("2_nbcnw")]
 

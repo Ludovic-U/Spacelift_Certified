@@ -6,3 +6,4 @@ var current_state:GameStates = GameStates.MENU
 var game_controller: GameController
 var mission_details: LevelButton
 var player: Player
+var main_camera: OrthogonalCamera
