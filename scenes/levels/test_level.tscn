@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bo2h0hh6y1jds"]
+[gd_scene load_steps=17 format=3 uid="uid://bo2h0hh6y1jds"]
 
 [ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="1_2e2au"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
 [ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/starry_sky.jpeg" id="2_n6tgt"]
 [ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
+[ext_resource type="PackedScene" uid="uid://d01byq61wqsb" path="res://Assets/ships/donut.blend" id="5_55ht8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7bnma"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -60,24 +61,6 @@ size = Vector3(32, 19, 3)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0hcf"]
 points = PackedVector3Array(16, 2.5, 1.5, 16, 2.5, -1.5, -16, 2.5, 1.5, 16, -2.5, 1.5, 16, -2.5, -1.5, -16, 2.5, -1.5, -16, -2.5, 1.5, -16, -2.5, -1.5)
-
-[sub_resource type="Gradient" id="Gradient_a1bc5"]
-colors = PackedColorArray(0.00332709, 0.219238, 0.86734, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_v2m2q"]
-gradient = SubResource("Gradient_a1bc5")
-fill_from = Vector2(1, 1)
-fill_to = Vector2(1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nwb5b"]
-albedo_color = Color(0.402075, 1, 0.809109, 1)
-albedo_texture = SubResource("GradientTexture2D_v2m2q")
-
-[sub_resource type="BoxMesh" id="BoxMesh_dahmi"]
-material = SubResource("StandardMaterial3D_nwb5b")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l48bw"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
 
 [node name="Test_level" type="Node3D"]
 process_mode = 1
@@ -143,40 +126,8 @@ shape = SubResource("ConvexPolygonShape3D_k0hcf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(32, 1, 41)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-own_world_3d = true
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
-projection = 1
-current = true
-size = 100.0
-far = 49.69
-script = ExtResource("1_lcav5")
-max_size = 5000.03
-
-[node name="bluebox" type="StaticBody3D" parent="SubViewportContainer/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5054, 3.52874, -5.23868)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/bluebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.36278, 0.310357)
-mesh = SubResource("BoxMesh_dahmi")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/bluebox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.36278, 0.310357)
-shape = SubResource("ConvexPolygonShape3D_l48bw")
-
 [node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
+
+[node name="donut" parent="." instance=ExtResource("5_55ht8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.418076, 1.5197, -14.3976)

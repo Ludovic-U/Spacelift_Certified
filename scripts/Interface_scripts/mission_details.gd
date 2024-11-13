@@ -14,29 +14,30 @@ func _ready():
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):
+		accept_event()
 		_on_back_button_button_down()
 
 func _on_back_button_button_down(): 
-	Global.game_controller.change_scene( 
+	Global.game_controller.swap_scene( 
 		self.get_parent(),
 		"res://Interface/menu/setting_quit.tscn",
-		true, false)
+		)
 	
-	Global.game_controller.change_scene( #load default intro
+	Global.game_controller.swap_scene( #load default intro
 		Global.game_controller.WORLD_3D,
 		"res://scenes/levels/intro/default_intro.tscn",
-		true, false)
+		)
 
 
 func _on_start_mission_button_down():
 	Global.current_state = Global.GameStates.RUNNING
 	
-	Global.game_controller.change_scene( 
+	Global.game_controller.swap_scene( 
 		Global.game_controller.WORLD_3D,
 		Global.mission_details.level,
-		true, false)
+		)
 		
-	Global.game_controller.change_scene( 
+	Global.game_controller.swap_scene( 
 		Global.game_controller.INTERFACE,
 		"", #TODO load the right UI
-		true, false)
+		)

@@ -1,14 +1,7 @@
-res://scenes/game.tscn
+res://scenes/levels/test_level.tscn
 res://scripts/global.gd
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Interface/themes/blue_theme.tres
 res://scripts/shader_scripts/casted_shadow.gdshader
-res://Interface/menu/level_button.tscn
-res://Interface/menu/game_menu.tscn
+res://scenes/game.tscn
 res://scenes/player_3d.tscn
-res://scenes/levels/test_level.tscn
-res://Interface/menu/mission_details.tscn
-res://Interface/menu/setting_quit.tscn
-res://scripts/game_controler.gd
-res://scripts/camera_3d.gd
-res://scenes/levels/intro/default_intro.tscn

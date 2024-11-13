@@ -13,5 +13,5 @@ signal show_mission_details
 
 func _on_button_down() -> void:
 	Global.mission_details = self
-	Global.game_controller.change_scene(Global.game_controller.WORLD_3D, intro, true, false)
+	Global.game_controller.swap_scene(Global.game_controller.WORLD_3D, intro)
 	show_mission_details.emit()

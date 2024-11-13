@@ -1,11 +1,13 @@
+/home/student/Blender/blender-4.2.3-linux-x64
 res://scripts/Interface_scripts
 res://Interface/menu
 res://Interface/themes
+res://Assets/vfx
+res://scripts/shader_scripts
+res://Interface
 res://Assets
 res://Assets/ships
-res://scripts/shader_scripts
 res://scenes/levels
 res://scripts
 res://Interface/themes/Sofia_Sans_Condensed/static
-res://Interface
 res://scenes

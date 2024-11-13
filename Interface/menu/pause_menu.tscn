@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwgggtlf6t815"]
+
+[ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_p6fj7"]
+[ext_resource type="Script" path="res://scripts/Interface_scripts/pause_menu.gd" id="2_y0d27"]
+
+[sub_resource type="Gradient" id="Gradient_101mk"]
+offsets = PackedFloat32Array(0.126437, 0.425287, 0.591954, 0.856322)
+colors = PackedColorArray(0, 0, 0, 0.941176, 0, 0, 0, 0.0745098, 0, 0, 0, 0.0784314, 0, 0, 0, 0.941176)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tj5nc"]
+gradient = SubResource("Gradient_101mk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv5ke"]
+bg_color = Color(0, 0.155914, 0.268924, 1)
+
+[node name="Pause_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_p6fj7")
+script = ExtResource("2_y0d27")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_tj5nc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -117.0
+offset_top = -220.0
+offset_right = 117.0
+offset_bottom = 212.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_hv5ke")
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="continue" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Continue"
+
+[node name="settings" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Settings"
+
+[node name="quit_menu" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Quit to menu"
+
+[node name="quit_desktop" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 31
+text = "Quit to Desktop"
+
+[connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/settings" to="." method="_on_settings_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/quit_menu" to="." method="_on_quit_menu_button_down"]
+[connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/quit_desktop" to="." method="_on_quit_desktop_button_down"]

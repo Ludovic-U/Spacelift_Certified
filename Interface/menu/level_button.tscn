@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://we0oedh2t5u1"]
+[gd_scene load_steps=3 format=3 uid="uid://we0oedh2t5u1"]
 
 [ext_resource type="Script" path="res://scripts/Interface_scripts/level_button.gd" id="1_i84fj"]
+[ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_ntpkl"]
 
 [node name="level_button" type="Button"]
+theme = ExtResource("1_ntpkl")
 text = "Test_level"
 script = ExtResource("1_i84fj")
 metadata/primary_objectives = ["Test things"]
