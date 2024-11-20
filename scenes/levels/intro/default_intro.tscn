@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://oay4go1bnrs2"]
 
-[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/starry_sky.jpeg" id="2_28kfb"]
+[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/textures/starry_sky.jpeg" id="2_28kfb"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_33l07"]
 [ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="2_sd36j"]
-[ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://Assets/ships/shuttle_prototype1.png" id="4_l7c1x"]
-[ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://Assets/ships/shuttle_prototype1_normalmap.png" id="5_6jp7g"]
+[ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://Assets/textures/shuttle_prototype1.png" id="4_l7c1x"]
+[ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://Assets/textures/shuttle_prototype1_normalmap.png" id="5_6jp7g"]
 
 [sub_resource type="Environment" id="Environment_w1gt4"]
 background_mode = 3

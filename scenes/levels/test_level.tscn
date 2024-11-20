@@ -2,9 +2,9 @@
 
 [ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="1_2e2au"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
-[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/starry_sky.jpeg" id="2_n6tgt"]
+[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/textures/starry_sky.jpeg" id="2_n6tgt"]
 [ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
-[ext_resource type="PackedScene" uid="uid://d01byq61wqsb" path="res://Assets/ships/donut.blend" id="5_55ht8"]
+[ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="6_wisaa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7bnma"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,6 +17,7 @@ sky_material = SubResource("ProceduralSkyMaterial_7bnma")
 background_mode = 3
 background_canvas_max_layer = -1
 sky = SubResource("Sky_7vrah")
+ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
@@ -43,20 +44,20 @@ fill = 1
 fill_from = Vector2(0.555556, 0.448718)
 fill_to = Vector2(0.794872, 0.217949)
 
-[sub_resource type="Gradient" id="Gradient_pq4dk"]
+[sub_resource type="Gradient" id="Gradient_2o8ej"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_h4obu"]
-gradient = SubResource("Gradient_pq4dk")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ivje1"]
+gradient = SubResource("Gradient_2o8ej")
 fill_from = Vector2(1, 1)
 fill_to = Vector2(1, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oua8a"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbr61"]
 albedo_color = Color(0.402075, 1, 0.809109, 1)
-albedo_texture = SubResource("GradientTexture2D_h4obu")
+albedo_texture = SubResource("GradientTexture2D_ivje1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_yb0he"]
-material = SubResource("StandardMaterial3D_oua8a")
+material = SubResource("StandardMaterial3D_lbr61")
 size = Vector3(32, 19, 3)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k0hcf"]
@@ -93,8 +94,11 @@ max_size = 5000.03
 is_main_camera = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.555802, 0.728373, -0.400696, -0.128898, 0.551681, 0.824035, 0.821261, -0.406351, 0.400511, 0, 3.90833, 4.01216)
+transform = Transform3D(0.458007, 0.0509277, -0.887488, 0.340235, 0.912297, 0.227937, 0.821261, -0.406351, 0.400511, -9.53674e-07, 3.4366, 3.95513)
 shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.98
+shadow_blur = 1.275
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.999743, 0.0226875, 0, -0.0226875, 0.999743, 0, 3.66702, 8.56859)
@@ -129,5 +133,5 @@ size = Vector3(32, 1, 41)
 [node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
 
-[node name="donut" parent="." instance=ExtResource("5_55ht8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.418076, 1.5197, -14.3976)
+[node name="shuttle_test" parent="." instance=ExtResource("6_wisaa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68054, -0.268582, -10.8825)

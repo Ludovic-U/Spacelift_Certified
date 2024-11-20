@@ -1,7 +1,11 @@
-res://scenes/levels/test_level.tscn
+res://scenes/game.tscn
 res://scripts/global.gd
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Interface/themes/blue_theme.tres
 res://scripts/shader_scripts/casted_shadow.gdshader
-res://scenes/game.tscn
 res://scenes/player_3d.tscn
+res://scenes/levels/test_level.tscn
+res://Assets/ships/shuttle_test.tscn
+res://Assets/materials/metal_plates.material
+res://Assets/materials/rusty_hull.material
+res://Assets/materials/grey_hull.material

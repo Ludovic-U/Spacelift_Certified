@@ -13,7 +13,7 @@ config_version=5
 config/name="NuPhoenicis"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Assets/ships/shuttle_prototype1_normalmap.png"
+config/icon="res://Assets/textures/shuttle_prototype1_normalmap.png"
 
 [autoload]
 
@@ -84,7 +84,12 @@ Mouse_Wheel_Down={
 
 [physics]
 
+3d/default_gravity_vector=Vector3(0, 0, 0)
 2d/default_gravity_vector=Vector2(0, 0)
 2d/default_linear_damp=0.001
 2d/default_angular_damp=0.001
 2d/sleep_threshold_linear=0.14
+
+[rendering]
+
+anti_aliasing/quality/msaa_3d=1

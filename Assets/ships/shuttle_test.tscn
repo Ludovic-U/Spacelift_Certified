@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://721i7ftf1bo4"]
+
+[ext_resource type="PackedScene" uid="uid://ca4qrkx1gxnhk" path="res://Assets/blender/shuttle.blend" id="1_3qhkr"]
+[ext_resource type="Material" uid="uid://d4jg0fstlpqit" path="res://Assets/materials/metal_plates.material" id="2_26aqh"]
+[ext_resource type="Material" uid="uid://eomefylfe6qc" path="res://Assets/materials/grey_hull.material" id="2_kytue"]
+[ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_black.material" id="3_2qpob"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gucf4"]
+radius = 2.93954
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xpw3k"]
+size = Vector3(7.13977, 8.20044, 6.10791)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1dwxy"]
+size = Vector3(10.4451, 6.88678, 11.3306)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mw67p"]
+size = Vector3(2.23248, 7.00629, 8.98059)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4pga"]
+size = Vector3(6.04065, 1, 9.28284)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ivra"]
+size = Vector3(9.07007, 6.78851, 7.09912)
+
+[node name="shuttle_test" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 80.0
+linear_damp = 0.1
+
+[node name="shuttle" parent="." instance=ExtResource("1_3qhkr")]
+
+[node name="MainHull" parent="shuttle" index="1"]
+surface_material_override/0 = ExtResource("2_kytue")
+
+[node name="PropelantTank" parent="shuttle" index="2"]
+surface_material_override/0 = ExtResource("2_26aqh")
+
+[node name="EngineHull" parent="shuttle" index="3"]
+surface_material_override/0 = ExtResource("2_kytue")
+
+[node name="Cube_003" parent="shuttle" index="4"]
+surface_material_override/0 = ExtResource("3_2qpob")
+
+[node name="Cube_006" parent="shuttle" index="5"]
+surface_material_override/0 = ExtResource("3_2qpob")
+
+[node name="col-propellanttank" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.96065, 4.19075, -0.17282)
+shape = SubResource("SphereShape3D_gucf4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0180054, 2.18445, 10.3041)
+shape = SubResource("BoxShape3D_xpw3k")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88583, 1.78305)
+shape = SubResource("BoxShape3D_1dwxy")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13065, 1.87098, -15.4724)
+shape = SubResource("BoxShape3D_mw67p")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1226, 1.90591, -15.4724)
+shape = SubResource("BoxShape3D_mw67p")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00958252, 5.22241, -14.5977)
+shape = SubResource("BoxShape3D_t4pga")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83218, -7.44604)
+shape = SubResource("BoxShape3D_7ivra")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51123, -7.44481)
+light_color = Color(0.972549, 0.784314, 0, 1)
+light_energy = 2.011
+shadow_enabled = true
+omni_range = 16.391
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51123, -14.8585)
+light_color = Color(0.972549, 0.784314, 0, 1)
+light_energy = 2.011
+shadow_enabled = true
+omni_range = 16.391
+
+[editable path="shuttle"]

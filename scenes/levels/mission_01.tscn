@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bwuwei3opgbby"]
 
-[ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://Assets/costelacion.png" id="1_nu6k3"]
+[ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://Assets/textures/costelacion.png" id="1_nu6k3"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_tf2p4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l81u5"]
