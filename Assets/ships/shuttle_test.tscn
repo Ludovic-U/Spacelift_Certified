@@ -1,9 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://721i7ftf1bo4"]
+[gd_scene load_steps=15 format=3 uid="uid://721i7ftf1bo4"]
 
 [ext_resource type="PackedScene" uid="uid://ca4qrkx1gxnhk" path="res://Assets/blender/shuttle.blend" id="1_3qhkr"]
-[ext_resource type="Material" uid="uid://d4jg0fstlpqit" path="res://Assets/materials/metal_plates.material" id="2_26aqh"]
-[ext_resource type="Material" uid="uid://eomefylfe6qc" path="res://Assets/materials/grey_hull.material" id="2_kytue"]
-[ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_black.material" id="3_2qpob"]
+[ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_darkgrey.material" id="3_2qpob"]
+[ext_resource type="Material" uid="uid://bjwo60u2kh0hv" path="res://Assets/materials/metallic_blue_hull.material" id="3_i8k35"]
+[ext_resource type="Material" uid="uid://v6e8fqe8rbig" path="res://Assets/materials/metalic_blue_sphere.material" id="3_t4yv7"]
+[ext_resource type="Shader" path="res://Assets/vfx/engine_flame.gdshader" id="5_b0pt8"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7jl3"]
+noise_type = 3
+seed = 3
+frequency = 0.0143
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g4s1p"]
+seamless = true
+noise = SubResource("FastNoiseLite_a7jl3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuiyl"]
+render_priority = 0
+shader = ExtResource("5_b0pt8")
+shader_parameter/root_color = Color(0.00045705, 9.64433e-07, 2.93767e-11, 1)
+shader_parameter/tip_color = Color(1, 0.32549, 0.0705882, 1)
+shader_parameter/fire_alpha = 1.0
+shader_parameter/fire_speed = Vector2(0, 3)
+shader_parameter/fire_aperture = 0.106
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_g4s1p")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gucf4"]
 radius = 2.93954
@@ -27,47 +47,70 @@ size = Vector3(9.07007, 6.78851, 7.09912)
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
-mass = 80.0
+mass = 800.0
 linear_damp = 0.1
+angular_damp_mode = 1
 
 [node name="shuttle" parent="." instance=ExtResource("1_3qhkr")]
 
+[node name="Nozzle" parent="shuttle" index="0"]
+surface_material_override/0 = ExtResource("3_2qpob")
+
 [node name="MainHull" parent="shuttle" index="1"]
-surface_material_override/0 = ExtResource("2_kytue")
+surface_material_override/0 = ExtResource("3_i8k35")
 
 [node name="PropelantTank" parent="shuttle" index="2"]
-surface_material_override/0 = ExtResource("2_26aqh")
+surface_material_override/0 = ExtResource("3_t4yv7")
 
 [node name="EngineHull" parent="shuttle" index="3"]
-surface_material_override/0 = ExtResource("2_kytue")
+surface_material_override/0 = ExtResource("3_i8k35")
 
-[node name="Cube_003" parent="shuttle" index="4"]
+[node name="panel01" parent="shuttle" index="4"]
 surface_material_override/0 = ExtResource("3_2qpob")
 
-[node name="Cube_006" parent="shuttle" index="5"]
+[node name="panel02" parent="shuttle" index="5"]
 surface_material_override/0 = ExtResource("3_2qpob")
+
+[node name="Cube_001" parent="shuttle" index="6"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_002" parent="shuttle" index="7"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_004" parent="shuttle" index="8"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_005" parent="shuttle" index="9"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_007" parent="shuttle" index="10"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Flame" parent="shuttle" index="11"]
+surface_material_override/0 = SubResource("ShaderMaterial_nuiyl")
 
 [node name="col-propellanttank" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.96065, 4.19075, -0.17282)
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -5.98494, 4.19075, -3.9425)
 shape = SubResource("SphereShape3D_gucf4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0180054, 2.18445, 10.3041)
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -16.454, 2.18445, 0.0209832)
 shape = SubResource("BoxShape3D_xpw3k")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.88583, 1.78305)
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -7.93293, 1.88583, 0.0220349)
 shape = SubResource("BoxShape3D_1dwxy")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.13065, 1.87098, -15.4724)
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 9.31427, 1.87098, -4.14294)
 shape = SubResource("BoxShape3D_mw67p")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1226, 1.90591, -15.4724)
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 9.33069, 1.90591, 4.1103)
 shape = SubResource("BoxShape3D_mw67p")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -6.14988, 0, 0.0184872)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00958252, 5.22241, -14.5977)
@@ -78,6 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83218, -7.44604)
 shape = SubResource("BoxShape3D_7ivra")
 
 [node name="Lights" type="Node3D" parent="."]
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -6.14988, 0, 0.0184872)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.51123, -7.44481)

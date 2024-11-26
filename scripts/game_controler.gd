@@ -4,13 +4,12 @@ class_name GameController extends Node
 var current_3D_scene_path: String = "res://scenes/levels/intro/default_intro.tscn"
 @export var INTERFACE: Control
 
-
 func _ready() :
 	Global.game_controller = self
 	
 #TODO add transition parametter
 #TODO deal with the case when the user click twice on the same button
-func swap_scene(parent: Node, new_scene: String, delete_parent_child:bool = true, keep_running: bool = false) -> void:
+func swap_scene(parent: Node, new_scene: String, delete_parent_child:bool = true, keep_running: bool = false, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
 	if current_3D_scene_path == new_scene:
 		return
 	elif new_scene.begins_with("res://scenes/levels/"): #TODO make this more maintainable
@@ -31,12 +30,13 @@ func swap_scene(parent: Node, new_scene: String, delete_parent_child:bool = true
 		parent.add_child(new)
 
 # TODO add transition parameter
-func add_scene(parent: Node, new_scene: String):
+func add_scene(parent: Node, new_scene: String, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
 	if new_scene != "":
 		var new = load(new_scene).instantiate()
 		parent.add_child(new)
 		
-#func delete_scene(scene:Node)
+func delete_scene(_scene:Node, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
+	pass
 
 func _unhandled_input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):

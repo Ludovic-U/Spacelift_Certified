@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://t6pt6jgktqhg"]
+
+[ext_resource type="PackedScene" uid="uid://ct2j3lbnb2hol" path="res://Assets/blender/crate.blend" id="1_qom6j"]
+[ext_resource type="Material" uid="uid://eomefylfe6qc" path="res://Assets/materials/grey_hull.material" id="2_eehv0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frrkn"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(2.69532e-06, 0.577795, 3.85046e-07, 1)
+emission_energy_multiplier = 0.79
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cy0je"]
+size = Vector3(0.760742, 0.760742, 0.75)
+
+[node name="crate" type="RigidBody3D"]
+axis_lock_linear_y = true
+
+[node name="crate" parent="." instance=ExtResource("1_qom6j")]
+
+[node name="Cube" parent="crate" index="0"]
+surface_material_override/0 = ExtResource("2_eehv0")
+
+[node name="Cube_001" parent="crate" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_frrkn")
+
+[node name="Cube_002" parent="crate" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_frrkn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_cy0je")
+
+[editable path="crate"]

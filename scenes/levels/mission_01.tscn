@@ -1,37 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwuwei3opgbby"]
+[gd_scene load_steps=4 format=3 uid="uid://bwuwei3opgbby"]
 
-[ext_resource type="Texture2D" uid="uid://bcw4l5dcq3sic" path="res://Assets/textures/costelacion.png" id="1_nu6k3"]
-[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_tf2p4"]
+[ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_1j534"]
+[ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="2_jcwtx"]
+[ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="3_cpgqe"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_l81u5"]
-size = Vector2(50, 50)
+[node name="Mission01" node_paths=PackedStringArray("camera", "dust") instance=ExtResource("1_1j534")]
+camera = NodePath("Camera3D")
+dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ip3x7"]
-albedo_texture = ExtResource("1_nu6k3")
+[node name="Camera3D" parent="." index="1" node_paths=PackedStringArray("target")]
+target = NodePath("../spacelift")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2p7y5"]
-points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+[node name="shuttle_test" parent="." index="3" instance=ExtResource("2_jcwtx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38)
 
-[node name="Mission01" type="Node3D"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0.962624, 0, 0)
-shadow_enabled = true
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("PlaneMesh_l81u5")
-surface_material_override/0 = SubResource("StandardMaterial3D_ip3x7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_2p7y5")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.4011, 0)
-projection = 1
-current = true
-size = 100.0
-far = 100.0
-script = ExtResource("2_tf2p4")
-max_size = 5000.0
+[node name="spacelift" parent="." index="4" instance=ExtResource("3_cpgqe")]
+listen_to_inputs = true

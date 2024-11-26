@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://we0twxit8c07"]
+
+[ext_resource type="Texture2D" uid="uid://j6e3j44im88x" path="res://Assets/textures/normalmap.png" id="1_tktk4"]
+[ext_resource type="Script" path="res://Interface/menu/loading.gd" id="1_voa1n"]
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_voa1n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -169.0
+offset_top = -345.0
+offset_right = 343.0
+offset_bottom = 167.0
+grow_vertical = 0
+scale = Vector2(0.18276, 0.196376)
+pivot_offset = Vector2(258, 258)
+texture = ExtResource("1_tktk4")

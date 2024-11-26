@@ -1,39 +1,38 @@
-[gd_scene load_steps=17 format=3 uid="uid://bo2h0hh6y1jds"]
+[gd_scene load_steps=19 format=3 uid="uid://bo2h0hh6y1jds"]
 
-[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="1_2e2au"]
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="1_b0okf"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="1_lcav5"]
-[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/textures/starry_sky.jpeg" id="2_n6tgt"]
-[ext_resource type="PackedScene" uid="uid://j0xms7qaq32t" path="res://scenes/player_3d.tscn" id="2_wgeru"]
+[ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="6_epk75"]
+[ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="6_i6fex"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="6_wisaa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7bnma"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_7vrah"]
+[sub_resource type="Sky" id="Sky_qtjtq"]
 sky_material = SubResource("ProceduralSkyMaterial_7bnma")
 
 [sub_resource type="Environment" id="Environment_xu42s"]
 background_mode = 3
 background_canvas_max_layer = -1
-sky = SubResource("Sky_7vrah")
+sky = SubResource("Sky_qtjtq")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnmj6"]
-shader = ExtResource("1_2e2au")
-shader_parameter/dimensions = Vector2(1920, 1080)
-shader_parameter/small_stars = 50.0
-shader_parameter/small_stars_far_size = 0.2
-shader_parameter/small_stars_near_size = 0.1
-shader_parameter/large_stars = 8.0
-shader_parameter/large_stars_far_size = 0.2
-shader_parameter/large_stars_near_size = 0.1
-shader_parameter/far_stars_color = Color(1, 1, 1, 0.580392)
-shader_parameter/near_stars_color = Color(0.262745, 0, 0.980392, 0.458824)
-shader_parameter/base_scroll_speed = 0.0
-shader_parameter/additional_scroll_speed = 2.0
+[sub_resource type="Gradient" id="Gradient_66p5w"]
+offsets = PackedFloat32Array(0, 0.996979)
+colors = PackedColorArray(0, 0, 0, 1, 0.0963387, 4.87805e-05, 0.338687, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ntvwp"]
+frequency = 0.0004
+offset = Vector3(0, -810.34, 0)
+fractal_weighted_strength = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lprk8"]
+color_ramp = SubResource("Gradient_66p5w")
+noise = SubResource("FastNoiseLite_ntvwp")
 
 [sub_resource type="Gradient" id="Gradient_t4prs"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -74,16 +73,16 @@ environment = SubResource("Environment_xu42s")
 process_mode = 1
 layer = -1
 
-[node name="Sprite2D" type="Sprite2D" parent="WorldEnvironment/CanvasLayer"]
+[node name="Sprite2D2" type="Sprite2D" parent="WorldEnvironment/CanvasLayer"]
 process_mode = 1
 modulate = Color(0.823529, 1, 1, 1)
 self_modulate = Color(0.389287, 0.389287, 0.389287, 1)
-material = SubResource("ShaderMaterial_jnmj6")
-position = Vector2(961, 530)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_n6tgt")
+material = ExtResource("1_b0okf")
+position = Vector2(978.5, 549.5)
+scale = Vector2(4.35352, 2.5957)
+texture = SubResource("NoiseTexture2D_lprk8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
 projection = 1
 current = true
@@ -92,6 +91,7 @@ far = 49.69
 script = ExtResource("1_lcav5")
 max_size = 5000.03
 is_main_camera = true
+target = NodePath("../spacelift")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.458007, 0.0509277, -0.887488, 0.340235, 0.912297, 0.227937, 0.821261, -0.406351, 0.400511, -9.53674e-07, 3.4366, 3.95513)
@@ -130,8 +130,28 @@ shape = SubResource("ConvexPolygonShape3D_k0hcf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(32, 1, 41)
 
-[node name="Player3D" parent="." instance=ExtResource("2_wgeru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0)
-
 [node name="shuttle_test" parent="." instance=ExtResource("6_wisaa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68054, -0.268582, -10.8825)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.68054, -0.268582, -44.4459)
+freeze = true
+
+[node name="Flame" parent="shuttle_test/shuttle" index="11"]
+visible = false
+
+[node name="spacelift" parent="." instance=ExtResource("6_i6fex")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.45408, 0, 0.555937)
+listen_to_inputs = true
+
+[node name="crate" parent="." instance=ExtResource("6_epk75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11935, 0)
+
+[node name="crate2" parent="." instance=ExtResource("6_epk75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11935, -4.19854)
+
+[node name="crate3" parent="." instance=ExtResource("6_epk75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10203, -0.11935, -4.19854)
+
+[node name="crate4" parent="." instance=ExtResource("6_epk75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.10203, -0.11935, -15.1358)
+
+[editable path="shuttle_test"]
+[editable path="shuttle_test/shuttle"]

@@ -4,6 +4,7 @@ class_name OrthogonalCamera extends Camera3D
 @export var max_size:float = 100.0
 @export var zoom_speed:float = 0.2
 @export var is_main_camera:bool = false
+@export var target:Node3D
 
 func _ready():
 	projection = PROJECTION_ORTHOGONAL
@@ -20,3 +21,9 @@ func _process(_delta):
 	if !is_main_camera && Global.main_camera != null:
 		set_size(Global.main_camera.size)
 		position = Global.main_camera.position #TODO ajust position depending on parent position
+		
+	if target != null:
+		position.x = target.position.x
+		position.z = target.position.z
+		
+	

@@ -24,6 +24,8 @@ uniform sampler2D large_stars_texture : source_color, filter_nearest_mipmap;
 uniform float base_scroll_speed : hint_range(0.0, 1.0, 0.01) = 0.05;
 uniform float additional_scroll_speed : hint_range(0.01, 2.0, 0.01) = 0.05;
 
+uniform vec2 scroll_direction = vec2(0.0, 1.0) ;
+
 float greater_than(float x, float y) {
 	return max(sign(x - y), 0.0);
 }
@@ -42,9 +44,13 @@ void fragment() {
 //	vec2 dimensions = 1.0 / TEXTURE_PIXEL_SIZE;
 
 // Horizontal scrolling:
-	float small_star_rn = fract(sin(floor(UV.y * small_stars)) * dimensions.y);
-	float large_star_rn = fract(sin(floor(UV.y * large_stars)) * dimensions.y);
-	vec2 small_star_uv = vec2(fract(UV.x + (base_scroll_speed + small_star_rn * additional_scroll_speed) * time) * small_stars * dimensions.x / dimensions.y, fract(UV.y * small_stars)) * 2.0 - 1.0;
+	float small_star_rn = fract(sin(floor(UV.y * small_stars)) * dimensions.y );
+	float large_star_rn = fract(sin(floor(UV.y * large_stars)) * dimensions.y  );
+	
+	vec2 small_star_uv = vec2(
+		fract(UV.x + (base_scroll_speed + small_star_rn * additional_scroll_speed) * time) * small_stars * dimensions.x / dimensions.y,
+		fract(UV.y * small_stars)
+		) * 2.0 - 1.0;
 	vec2 large_star_uv = vec2(fract(UV.x + (base_scroll_speed + large_star_rn * additional_scroll_speed) * time) * large_stars * dimensions.x / dimensions.y, fract(UV.y * large_stars)) * 2.0 - 1.0;
 
 // Vertical scrolling:

@@ -1,0 +1,143 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8oroaqu3byyl"]
+
+[ext_resource type="Script" path="res://scripts/ship_related_scripts/space_ship_template.gd" id="1_ivavh"]
+[ext_resource type="PackedScene" uid="uid://cwky1nd7hbqwm" path="res://Assets/blender/spacelift.blend" id="1_wpu7r"]
+[ext_resource type="Material" uid="uid://bjwo60u2kh0hv" path="res://Assets/materials/metallic_blue_hull.material" id="2_ixoob"]
+[ext_resource type="Material" uid="uid://v6e8fqe8rbig" path="res://Assets/materials/metalic_blue_sphere.material" id="3_71sdp"]
+[ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_darkgrey.material" id="4_8tjvy"]
+[ext_resource type="Material" uid="uid://by6mvo7snw0ha" path="res://Assets/materials/green_light.material" id="6_kcxk7"]
+[ext_resource type="Material" uid="uid://bj0mru2atp6bd" path="res://Assets/materials/red_light.material" id="7_1svix"]
+[ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://Assets/vfx/rcs.png" id="7_j1f6j"]
+[ext_resource type="Material" uid="uid://cyjv8fkyp6x4g" path="res://Assets/vfx/rcs.material" id="8_xqbb1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oelu6"]
+size = Vector3(0.591248, 1.82642, 4.52319)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_il28f"]
+size = Vector3(2.74219, 2.20337, 1.36353)
+
+[node name="spacelift" type="RigidBody3D" node_paths=PackedStringArray("Forward_Engine", "Backward_RCS", "Transverse_Left_RCS", "Transverse_Right_RCS", "Yaw_Right_RCS", "Yaw_Left_RCS")]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+mass = 160.0
+angular_damp_mode = 1
+angular_damp = 0.1
+script = ExtResource("1_ivavh")
+rcs_side_thrust = 1500
+spin_thrust = 1000
+Forward_Engine = [NodePath("ThrusterVFX/F-YL"), NodePath("ThrusterVFX/F-YR")]
+Backward_RCS = [NodePath("ThrusterVFX/B-YL"), NodePath("ThrusterVFX/B-YR")]
+Transverse_Left_RCS = [NodePath("ThrusterVFX/TL")]
+Transverse_Right_RCS = [NodePath("ThrusterVFX/TR")]
+Yaw_Right_RCS = [NodePath("ThrusterVFX/B-YR"), NodePath("ThrusterVFX/F-YR")]
+Yaw_Left_RCS = [NodePath("ThrusterVFX/B-YL"), NodePath("ThrusterVFX/F-YL")]
+
+[node name="spacelift" parent="." instance=ExtResource("1_wpu7r")]
+
+[node name="Hull" parent="spacelift" index="0"]
+surface_material_override/0 = ExtResource("2_ixoob")
+
+[node name="Tank" parent="spacelift" index="1"]
+surface_material_override/0 = ExtResource("3_71sdp")
+
+[node name="Thrusters" parent="spacelift" index="2"]
+surface_material_override/0 = ExtResource("2_ixoob")
+
+[node name="deco" parent="spacelift" index="3"]
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("4_8tjvy")
+
+[node name="Cube_001" parent="spacelift" index="4"]
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("4_8tjvy")
+
+[node name="Cube_002" parent="spacelift" index="5"]
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("3_71sdp")
+
+[node name="Cube_003" parent="spacelift" index="6"]
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("3_71sdp")
+
+[node name="nav-lights-R" parent="spacelift" index="7"]
+surface_material_override/0 = ExtResource("6_kcxk7")
+
+[node name="nav-lights-L" parent="spacelift" index="8"]
+transform = Transform3D(0.0768556, 1.17267e-12, 2.68277e-05, -1.17267e-12, 0.0768556, -2.0024e-16, -2.68277e-05, -2.0024e-16, 0.0768556, 2.85706, 0, -1.00224)
+surface_material_override/0 = ExtResource("7_1svix")
+
+[node name="ThrusterVFX" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.388468, 3.1665e-08, -0.0477757)
+
+[node name="B-YL" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(0.793087, -7.10543e-15, 0.128083, -3.55271e-15, 0.803363, -7.10543e-15, -0.128083, -5.57045e-15, 0.793087, -1.51909, 0.00639677, 0.295848)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="B-YR" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(0.792396, -6.65246e-11, -0.110039, 6.59028e-11, 0.8, -9.08784e-12, 0.110039, -6.95228e-14, 0.792396, 1.53311, 0.00639677, 0.304247)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="TR" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(-0.00208046, -3.55271e-15, 0.799997, 3.14332e-15, 0.8, -3.55271e-15, -0.799997, -2.02417e-15, -0.00208046, -1.49742, 0.00639677, 0.418643)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="TL" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(-0.00120073, -6.65317e-11, -0.799999, -3.97668e-14, 0.8, -6.65246e-11, 0.799999, -6.24174e-14, -0.00120073, 1.52181, 0.00639677, 0.401803)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="F-YR" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(-0.792841, 0, 0.106788, 3.55271e-15, 0.8, 2.66454e-15, -0.106788, -2.02417e-15, -0.792841, -1.50833, 0.00639677, 0.516245)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="F-YL" type="Sprite3D" parent="ThrusterVFX"]
+transform = Transform3D(-0.790283, -6.65281e-11, -0.124306, -6.5711e-11, 0.8, -1.03983e-11, 0.124306, -6.59701e-14, -0.790283, 1.54297, 0.00639677, 0.524686)
+material_override = ExtResource("8_xqbb1")
+cast_shadow = 0
+offset = Vector2(0, 258)
+axis = 1
+texture = ExtResource("7_j1f6j")
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Lights"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+light_energy = 3.0
+light_size = 1.0
+spot_range = 80.0
+spot_attenuation = 0.05
+spot_angle = 18.366
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.373453, 0.0364991, 1.11467)
+shape = SubResource("BoxShape3D_oelu6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.373454, 0.036499, -1.18576)
+shape = SubResource("BoxShape3D_oelu6")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, -2.55484, -9.68575e-08, -0.0477758)
+shape = SubResource("BoxShape3D_il28f")
+
+[editable path="spacelift"]
