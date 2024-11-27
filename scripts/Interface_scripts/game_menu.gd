@@ -9,4 +9,6 @@ func _ready():
 
 
 func _on_levelbutton_down() -> void:
-	Global.game_controller.swap_scene(%Right_column, "res://Interface/menu/mission_details.tscn")
+	Global.game_controller.swap_scene(
+		%Right_column,
+		"res://Interface/menu/mission_details.tscn")

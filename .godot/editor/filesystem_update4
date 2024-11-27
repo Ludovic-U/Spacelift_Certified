@@ -1,4 +1,4 @@
-res://scenes/levels/level_template.tscn
+res://scenes/levels/test_level.tscn
 res://scripts/global.gd
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Assets/materials/metallic_blue_hull.material
@@ -8,13 +8,10 @@ res://Assets/vfx/rcs.material
 res://Interface/themes/blue_theme.tres
 res://scripts/shader_scripts/moving_dust.gdshader
 res://Assets/materials/star_field.material
-res://Assets/materials/grey_hull.material
 res://Assets/vfx/engine_flame.gdshader
+res://Assets/materials/grey_hull.material
 res://scripts/shader_scripts/casted_shadow.gdshader
 res://scenes/game.tscn
-res://scenes/levels/test_level.tscn
-res://Assets/ships/spacelift.tscn
-res://scenes/levels/intro/default_intro.tscn
-res://Assets/items/crate.tscn
+res://scenes/levels/level_template.tscn
 res://scenes/levels/mission_01.tscn
-res://scenes/levels/level_template.gd
+res://scenes/levels/intro/default_intro.tscn

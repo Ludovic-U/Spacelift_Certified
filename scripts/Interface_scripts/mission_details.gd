@@ -18,8 +18,8 @@ func _unhandled_key_input(event):
 		_on_back_button_button_down()
 
 func _on_back_button_button_down(): 
-	Global.game_controller.swap_scene( 
-		self.get_parent(),
+	Global.game_controller.swap_scene(  #swap the right column of game_menu
+		self.get_parent(), #TODO: make it more maintainable
 		"res://Interface/menu/setting_quit.tscn",
 		)
 	
@@ -30,14 +30,10 @@ func _on_back_button_button_down():
 
 
 func _on_start_mission_button_down():
-	Global.current_state = Global.GameStates.RUNNING
-	
 	Global.game_controller.swap_scene( 
 		Global.game_controller.WORLD_3D,
-		Global.mission_details.level,
+		Global.mission_details.level_path,
 		)
 		
-	Global.game_controller.swap_scene( 
-		Global.game_controller.INTERFACE,
-		"", #TODO load the right UI
-		)
+	Global.game_controller.delete_scene(Global.game_controller.INTERFACE.get_child(0))
+	

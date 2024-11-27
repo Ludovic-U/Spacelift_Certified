@@ -64,13 +64,13 @@ size_flags_vertical = 3
 
 [node name="level_button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
-intro = "res://scenes/levels/test_level.tscn"
-level = "res://scenes/levels/test_level.tscn"
+level_path = "res://scenes/levels/test_level.tscn"
 
 [node name="mission01" parent="Left_column/MarginContainer/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
 text = "Mission01"
-level = "res://scenes/levels/mission_01.tscn"
+intro_path = "res://scenes/levels/intro/mission_01_intro.tscn"
+level_path = "res://scenes/levels/mission_01.tscn"
 details = {
 "Description": "Some context about the first mission",
 "Primary": "the very first objective",

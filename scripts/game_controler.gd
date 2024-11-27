@@ -9,11 +9,11 @@ func _ready() :
 	
 #TODO add transition parametter
 #TODO deal with the case when the user click twice on the same button
-func swap_scene(parent: Node, new_scene: String, delete_parent_child:bool = true, keep_running: bool = false, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
-	if current_3D_scene_path == new_scene:
+func swap_scene(parent: Node, new_scene_path: String, delete_parent_child:bool = true, keep_running: bool = false, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
+	if current_3D_scene_path == new_scene_path:
 		return
-	elif new_scene.begins_with("res://scenes/levels/"): #TODO make this more maintainable
-		current_3D_scene_path = new_scene
+	elif new_scene_path.begins_with("res://scenes/levels/"): #TODO make this more maintainable
+		current_3D_scene_path = new_scene_path
 		
 	if parent.get_child_count() != 0:
 		var current_parent_child = parent.get_child(0)
@@ -25,9 +25,10 @@ func swap_scene(parent: Node, new_scene: String, delete_parent_child:bool = true
 			current_parent_child.remove()
 			#TODO: save the scene in a variable to be retrieved later.
 	
-	if new_scene != "":
-		var new = load(new_scene).instantiate()
-		parent.add_child(new)
+	if new_scene_path != "":
+		var new_scene = load(new_scene_path).instantiate()		
+		parent.add_child(new_scene)
+		
 
 # TODO add transition parameter
 func add_scene(parent: Node, new_scene: String, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
@@ -35,8 +36,8 @@ func add_scene(parent: Node, new_scene: String, _transition:Global.Transitions =
 		var new = load(new_scene).instantiate()
 		parent.add_child(new)
 		
-func delete_scene(_scene:Node, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
-	pass
+func delete_scene(scene:Node, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
+	scene.queue_free()
 
 func _unhandled_input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):

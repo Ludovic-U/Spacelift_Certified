@@ -96,7 +96,7 @@ func fire_thrusters() -> void:
 			thruster.visible = true
 		if thrust.z > 0 && Transverse_Right_RCS.has(thruster):
 			thruster.visible = true
-		if rotation_dir < 0 && Yaw_Left_RCS.has(thruster):
+		if rotation_dir > 0 && Yaw_Left_RCS.has(thruster):
 			thruster.visible = true
-		if rotation_dir > 0 && Yaw_Right_RCS.has(thruster):
+		if rotation_dir < 0 && Yaw_Right_RCS.has(thruster):
 			thruster.visible = true

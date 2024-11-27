@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://721i7ftf1bo4"]
+[gd_scene load_steps=16 format=3 uid="uid://721i7ftf1bo4"]
 
 [ext_resource type="PackedScene" uid="uid://ca4qrkx1gxnhk" path="res://Assets/blender/shuttle.blend" id="1_3qhkr"]
+[ext_resource type="Script" path="res://Assets/ships/shuttle_test.gd" id="1_nya5q"]
 [ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_darkgrey.material" id="3_2qpob"]
 [ext_resource type="Material" uid="uid://bjwo60u2kh0hv" path="res://Assets/materials/metallic_blue_hull.material" id="3_i8k35"]
 [ext_resource type="Material" uid="uid://v6e8fqe8rbig" path="res://Assets/materials/metalic_blue_sphere.material" id="3_t4yv7"]
@@ -47,9 +48,12 @@ size = Vector3(9.07007, 6.78851, 7.09912)
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
-mass = 800.0
+mass = 80000.0
+contact_monitor = true
+max_contacts_reported = 5
 linear_damp = 0.1
 angular_damp_mode = 1
+script = ExtResource("1_nya5q")
 
 [node name="shuttle" parent="." instance=ExtResource("1_3qhkr")]
 
@@ -87,6 +91,7 @@ surface_material_override/0 = ExtResource("3_t4yv7")
 surface_material_override/0 = ExtResource("3_t4yv7")
 
 [node name="Flame" parent="shuttle" index="11"]
+visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_nuiyl")
 
 [node name="col-propellanttank" type="CollisionShape3D" parent="."]
@@ -109,14 +114,14 @@ shape = SubResource("BoxShape3D_mw67p")
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 9.33069, 1.90591, 4.1103)
 shape = SubResource("BoxShape3D_mw67p")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Cargo_Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -6.14988, 0, 0.0184872)
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Cargo_Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00958252, 5.22241, -14.5977)
 shape = SubResource("BoxShape3D_t4pga")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cargo_Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.83218, -7.44604)
 shape = SubResource("BoxShape3D_7ivra")
 
@@ -136,5 +141,8 @@ light_color = Color(0.972549, 0.784314, 0, 1)
 light_energy = 2.011
 shadow_enabled = true
 omni_range = 16.391
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Cargo_Area3D" to="." method="_on_cargo_area_3d_body_entered"]
 
 [editable path="shuttle"]

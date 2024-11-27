@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmaa5j6rbc6yx"]
-
-[ext_resource type="PackedScene" uid="uid://ca4qrkx1gxnhk" path="res://Assets/blender/shuttle.blend" id="1_rjn72"]
-
-[node name="shuttle" instance=ExtResource("1_rjn72")]

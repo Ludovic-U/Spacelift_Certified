@@ -46,7 +46,7 @@ void fragment() {
 // Horizontal scrolling:
 	float small_star_rn = fract(sin(floor(UV.y * small_stars)) * dimensions.y );
 	float large_star_rn = fract(sin(floor(UV.y * large_stars)) * dimensions.y  );
-	
+
 	vec2 small_star_uv = vec2(
 		fract(UV.x + (base_scroll_speed + small_star_rn * additional_scroll_speed) * time) * small_stars * dimensions.x / dimensions.y,
 		fract(UV.y * small_stars)

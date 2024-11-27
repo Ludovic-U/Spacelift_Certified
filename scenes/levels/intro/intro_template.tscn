@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://cpg8t337ngfso"]
+
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="1_rosjv"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="2_hy5no"]
+[ext_resource type="Script" path="res://scripts/camera_3d.gd" id="3_j3e0p"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2p36b"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7vrah"]
+sky_material = SubResource("ProceduralSkyMaterial_2p36b")
+
+[sub_resource type="Environment" id="Environment_56gmm"]
+background_mode = 3
+background_canvas_max_layer = -1
+sky = SubResource("Sky_7vrah")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_c7dhj"]
+colors = PackedColorArray(0.0998355, 0.0746294, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rifu1"]
+frequency = 0.0018
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1jg28"]
+color_ramp = SubResource("Gradient_c7dhj")
+noise = SubResource("FastNoiseLite_rifu1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6pqk4"]
+noise_type = 0
+seed = 1
+frequency = 0.1801
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ribl6"]
+width = 1080
+height = 1080
+noise = SubResource("FastNoiseLite_6pqk4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1n7ty"]
+shader = ExtResource("2_hy5no")
+shader_parameter/resolution = Vector2(1080, 1080)
+shader_parameter/density = 31.8
+shader_parameter/alpha_threshold = 0.5
+shader_parameter/layers = 3.0
+shader_parameter/speed_difference = 0.5
+shader_parameter/brightness_difference = 0.1
+shader_parameter/offset = Vector2(47, 33)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_ribl6")
+
+[node name="Intro_template" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+process_mode = 1
+environment = SubResource("Environment_56gmm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="WorldEnvironment"]
+process_mode = 1
+layer = -1
+
+[node name="stars" type="TextureRect" parent="WorldEnvironment/CanvasLayer"]
+material = ExtResource("1_rosjv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_1jg28")
+metadata/_edit_use_anchors_ = true
+
+[node name="dust" type="ColorRect" parent="WorldEnvironment/CanvasLayer"]
+material = SubResource("ShaderMaterial_1n7ty")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
+projection = 1
+current = true
+size = 100.0
+far = 49.69
+script = ExtResource("3_j3e0p")
+max_size = 5000.03
+is_main_camera = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.458007, 0.0509277, -0.887488, 0.340235, 0.912297, 0.227937, 0.821261, -0.406351, 0.400511, -9.53674e-07, 3.4366, 3.95513)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.98
+shadow_blur = 1.275

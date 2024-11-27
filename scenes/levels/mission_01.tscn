@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwuwei3opgbby"]
+[gd_scene load_steps=5 format=3 uid="uid://bwuwei3opgbby"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_1j534"]
+[ext_resource type="PackedScene" uid="uid://cnwbgergod543" path="res://Interface/ship_ui/gather_crates_ui.tscn" id="2_17n1o"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="2_jcwtx"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="3_cpgqe"]
 
-[node name="Mission01" node_paths=PackedStringArray("camera", "dust") instance=ExtResource("1_1j534")]
+[node name="Mission01" node_paths=PackedStringArray("camera", "dust", "time") instance=ExtResource("1_1j534")]
+GUI = ExtResource("2_17n1o")
 camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
+time = NodePath("TimeSystem")
 
-[node name="Camera3D" parent="." index="1" node_paths=PackedStringArray("target")]
+[node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
 target = NodePath("../spacelift")
 
 [node name="shuttle_test" parent="." index="3" instance=ExtResource("2_jcwtx")]
@@ -16,3 +19,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38)
 
 [node name="spacelift" parent="." index="4" instance=ExtResource("3_cpgqe")]
 listen_to_inputs = true
+
+[editable path="shuttle_test"]
+[editable path="shuttle_test/shuttle"]

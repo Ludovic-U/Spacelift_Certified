@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmlru40no1q1n"]
+
+[ext_resource type="Script" path="res://scripts/time_system.gd" id="1_674c8"]
+
+[node name="TimeSystem" type="Node"]
+process_mode = 1
+script = ExtResource("1_674c8")

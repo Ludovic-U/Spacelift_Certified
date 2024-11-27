@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cjs3mqfmeqt87"]
+[gd_scene load_steps=15 format=3 uid="uid://cjs3mqfmeqt87"]
 
 [ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="1_4ctj5"]
 [ext_resource type="Script" path="res://scenes/levels/level_template.gd" id="1_30yhy"]
+[ext_resource type="PackedScene" uid="uid://bmlru40no1q1n" path="res://scenes/componants/time_system.tscn" id="2_1og0w"]
 [ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="2_m3u8l"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="3_qv8x4"]
 
@@ -9,49 +10,54 @@
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
-[sub_resource type="Sky" id="Sky_7vrah"]
+[sub_resource type="Sky" id="Sky_w6nyq"]
 sky_material = SubResource("ProceduralSkyMaterial_r61fh")
 
 [sub_resource type="Environment" id="Environment_aafmu"]
 background_mode = 3
 background_canvas_max_layer = -1
-sky = SubResource("Sky_7vrah")
+sky = SubResource("Sky_w6nyq")
 ambient_light_color = Color(1, 1, 1, 1)
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_c7dhj"]
-colors = PackedColorArray(0, 0, 0.145098, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0, 0, 0.0823529, 1, 0, 0, 0, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rifu1"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
 frequency = 0.0018
 offset = Vector3(556.52, -103.45, 0)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x87eo"]
-color_ramp = SubResource("Gradient_c7dhj")
-noise = SubResource("FastNoiseLite_rifu1")
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qbqol"]
 noise_type = 0
 seed = 1
 frequency = 0.1801
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ribl6"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bfceq"]
+width = 1080
+height = 1080
 noise = SubResource("FastNoiseLite_qbqol")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kbjjf"]
 shader = ExtResource("2_m3u8l")
-shader_parameter/resolution = Vector2(512, 480)
+shader_parameter/resolution = Vector2(1080, 1080)
 shader_parameter/density = 31.8
 shader_parameter/alpha_threshold = 0.5
 shader_parameter/layers = 3.0
 shader_parameter/speed_difference = 0.5
 shader_parameter/brightness_difference = 0.1
-shader_parameter/direction = Vector2(6, 0)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_ribl6")
+shader_parameter/offset = null
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bfceq")
 
 [node name="Level" type="Node3D"]
+process_mode = 1
 script = ExtResource("1_30yhy")
+
+[node name="TimeSystem" parent="." instance=ExtResource("2_1og0w")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 process_mode = 1
@@ -61,7 +67,7 @@ environment = SubResource("Environment_aafmu")
 process_mode = 1
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="WorldEnvironment/CanvasLayer"]
+[node name="stars" type="TextureRect" parent="WorldEnvironment/CanvasLayer"]
 material = ExtResource("1_4ctj5")
 anchors_preset = 15
 anchor_right = 1.0
