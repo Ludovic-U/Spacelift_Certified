@@ -1,13 +1,13 @@
+res://scenes/componants
+res://Assets/items
 res://scenes/levels/intro
 res://scenes/levels
 res://Interface/themes
 res://Interface/ship_ui
-res://scenes/componants
 res://scripts
 res://Assets/materials
 res://scripts/shader_scripts
 res://Assets/vfx
-res://Assets/items
 res://Assets/ships
 res://scripts/ship_related_scripts
 res://Assets/materials/

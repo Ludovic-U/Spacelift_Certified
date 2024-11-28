@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv0o6nc11e8re"]
+
+[ext_resource type="Script" path="res://scenes/componants/goal_type_collect_componant.gd" id="1_of1yj"]
+
+[node name="GoalTypeCollectComponant" type="Node"]
+script = ExtResource("1_of1yj")

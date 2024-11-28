@@ -11,14 +11,15 @@ camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 time = NodePath("TimeSystem")
 
-[node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
-target = NodePath("../spacelift")
-
 [node name="shuttle_test" parent="." index="3" instance=ExtResource("2_jcwtx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -38)
+collectable_item_class = "Crate"
 
 [node name="spacelift" parent="." index="4" instance=ExtResource("3_cpgqe")]
 listen_to_inputs = true
+
+[node name="Camera3D" parent="." index="5" node_paths=PackedStringArray("target")]
+target = NodePath("../spacelift")
 
 [editable path="shuttle_test"]
 [editable path="shuttle_test/shuttle"]
