@@ -6,13 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="6_i6fex"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="6_wisaa"]
 
-[node name="Test_Level" node_paths=PackedStringArray("camera", "dust", "time") instance=ExtResource("1_pxkrw")]
+[node name="Test_Level" node_paths=PackedStringArray("camera", "dust", "time", "objectives_linked_list_head") instance=ExtResource("1_pxkrw")]
 camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 time = NodePath("TimeSystem")
-
-[node name="GoalComponant" parent="Objectives" index="0"]
-goal_priority = 1
+objectives_linked_list_head = [NodePath("Objectives/GoalComponant")]
 
 [node name="GoalTypeCollectComponant" parent="Objectives/GoalComponant" index="0" instance=ExtResource("2_cdrqo")]
 item_class = "Crate"
@@ -49,3 +47,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00265, 0, -3.92423)
 [node name="crate5" parent="." index="10" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00705, 0, 2.06696)
 angular_velocity = Vector3(-0.15708, 0.244346, 0.261799)
+
+[connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/GoalComponant/GoalTypeCollectComponant" method="_on_collect"]
+
+[editable path="shuttle_test"]
+[editable path="shuttle_test/shuttle"]

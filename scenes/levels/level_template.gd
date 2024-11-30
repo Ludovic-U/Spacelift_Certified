@@ -8,7 +8,7 @@ var dust_offset = Vector2.ZERO
 @export var time: TimeSystem
 
 @export_group("Level Events")
-@export var objectives_linked_list_head:GoalComponant
+@export var objectives_linked_list_head:Array[GoalComponant]
 
 #var score: int
 
@@ -16,7 +16,11 @@ func _ready() -> void:
 	Global.current_level = self
 	Global.current_state = Global.GameStates.RUNNING
 	
+	for goal:GoalComponant in objectives_linked_list_head:
+		goal.current_state = GoalComponant.GoalState.ACTIVE
+	
 	#TODO: connect goalcomponant(primary_goal) failed signal to end the level
+	#TODO: connect every primary goal to end_level signal
 	
 	if GUI != null: #Load GUI
 		Global.game_controller.add_scene(

@@ -18,6 +18,7 @@ config/icon="res://Assets/textures/shuttle_prototype1_normalmap.png"
 [autoload]
 
 Global="*res://scripts/global.gd"
+Utility="*res://scripts/utility.gd"
 
 [display]
 
