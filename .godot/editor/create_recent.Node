@@ -1,7 +1,11 @@
+RichTextLabel
+Label
+PanelContainer
+VBoxContainer
+ScrollContainer
 Node
 Level
 OrthogonalCamera
-Label
 TextureRect
 ColorRect
 CPUParticles2D
@@ -9,6 +13,3 @@ CollisionShape3D
 RigidBody3D
 SpotLight3D
 Node3D
-Sprite3D
-OmniLight3D
-Area3D

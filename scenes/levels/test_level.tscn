@@ -13,6 +13,7 @@ time = NodePath("TimeSystem")
 objectives_linked_list_head = [NodePath("Objectives/GoalComponant")]
 
 [node name="GoalTypeCollectComponant" parent="Objectives/GoalComponant" index="0" instance=ExtResource("2_cdrqo")]
+progress_text = "crate(s) collected"
 item_class = "Crate"
 
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
