@@ -1,28 +1,70 @@
-[gd_scene load_steps=6 format=3 uid="uid://27wn71ox5byx"]
+[gd_scene load_steps=13 format=3 uid="uid://27wn71ox5byx"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_pxkrw"]
 [ext_resource type="PackedScene" uid="uid://bv0o6nc11e8re" path="res://scenes/componants/goal_type_collect_componant.tscn" id="2_cdrqo"]
+[ext_resource type="PackedScene" uid="uid://bmlru40no1q1n" path="res://scenes/componants/goal_type_time_componant.tscn" id="3_5eqju"]
+[ext_resource type="PackedScene" uid="uid://ch7epf4y33it0" path="res://scenes/componants/goal_componant.tscn" id="3_o3i4r"]
+[ext_resource type="PackedScene" uid="uid://d2dw2cp6v8kan" path="res://scenes/componants/save_data_componants.tscn" id="4_ax2i0"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="4_ox11a"]
 [ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="6_epk75"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="6_i6fex"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="6_wisaa"]
 
-[node name="Test_Level" node_paths=PackedStringArray("camera", "dust", "time", "objectives_linked_list_head") instance=ExtResource("1_pxkrw")]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qbqol"]
+noise_type = 0
+seed = 1
+frequency = 0.0658
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bfceq"]
+width = 1080
+height = 1080
+noise = SubResource("FastNoiseLite_qbqol")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xodka"]
+shader = ExtResource("4_ox11a")
+shader_parameter/resolution = Vector2(1080, 1080)
+shader_parameter/density = 20.3
+shader_parameter/alpha_threshold = 0.5
+shader_parameter/layers = 3.0
+shader_parameter/speed_difference = 0.5
+shader_parameter/brightness_difference = 0.1
+shader_parameter/offset = null
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bfceq")
+
+[node name="Test_Level" node_paths=PackedStringArray("camera", "dust") instance=ExtResource("1_pxkrw")]
 camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
-time = NodePath("TimeSystem")
-objectives_linked_list_head = [NodePath("Objectives/GoalComponant")]
 
-[node name="GoalTypeCollectComponant" parent="Objectives/GoalComponant" index="0" instance=ExtResource("2_cdrqo")]
-progress_text = "crate(s) collected"
+[node name="1-1_GoalComponant" parent="Objectives" index="0" node_paths=PackedStringArray("next_goals")]
+next_goals = [NodePath("../2-1_Goal_wait")]
+
+[node name="GoalTypeCollectComponant" parent="Objectives/1-1_GoalComponant" index="0" instance=ExtResource("2_cdrqo")]
+progress_text = "crates collected"
 item_class = "Crate"
+
+[node name="TimeSystem" parent="Objectives/1-1_GoalComponant" index="1" instance=ExtResource("3_5eqju")]
+progress_text = ""
+limit = 60.0
+
+[node name="2-1_Goal_wait" parent="Objectives" index="1" instance=ExtResource("3_o3i4r")]
+description = "wait"
+
+[node name="TimeSystem" parent="Objectives/2-1_Goal_wait" index="0" instance=ExtResource("3_5eqju")]
+limit = 5.0
+
+[node name="SaveDataComponant" parent="Objectives" index="2" instance=ExtResource("4_ax2i0")]
+nodespath_and_properties = {
+"../../Objectives/GoalComponant/TimeSystem": "progress"
+}
 
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
 metadata/_edit_use_anchors_ = true
 
 [node name="dust" parent="WorldEnvironment/CanvasLayer" index="1"]
+material = SubResource("ShaderMaterial_xodka")
 metadata/_edit_use_anchors_ = true
 
-[node name="Camera3D" parent="." index="3" node_paths=PackedStringArray("target")]
+[node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
 target = NodePath("../spacelift")
 
 [node name="shuttle_test" parent="." index="4" instance=ExtResource("6_wisaa")]
@@ -33,23 +75,29 @@ collectable_item_class = "Crate"
 transform = Transform3D(-0.745662, 0, 0.666324, 0, 1, 0, -0.666324, 0, -0.745662, 5.26742, 0, 3.38223)
 listen_to_inputs = true
 
-[node name="crate" parent="." index="6" groups=["collectibles"] instance=ExtResource("6_epk75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.8141, 0, 1.94714)
-
-[node name="crate2" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate2" parent="." index="6" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80441, 0, -9.31631)
 
-[node name="crate3" parent="." index="8" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate3" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00265, 0, -3.98415)
 
-[node name="crate4" parent="." index="9" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate4" parent="." index="8" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00265, 0, -3.92423)
 
-[node name="crate5" parent="." index="10" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate5" parent="." index="9" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00705, 0, 2.06696)
 angular_velocity = Vector3(-0.15708, 0.244346, 0.261799)
 
-[connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/GoalComponant/GoalTypeCollectComponant" method="_on_collect"]
+[connection signal="completed" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_pause"]
+[connection signal="failed" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_pause"]
+[connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_start"]
+[connection signal="goal_completed" from="Objectives/1-1_GoalComponant/GoalTypeCollectComponant" to="Objectives/1-1_GoalComponant" method="_on_goal_completed"]
+[connection signal="goal_completed" from="Objectives/1-1_GoalComponant/TimeSystem" to="Objectives/1-1_GoalComponant" method="_on_goal_failed"]
+[connection signal="completed" from="Objectives/2-1_Goal_wait" to="Objectives/2-1_Goal_wait/TimeSystem" method="_on_pause"]
+[connection signal="end_level" from="Objectives/2-1_Goal_wait" to="." method="_on_level_end"]
+[connection signal="goal_started" from="Objectives/2-1_Goal_wait" to="Objectives/2-1_Goal_wait/TimeSystem" method="_on_start"]
+[connection signal="goal_completed" from="Objectives/2-1_Goal_wait/TimeSystem" to="Objectives/2-1_Goal_wait" method="_on_goal_completed"]
+[connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/1-1_GoalComponant/GoalTypeCollectComponant" method="_on_collect"]
 
 [editable path="shuttle_test"]
 [editable path="shuttle_test/shuttle"]

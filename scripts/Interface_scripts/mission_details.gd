@@ -28,7 +28,6 @@ func _on_back_button_button_down():
 		"res://scenes/levels/intro/default_intro.tscn",
 		)
 
-
 func _on_start_mission_button_down():
 	Global.game_controller.swap_scene( 
 		Global.game_controller.WORLD_3D,

@@ -24,6 +24,7 @@ theme = ExtResource("1_p6fj7")
 script = ExtResource("2_y0d27")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

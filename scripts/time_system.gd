@@ -1,9 +1,40 @@
-class_name TimeSystem extends Node
+class_name GoalTime extends Node
 
+signal goal_completed
+
+var progress:String
+@export var progress_hidden:bool = false
+@export var progress_text:String = "time left"
+
+@export_enum("Countdown", "Chronometer") var time_mode = "Countdown"
+# limit == 0 will never trigger the goal_completed signal
+@export var limit:float = 0.0
 var elapsed:float = 0.0
+var running:bool = false
+
+func _on_start() -> void:
+	running = true
+	if time_mode == "Countdown":
+		elapsed = limit
+		
+func _on_pause() -> void:
+	running = false
 
 func _process(delta):
-	elapsed += delta
+	if running:
+		if time_mode == "Countdown" && elapsed > 0.0:
+			elapsed -= delta
+			if elapsed <= 0.0:
+				elapsed = 0.0
+				goal_completed.emit()
+		if time_mode == "Chronometer" && limit <= 0:
+			elapsed += delta
+		elif time_mode == "Chronometer" && elapsed >= limit:
+			elapsed += delta
+			goal_completed.emit()
+		var hhmmss = time_to_hhmmss(elapsed)
+#		#TODO: wrong second format
+		progress = "%02d:%02d:%04.2f" %[hhmmss["hours"], hhmmss["minutes"], hhmmss["seconds"]] + progress_text
 
 func time_to_hhmmss(total_time: float) -> Dictionary:
 	#total_seconds = 12345

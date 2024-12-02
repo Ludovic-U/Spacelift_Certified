@@ -1,18 +1,30 @@
-[gd_scene format=3 uid="uid://cvdoj1cx5b3k4"]
+[gd_scene load_steps=2 format=3 uid="uid://cvdoj1cx5b3k4"]
+
+[ext_resource type="Script" path="res://Interface/menu/objectives.gd" id="1_elsrm"]
 
 [node name="Objectives" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 17.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_elsrm")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1501.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 0
 
 [node name="Goal_List" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

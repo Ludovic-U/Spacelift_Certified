@@ -1,6 +1,7 @@
 res://Interface/themes
-res://scripts
+res://Interface/menu
 res://scenes/componants
+res://scripts
 res://Assets/items
 res://scenes/levels/intro
 res://scenes/levels
@@ -15,7 +16,6 @@ res://Assets/textures
 res://Assets/textures/MetalPlates011_4K-JPG
 /home/student/Blender/blender-4.2.3-linux-x64
 res://scripts/Interface_scripts
-res://Interface/menu
 res://Interface
 res://Assets
 res://Interface/themes/Sofia_Sans_Condensed/static

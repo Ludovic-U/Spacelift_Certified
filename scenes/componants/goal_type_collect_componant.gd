@@ -2,19 +2,19 @@ class_name GoalCollect extends Node
 
 signal goal_completed
 
-var GOAL:GoalComponant
 var progress:String
 @export var progress_hidden:bool = false
 @export var progress_text:String = "item collected"
+
 @export var item_class:String
 #if number_to_collect is 0, the default goal will be to collect all items
 @export var number_to_collect:int = 0
 var number_collected:int = 0
 
+#TODO: make it paused ?
 func _ready() -> void:
-	GOAL = get_parent()
 	if number_to_collect == 0 :
-		var collectibles = get_tree().get_nodes_in_group("collectibles")
+		var collectibles = get_tree().get_nodes_in_group("collectibles")#TODO: make it more maintainable
 		for item in collectibles:
 			if item.get_script():
 				if item.get_script().get_global_name() == item_class:

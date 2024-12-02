@@ -7,8 +7,13 @@ var current_3D_scene_path: String = "res://scenes/levels/intro/default_intro.tsc
 func _ready() :
 	Global.game_controller = self
 	
+func pause_game():
+	get_tree().paused = true
+	
+func unpause_game():
+	get_tree().paused = false
+	
 #TODO add transition parametter
-#TODO deal with the case when the user click twice on the same button
 func swap_scene(parent: Node, new_scene_path: String, delete_parent_child:bool = true, keep_running: bool = false, _transition:Global.Transitions = Global.Transitions.NONE) -> void:
 	if current_3D_scene_path == new_scene_path:
 		return
@@ -16,14 +21,15 @@ func swap_scene(parent: Node, new_scene_path: String, delete_parent_child:bool =
 		current_3D_scene_path = new_scene_path
 		
 	if parent.get_child_count() != 0:
-		var current_parent_child = parent.get_child(0)
-		if delete_parent_child :
-			current_parent_child.queue_free()
-		elif keep_running:
-			current_parent_child.visible = false
-		else :
-			current_parent_child.remove()
-			#TODO: save the scene in a variable to be retrieved later.
+		var current_parent_children = parent.get_children()
+		for child in current_parent_children:
+			if delete_parent_child :
+				child.queue_free()
+			elif keep_running:
+				child.visible = false
+			else :
+				child.remove()
+				#TODO: save the scene in a variable to be retrieved later.
 	
 	if new_scene_path != "":
 		var new_scene = load(new_scene_path).instantiate()		
@@ -44,7 +50,7 @@ func _unhandled_input(event:InputEvent):
 		match Global.current_state:
 			Global.GameStates.RUNNING:
 				Global.current_state = Global.GameStates.PAUSED
-				get_tree().paused = true
+				pause_game()
 				#Engine.time_scale = 0 #TODO find a better way to pause shaders, as it pause every shader in the tree
 				
 				Global.game_controller.add_scene(

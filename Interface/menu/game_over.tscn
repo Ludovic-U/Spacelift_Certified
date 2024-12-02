@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://v0n35meduthk"]
+
+[ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_eoynw"]
+
+[sub_resource type="Gradient" id="Gradient_4br4r"]
+offsets = PackedFloat32Array(0, 0.533742, 0.993865)
+colors = PackedColorArray(0.235294, 0, 0, 0.937255, 0.619608, 0, 0, 0.639216, 0.235294, 0, 0, 0.858824)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5xmy"]
+gradient = SubResource("Gradient_4br4r")
+
+[node name="Game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eoynw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s5xmy")
+
+[node name="Gameover" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -399.0
+offset_top = 1.0
+offset_right = 399.0
+offset_bottom = 203.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.54902)
+theme_override_font_sizes/font_size = 147
+text = "Game Over"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 786.0
+offset_right = 146.0
+offset_bottom = 854.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Restart Level"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 867.0
+offset_right = 146.0
+offset_bottom = 935.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Menu"
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 948.0
+offset_right = 146.0
+offset_bottom = 1016.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit to desktop"

@@ -4,3 +4,4 @@
 
 [node name="GoalComponant" type="Node"]
 script = ExtResource("1_xp7q0")
+description = "• Do this"

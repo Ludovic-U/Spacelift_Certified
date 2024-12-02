@@ -9,3 +9,4 @@ var player: Player
 var main_camera: OrthogonalCamera
 var mission_details: LevelButton
 var current_level: Level
+var goal_list_ui:Array[Control]

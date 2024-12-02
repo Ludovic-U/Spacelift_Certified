@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjs3mqfmeqt87"]
+[gd_scene load_steps=16 format=3 uid="uid://cjs3mqfmeqt87"]
 
 [ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="1_4ctj5"]
 [ext_resource type="Script" path="res://scenes/levels/level_template.gd" id="1_30yhy"]
-[ext_resource type="PackedScene" uid="uid://bmlru40no1q1n" path="res://scenes/componants/time_system.tscn" id="2_1og0w"]
 [ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="2_m3u8l"]
 [ext_resource type="PackedScene" uid="uid://cvdoj1cx5b3k4" path="res://Interface/menu/Objectives.tscn" id="2_mwjis"]
 [ext_resource type="PackedScene" uid="uid://ch7epf4y33it0" path="res://scenes/componants/goal_componant.tscn" id="2_v26sm"]
@@ -55,16 +54,15 @@ shader_parameter/brightness_difference = 0.1
 shader_parameter/offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_bfceq")
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("objectives_linked_list_head")]
 process_mode = 1
 script = ExtResource("1_30yhy")
 GUI = ExtResource("2_mwjis")
+objectives_linked_list_head = [NodePath("Objectives/1-1_GoalComponant")]
 
 [node name="Objectives" type="Node" parent="."]
 
-[node name="GoalComponant" parent="Objectives" instance=ExtResource("2_v26sm")]
-
-[node name="TimeSystem" parent="." instance=ExtResource("2_1og0w")]
+[node name="1-1_GoalComponant" parent="Objectives" instance=ExtResource("2_v26sm")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 process_mode = 1

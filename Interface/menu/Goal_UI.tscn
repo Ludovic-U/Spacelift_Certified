@@ -1,20 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo6vyvrt75iau"]
+[gd_scene load_steps=3 format=3 uid="uid://bo6vyvrt75iau"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_djthj"]
 
-[node name="GoalUIs" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npns1"]
+bg_color = Color(0, 0.282353, 0.52549, 0.345098)
+
+[node name="GoalUI" type="PanelContainer"]
+clip_contents = true
+anchors_preset = -1
+anchor_right = 0.114
+anchor_bottom = 0.067
+offset_right = -0.88002
+offset_bottom = -0.360001
+size_flags_horizontal = 3
 theme = ExtResource("1_djthj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_npns1")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 160.0
-offset_bottom = 80.0
-
-[node name="Data" type="RichTextLabel" parent="PanelContainer"]
+[node name="Data" type="RichTextLabel" parent="."]
 layout_mode = 2
+theme_override_font_sizes/normal_font_size = 20
+text = "bla
+bla
+bla"
+fit_content = true
+scroll_active = false

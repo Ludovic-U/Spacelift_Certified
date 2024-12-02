@@ -1,20 +1,17 @@
 extends Control
 
-
-	
 func _unhandled_input(event:InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		accept_event()
 		Global.current_state = Global.GameStates.RUNNING
-		unpause()
+		Global.game_controller.unpause_game()
+		self.queue_free()
 
-func unpause() -> void:
-	get_tree().paused = false
-	self.queue_free()
 
 func _on_continue_button_down():
 	Global.current_state = Global.GameStates.RUNNING
-	unpause()
+	Global.game_controller.unpause_game()
+	self.queue_free()
 
 func _on_settings_button_down():
 	pass #TODO settings button
@@ -30,7 +27,8 @@ func _on_quit_menu_button_down():
 	)	
 	Global.current_state = Global.GameStates.MENU
 	Global.current_level = null
-	unpause()
+	Global.game_controller.unpause_game()
+	self.queue_free()
 	
 
 func _on_quit_desktop_button_down():

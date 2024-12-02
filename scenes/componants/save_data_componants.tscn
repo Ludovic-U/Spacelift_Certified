@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2dw2cp6v8kan"]
+
+[ext_resource type="Script" path="res://scenes/componants/save_data_componants.gd" id="1_ervge"]
+
+[node name="SaveDataComponant" type="Node"]
+script = ExtResource("1_ervge")
