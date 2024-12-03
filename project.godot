@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="NuPhoenicis"
+config/name="Spacelift Certified"
+config/version="0.1"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://Assets/textures/shuttle_prototype1_normalmap.png"
@@ -19,11 +20,16 @@ config/icon="res://Assets/textures/shuttle_prototype1_normalmap.png"
 
 Global="*res://scripts/global.gd"
 Utility="*res://scripts/utility.gd"
+Talo="*res://addons/talo/talo_manager.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/talo/plugin.cfg")
 
 [global_group]
 
