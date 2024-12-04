@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwc2bhn5wyia6"]
+[gd_scene load_steps=9 format=3 uid="uid://bwc2bhn5wyia6"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_k6d6i"]
 [ext_resource type="FontFile" uid="uid://jydw0k85lbaq" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf" id="2_08xmo"]
@@ -7,6 +7,20 @@
 [ext_resource type="PackedScene" uid="uid://b0fvpg35lb5d8" path="res://Interface/menu/setting_quit.tscn" id="5_5mra7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn0xd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j88xp"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0.0941176)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(3.77345e-05, 0.466757, 0.850685, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddn0"]
 bg_color = Color(0, 0, 0, 0)
@@ -29,22 +43,47 @@ theme = ExtResource("1_k6d6i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Left_column"]
 layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
 [node name="Main_menu" type="VBoxContainer" parent="Left_column/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_k6d6i")
 
+[node name="HSeparator2" type="HSeparator" parent="Left_column/MarginContainer/Main_menu"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dn0xd")
+
 [node name="GameTitle" type="Label" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
+theme_override_constants/line_spacing = -29
 theme_override_fonts/font = ExtResource("2_08xmo")
 theme_override_font_sizes/font_size = 100
-text = "NuPhoenicis"
+text = "Spacelift
+Certified"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
 theme_override_constants/separation = 40
 theme_override_styles/separator = SubResource("StyleBoxEmpty_dn0xd")
+
+[node name="entername" type="HBoxContainer" parent="Left_column/MarginContainer/Main_menu"]
+layout_mode = 2
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Left_column/MarginContainer/Main_menu/entername"]
+layout_mode = 2
+theme_override_colors/selection_color = Color(0, 1, 0.992157, 1)
+theme_override_colors/font_color = Color(0.815686, 1, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxFlat_j88xp")
+placeholder_text = "Enter your pseudoname"
+alignment = 1
+max_length = 15
+expand_to_text_length = true
 
 [node name="Missions" type="Label" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
@@ -114,3 +153,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hddn0")
 
 [node name="Setting_Quit" parent="Right_column" instance=ExtResource("5_5mra7")]
 layout_mode = 2
+
+[connection signal="text_change_rejected" from="Left_column/MarginContainer/Main_menu/entername/LineEdit" to="." method="_on_line_edit_text_change_rejected"]
+[connection signal="text_changed" from="Left_column/MarginContainer/Main_menu/entername/LineEdit" to="." method="_on_line_edit_text_changed"]

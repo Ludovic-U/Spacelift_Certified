@@ -24,6 +24,7 @@ var crypto_manager: TaloCryptoManager
 var continuity_manager: TaloContinuityManager
 
 func _ready() -> void:
+	set_process_mode(Node.PROCESS_MODE_ALWAYS)
 	_load_config()
 	_load_apis()
 	_init_crypto_manager()

@@ -1,5 +1,8 @@
 extends Node
 
+var player_name:String = "anon"
+var player_id:String
+
 enum GameStates {RUNNING, PAUSED, MENU}
 var current_state:GameStates = GameStates.MENU
 enum Transitions {NONE, FADE}

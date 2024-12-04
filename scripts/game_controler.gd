@@ -5,13 +5,20 @@ var current_3D_scene_path: String = "res://scenes/levels/intro/default_intro.tsc
 @export var INTERFACE: Control
 
 func _ready() :
-	Global.game_controller = self
+	Global.game_controller = self	
+	
+func leaderboard_add_entry(leaderboard_name:String, score:float)->void:
+	print("adding an entry")
+	await Talo.players.identify("username", Global.player_name)
+	var res = await Talo.leaderboards.add_entry(leaderboard_name, score)
+	print("entry succesfuly added")
 	
 func pause_game():
 	get_tree().paused = true
-	
+	pass
 func unpause_game():
 	get_tree().paused = false
+	pass
 	
 #TODO add transition parametter
 func swap_scene(parent: Node, new_scene_path: String, delete_parent_child:bool = true, keep_running: bool = false, _transition:Global.Transitions = Global.Transitions.NONE) -> void:

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://27wn71ox5byx"]
+[gd_scene load_steps=14 format=3 uid="uid://27wn71ox5byx"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_pxkrw"]
 [ext_resource type="PackedScene" uid="uid://bv0o6nc11e8re" path="res://scenes/componants/goal_type_collect_componant.tscn" id="2_cdrqo"]
+[ext_resource type="PackedScene" uid="uid://dvvlqlikl4t0p" path="res://Interface/menu/sucess_menu.tscn" id="2_t4aet"]
 [ext_resource type="PackedScene" uid="uid://bmlru40no1q1n" path="res://scenes/componants/goal_type_time_componant.tscn" id="3_5eqju"]
 [ext_resource type="PackedScene" uid="uid://ch7epf4y33it0" path="res://scenes/componants/goal_componant.tscn" id="3_o3i4r"]
 [ext_resource type="PackedScene" uid="uid://d2dw2cp6v8kan" path="res://scenes/componants/save_data_componants.tscn" id="4_ax2i0"]
@@ -31,7 +32,10 @@ shader_parameter/brightness_difference = 0.1
 shader_parameter/offset = null
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_bfceq")
 
-[node name="Test_Level" node_paths=PackedStringArray("camera", "dust") instance=ExtResource("1_pxkrw")]
+[node name="Test_Level" node_paths=PackedStringArray("save_componant", "camera", "dust") instance=ExtResource("1_pxkrw")]
+level_end_gui = ExtResource("2_t4aet")
+leaderboard_name = "mission_01"
+save_componant = NodePath("Objectives/SaveDataComponant")
 camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 
@@ -50,11 +54,11 @@ limit = 60.0
 description = "wait"
 
 [node name="TimeSystem" parent="Objectives/2-1_Goal_wait" index="0" instance=ExtResource("3_5eqju")]
-limit = 5.0
+limit = 1.0
 
 [node name="SaveDataComponant" parent="Objectives" index="2" instance=ExtResource("4_ax2i0")]
 nodespath_and_properties = {
-"../../Objectives/GoalComponant/TimeSystem": "progress"
+"../../Objectives/1-1_GoalComponant/TimeSystem": "elapsed"
 }
 
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
@@ -75,16 +79,10 @@ collectable_item_class = "Crate"
 transform = Transform3D(-0.745662, 0, 0.666324, 0, 1, 0, -0.666324, 0, -0.745662, 5.26742, 0, 3.38223)
 listen_to_inputs = true
 
-[node name="crate2" parent="." index="6" groups=["collectibles"] instance=ExtResource("6_epk75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.80441, 0, -9.31631)
-
-[node name="crate3" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.00265, 0, -3.98415)
-
-[node name="crate4" parent="." index="8" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate4" parent="." index="6" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00265, 0, -3.92423)
 
-[node name="crate5" parent="." index="9" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate5" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00705, 0, 2.06696)
 angular_velocity = Vector3(-0.15708, 0.244346, 0.261799)
 

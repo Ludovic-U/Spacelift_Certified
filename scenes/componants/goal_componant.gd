@@ -36,7 +36,7 @@ func _ready():
 	#TODO: Intro
 	
 func _process(_delta):
-	if !hidden:
+	if !hidden && current_state == GoalState.ACTIVE:
 		var progress:Array[String]
 		for child in get_children():
 			if "progress_hidden" in child:
@@ -66,7 +66,6 @@ func _on_goal_completed()-> void:
 	if priority == "Primary" : #this might cause problem because multiple primary goal branches can be active at the same time
 		if next_goals.is_empty():
 			end_level.emit(1) #1 for sucess, 0 for fail
-			print("end_level")
 		else:
 			for goal in next_goals:
 					goal.activate()

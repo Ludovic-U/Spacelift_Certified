@@ -1,5 +1,6 @@
-res://Interface/menu/game_over.tscn
+res://addons/talo/samples/leaderboards/leaderboard.tscn
 res://scripts/global.gd
+res://addons/talo/samples/authentication/assets/theme.tres
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Assets/materials/metallic_blue_hull.material
 res://Assets/materials/metalic_blue_sphere.material
@@ -15,5 +16,16 @@ res://scenes/game.tscn
 res://scenes/levels/test_level.tscn
 res://Assets/ships/shuttle_test.tscn
 res://scenes/componants/save_data_componants.tscn
-res://scenes/levels/level_template.tscn
-res://addons/talo/settings.cfg
+res://Interface/menu/game_over.tscn
+res://Interface/menu/game_menu.tscn
+res://Interface/menu/sucess_menu.tscn
+res://scenes/componants/goal_componant.tscn
+res://addons/talo/samples/leaderboards/entry.tscn
+res://scenes/levels/level_template.gd
+res://scripts/game_controler.gd
+res://scripts/Interface_scripts/game_menu.gd
+res://Interface/menu/sucess_menu.gd
+res://scenes/componants/goal_componant.gd
+res://addons/talo/entities/saved_object.gd
+res://addons/talo/utils/continuity_manager.gd
+res://addons/talo/talo_manager.gd

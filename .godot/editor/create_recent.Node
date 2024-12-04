@@ -1,3 +1,5 @@
+HBoxContainer
+LineEdit
 Button
 HSeparator
 Label
@@ -11,5 +13,3 @@ ScrollContainer
 Level
 OrthogonalCamera
 ColorRect
-CPUParticles2D
-CollisionShape3D
