@@ -1,5 +1,6 @@
 res://Interface/menu
 res://Interface/themes
+res://Interface/menu/buttons
 res://scenes/componants
 res://scripts
 res://Assets/items
@@ -19,4 +20,3 @@ res://scripts/Interface_scripts
 res://Interface
 res://Assets
 res://Interface/themes/Sofia_Sans_Condensed/static
-res://scenes

@@ -10,9 +10,8 @@ var progress:String
 #if number_to_collect is 0, the default goal will be to collect all items
 @export var number_to_collect:int = 0
 var number_collected:int = 0
-
-#TODO: make it paused ?
-func _ready() -> void:
+	
+func count_collectable_items()-> void:
 	if number_to_collect == 0 :
 		var collectibles = get_tree().get_nodes_in_group("collectibles")#TODO: make it more maintainable
 		for item in collectibles:

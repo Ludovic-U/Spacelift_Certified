@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://27wn71ox5byx"]
+[gd_scene load_steps=17 format=3 uid="uid://27wn71ox5byx"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_pxkrw"]
 [ext_resource type="PackedScene" uid="uid://bv0o6nc11e8re" path="res://scenes/componants/goal_type_collect_componant.tscn" id="2_cdrqo"]
@@ -10,6 +10,17 @@
 [ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="6_epk75"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="6_i6fex"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="6_wisaa"]
+
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0.101572, 0.0607348, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
+frequency = 0.0018
+offset = Vector3(556.52, -103.45, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x87eo"]
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_qbqol"]
 noise_type = 0
@@ -62,6 +73,7 @@ nodespath_and_properties = {
 }
 
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
+texture = SubResource("NoiseTexture2D_x87eo")
 metadata/_edit_use_anchors_ = true
 
 [node name="dust" parent="WorldEnvironment/CanvasLayer" index="1"]
@@ -82,17 +94,20 @@ listen_to_inputs = true
 [node name="crate4" parent="." index="6" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.00265, 0, -3.92423)
 
-[node name="crate5" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
+[node name="crate6" parent="." index="7" groups=["collectibles"] instance=ExtResource("6_epk75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.82535, 0, -5.40939)
+
+[node name="crate5" parent="." index="8" groups=["collectibles"] instance=ExtResource("6_epk75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00705, 0, 2.06696)
 angular_velocity = Vector3(-0.15708, 0.244346, 0.261799)
 
 [connection signal="completed" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_pause"]
 [connection signal="failed" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_pause"]
+[connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/GoalTypeCollectComponant" method="count_collectable_items"]
 [connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_start"]
 [connection signal="goal_completed" from="Objectives/1-1_GoalComponant/GoalTypeCollectComponant" to="Objectives/1-1_GoalComponant" method="_on_goal_completed"]
 [connection signal="goal_completed" from="Objectives/1-1_GoalComponant/TimeSystem" to="Objectives/1-1_GoalComponant" method="_on_goal_failed"]
 [connection signal="completed" from="Objectives/2-1_Goal_wait" to="Objectives/2-1_Goal_wait/TimeSystem" method="_on_pause"]
-[connection signal="end_level" from="Objectives/2-1_Goal_wait" to="." method="_on_level_end"]
 [connection signal="goal_started" from="Objectives/2-1_Goal_wait" to="Objectives/2-1_Goal_wait/TimeSystem" method="_on_start"]
 [connection signal="goal_completed" from="Objectives/2-1_Goal_wait/TimeSystem" to="Objectives/2-1_Goal_wait" method="_on_goal_completed"]
 [connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/1-1_GoalComponant/GoalTypeCollectComponant" method="_on_collect"]

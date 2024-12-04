@@ -6,7 +6,8 @@ class_name LevelButton extends Button
 	"Title":"Test Level",
 	"Primary":"Objective one",
 	"Secondary":["Objective two", "Objective three"],
-	"Description":"Some context",	
+	"Description":"Some context",
+	"leaderboard_name":""
 }
 
 signal show_mission_details

@@ -15,7 +15,8 @@ func _on_levelbutton_down() -> void:
 
 
 func _on_line_edit_text_change_rejected(rejected_substring)-> void:
-	print(rejected_substring)
+	print("rejected_substring ", rejected_substring)
+	#TODO: animate substring rejection
 
 
 func _on_line_edit_text_changed(new_text)-> void:

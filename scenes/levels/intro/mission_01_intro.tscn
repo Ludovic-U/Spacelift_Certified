@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://61r6c5og0ics"]
+[gd_scene load_steps=6 format=3 uid="uid://61r6c5og0ics"]
 
 [ext_resource type="PackedScene" uid="uid://cpg8t337ngfso" path="res://scenes/levels/intro/intro_template.tscn" id="1_cheuy"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="2_rvcuq"]
 
+[sub_resource type="Gradient" id="Gradient_c7dhj"]
+colors = PackedColorArray(0.0998355, 0.0746294, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_abw45"]
+seed = 23
+frequency = 0.0018
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ail0"]
+color_ramp = SubResource("Gradient_c7dhj")
+noise = SubResource("FastNoiseLite_abw45")
+
 [node name="Intro_template" instance=ExtResource("1_cheuy")]
+
+[node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
+texture = SubResource("NoiseTexture2D_0ail0")
 
 [node name="shuttle_test" parent="." index="3" instance=ExtResource("2_rvcuq")]
 transform = Transform3D(0.692194, 0, 0.721712, 0, 1, 0, -0.721712, 0, 0.692194, 10.4164, 0, -9.08002)

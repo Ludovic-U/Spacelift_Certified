@@ -6,11 +6,17 @@ class_name MissionDetails extends MarginContainer
 
 func _ready():
 	#TODO make the parsing into a loop
+	var m_details:Dictionary = Global.mission_details.details
 	if Global.mission_details != null:
-		title.text = Global.mission_details.details["Title"]
-		primary.text = Global.mission_details.details["Primary"]
-		secondary.text = str(Global.mission_details.details["Secondary"])
-		description.text = Global.mission_details.details["Description"]
+		title.text = m_details["Title"]
+		primary.text = m_details["Primary"]
+		secondary.text = str(m_details["Secondary"])
+		description.text = m_details["Description"]
+		if m_details["leaderboard_name"]:
+			if m_details["leaderboard_name"] != "":
+				var new_leaderboard = load("res://Interface/menu/leaderbord.tscn").instantiate()
+				$VBoxContainer/ScrollContainer/VBoxContainer.add_child(new_leaderboard)
+				new_leaderboard._create_leaderboard(m_details["leaderboard_name"])
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):

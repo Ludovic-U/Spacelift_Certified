@@ -27,6 +27,7 @@ theme_override_font_sizes/font_size = 30
 text = "Settings"
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Quit

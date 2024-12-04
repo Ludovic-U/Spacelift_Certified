@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwgggtlf6t815"]
+[gd_scene load_steps=8 format=3 uid="uid://cwgggtlf6t815"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_p6fj7"]
 [ext_resource type="Script" path="res://scripts/Interface_scripts/pause_menu.gd" id="2_y0d27"]
+[ext_resource type="PackedScene" uid="uid://c3txhws4x0lvb" path="res://Interface/menu/buttons/restart_level_button.tscn" id="3_eqw45"]
+[ext_resource type="PackedScene" uid="uid://datweer517wlq" path="res://Interface/menu/buttons/back_to_menu.tscn" id="4_en55v"]
 
 [sub_resource type="Gradient" id="Gradient_101mk"]
 offsets = PackedFloat32Array(0.126437, 0.425287, 0.591954, 0.856322)
@@ -74,22 +76,25 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 31
 text = "Continue"
 
+[node name="restart_level" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_eqw45")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
 [node name="settings" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 30
 text = "Settings"
 
-[node name="quit_menu" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="back_to_menu" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_en55v")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
-text = "Quit to menu"
+theme_override_font_sizes/font_size = 30
 
 [node name="quit_desktop" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 30
 text = "Quit to Desktop"
 
 [connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_button_down"]
 [connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/settings" to="." method="_on_settings_button_down"]
-[connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/quit_menu" to="." method="_on_quit_menu_button_down"]
 [connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/quit_desktop" to="." method="_on_quit_desktop_button_down"]

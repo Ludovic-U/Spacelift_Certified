@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://datweer517wlq"]
+
+[ext_resource type="Script" path="res://Interface/menu/buttons/back_to_menu.gd" id="1_a7iwj"]
+
+[node name="back_to_menu" type="Button"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 867.0
+offset_right = 146.0
+offset_bottom = 935.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Menu"
+script = ExtResource("1_a7iwj")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

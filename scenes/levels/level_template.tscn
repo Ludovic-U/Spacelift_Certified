@@ -95,10 +95,11 @@ color = Color(1, 1, 1, 0)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3106, 0)
 projection = 1
 current = true
+fov = 37.8493
 size = 100.0
-far = 49.69
+far = 400.0
 script = ExtResource("3_qv8x4")
-max_size = 5000.03
+max_size = 5000.0
 is_main_camera = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

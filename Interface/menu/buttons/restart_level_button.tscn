@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3txhws4x0lvb"]
+
+[ext_resource type="Script" path="res://Interface/menu/buttons/restart_level_button.gd" id="1_akj3a"]
+
+[node name="restart_level" type="Button"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_top = 786.0
+offset_right = 146.0
+offset_bottom = 854.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Restart Level"
+script = ExtResource("1_akj3a")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

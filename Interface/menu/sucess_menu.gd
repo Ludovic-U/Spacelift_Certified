@@ -1,7 +1,5 @@
 extends Control
 
-signal leaderboard_add_entry(lb_name:String, score:int)
-
 #func _ready():
 	#print("test sucessmenu")
 	#await Talo.players.identify("username", "testready")

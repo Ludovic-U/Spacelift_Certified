@@ -1,15 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwuwei3opgbby"]
+[gd_scene load_steps=8 format=3 uid="uid://bwuwei3opgbby"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_1j534"]
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="2_4wwag"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="2_jcwtx"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="3_cpgqe"]
+
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0.101572, 0.0607348, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
+frequency = 0.0018
+offset = Vector3(556.52, -103.45, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x87eo"]
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
 
 [node name="Mission01" node_paths=PackedStringArray("camera", "dust") instance=ExtResource("1_1j534")]
 camera = NodePath("Camera3D")
 dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 
-[node name="GoalComponant" parent="Objectives" index="0"]
-hidden = true
+[node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
+visible = false
+
+[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="1"]
+material = ExtResource("2_4wwag")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_x87eo")
 
 [node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
 target = NodePath("../spacelift")
