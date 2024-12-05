@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b8oroaqu3byyl"]
+[gd_scene load_steps=13 format=3 uid="uid://b8oroaqu3byyl"]
 
 [ext_resource type="Script" path="res://scripts/ship_related_scripts/space_ship_template.gd" id="1_ivavh"]
 [ext_resource type="PackedScene" uid="uid://cwky1nd7hbqwm" path="res://Assets/blender/spacelift.blend" id="1_wpu7r"]
@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://bj0mru2atp6bd" path="res://Assets/materials/red_light.material" id="7_1svix"]
 [ext_resource type="Texture2D" uid="uid://bgqmcn2x415v8" path="res://Assets/vfx/rcs.png" id="7_j1f6j"]
 [ext_resource type="Material" uid="uid://cyjv8fkyp6x4g" path="res://Assets/vfx/rcs.material" id="8_xqbb1"]
+[ext_resource type="AudioStream" uid="uid://dgaoy21kj655f" path="res://audio/air_burst.wav" id="10_cg5t5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oelu6"]
 size = Vector3(0.591248, 1.82642, 4.52319)
@@ -21,6 +22,7 @@ axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 160.0
+center_of_mass_mode = 1
 angular_damp_mode = 1
 angular_damp = 0.1
 script = ExtResource("1_ivavh")
@@ -139,5 +141,9 @@ shape = SubResource("BoxShape3D_oelu6")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, -2.55484, -9.68575e-08, -0.0477758)
 shape = SubResource("BoxShape3D_il28f")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_cg5t5")
+autoplay = true
 
 [editable path="spacelift"]

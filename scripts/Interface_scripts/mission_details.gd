@@ -12,11 +12,10 @@ func _ready():
 		primary.text = m_details["Primary"]
 		secondary.text = str(m_details["Secondary"])
 		description.text = m_details["Description"]
-		if m_details["leaderboard_name"]:
-			if m_details["leaderboard_name"] != "":
-				var new_leaderboard = load("res://Interface/menu/leaderbord.tscn").instantiate()
-				$VBoxContainer/ScrollContainer/VBoxContainer.add_child(new_leaderboard)
-				new_leaderboard._create_leaderboard(m_details["leaderboard_name"])
+		if Global.mission_details.leaderboard_name != "":
+			var new_leaderboard = load("res://Interface/menu/leaderbord.tscn").instantiate()
+			$VBoxContainer/ScrollContainer/VBoxContainer.add_child(new_leaderboard)
+			new_leaderboard._create_leaderboard(Global.mission_details.leaderboard_name)
 
 func _unhandled_key_input(event):
 	if event.is_action_pressed("ui_cancel"):

@@ -4,10 +4,11 @@
 [ext_resource type="Script" path="res://Interface/menu/leaderbord.gd" id="1_p78es"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nf0n"]
+content_margin_left = 30.0
+content_margin_right = 30.0
 bg_color = Color(0, 0, 0, 0.619608)
 
-[node name="Leaderbord" type="Control"]
-layout_mode = 3
+[node name="Leaderbord" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,29 +20,14 @@ script = ExtResource("1_p78es")
 metadata/_edit_vertical_guides_ = [959.0]
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -78.0
-offset_top = 14.0
-offset_right = 78.0
-offset_bottom = 60.0
-grow_horizontal = 2
+layout_mode = 2
+size_flags_vertical = 0
 theme_override_font_sizes/font_size = 37
 text = "Leaderboard"
 horizontal_alignment = 1
 
 [node name="table" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -449.0
-offset_top = 68.0
-offset_right = 449.0
-offset_bottom = 108.0
-grow_horizontal = 2
+layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="table"]
 layout_mode = 2
@@ -49,20 +35,31 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_8nf0n")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="table/PanelContainer"]
 layout_mode = 2
-theme_override_constants/separation = 275
 alignment = 1
 
 [node name="pos" type="Label" parent="table/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 29
 text = "Rank"
+horizontal_alignment = 1
 
 [node name="name" type="Label" parent="table/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 29
 text = "Name"
+horizontal_alignment = 1
 
 [node name="score" type="Label" parent="table/PanelContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 29
 text = "Score"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="table"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Loading..."
+horizontal_alignment = 1

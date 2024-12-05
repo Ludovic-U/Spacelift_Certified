@@ -85,6 +85,11 @@ alignment = 1
 max_length = 15
 expand_to_text_length = true
 
+[node name="HSeparator3" type="HSeparator" parent="Left_column/MarginContainer/Main_menu"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxEmpty_dn0xd")
+
 [node name="Missions" type="Label" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -104,6 +109,7 @@ size_flags_vertical = 3
 [node name="level_button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
 level_path = "res://scenes/levels/test_level.tscn"
+leaderboard_name = "mission_01"
 details = {
 "Description": "Some context",
 "Primary": "Objective one",

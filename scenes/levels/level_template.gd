@@ -57,7 +57,7 @@ func _on_level_end(success_state:bool):
 			save_componant._on_collect_data()
 			var score:float = save_componant.collected_data[0]
 			var additionnal_properties:Dictionary = {}
-			Global.game_controller.leaderboard_add_entry(leaderboard_name, score, additionnal_properties)
+			await Global.game_controller.leaderboard_add_entry(leaderboard_name, score, additionnal_properties)
 		
 		Global.game_controller.swap_scene(
 			Global.game_controller.INTERFACE,
