@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1733485063
+::res://::1733501411
 README.md::TextFile::-1::1727538265::0::1::::<><>::
 ::res://addons/::1733231234
 ::res://addons/talo/::1733269260
@@ -106,7 +106,7 @@ talo_auth_error.gd::GDScript::-1::1733231235::0::1::::TaloAuthError<>Node<>::
 time_utils.gd::GDScript::-1::1733231235::0::1::::TimeUtils<>Node<>::
 ::res://Assets/::1732623843
 icon.svg::CompressedTexture2D::4514408469348079969::1726745219::1730376566::1::::<><>::
-::res://Assets/blender/::1733501343
+::res://Assets/blender/::1733501345
 asteroid.blend::PackedScene::3093308270182938180::1733501343::1733501345::1::::<><>::
 crate.blend::PackedScene::6162764630927389259::1732625776::1732625782::1::::<><>::
 shuttle.blend::PackedScene::4833710714588843588::1732544292::1732544302::1::::<><>::
@@ -153,8 +153,8 @@ MetalPlates011_4K_Roughness.jpg::CompressedTexture2D::7529377592360277577::16344
 MetalPlates011_PREVIEW.jpg::CompressedTexture2D::2029694410766624532::1634486176::1732112492::1::::<><>::
 ::res://Assets/tileset/::1729002400
 simple64x_tiles6.png::CompressedTexture2D::6989336140785186414::1727878372::1729002400::1::::<><>::
-::res://Assets/vfx/::1733501241
-engine_flame.gdshader::Shader::-1::1733501241::0::1::::<><>::
+::res://Assets/vfx/::1733501358
+engine_flame.gdshader::Shader::-1::1733501358::0::1::::<><>::
 noise_combined.png::CompressedTexture2D::3501785023217360701::1727357362::1732539832::1::::<><>::
 rcs.material::ShaderMaterial::6477287281709010724::1733479771::0::1::::<><>::res://scripts/shader_scripts/shuttle.gdshader<>uid://bp5j5gg01ju4l::::res://Assets/vfx/noise_combined.png<>uid://bgqmcn2x415v8::::res://Assets/vfx/rcs.png
 rcs.png::CompressedTexture2D::2841316690685356067::1727420496::1732539222::1::::<><>::
@@ -249,9 +249,9 @@ test_level.tscn::PackedScene::1962519577098545259::1733499296::0::1::::<><>::uid
 default_intro.tscn::PackedScene::984153144732641787::1733499296::0::1::::<><>::uid://bs2k1msmijarp::::res://Assets/textures/starry_sky.jpeg<>res://scripts/camera_3d.gd<>res://scripts/shader_scripts/moving_stars.gdshader<>uid://dhd6kv7y2xtjb::::res://Assets/textures/shuttle_prototype1.png<>uid://cydch18hn53fx::::res://Assets/textures/shuttle_prototype1_normalmap.png<>uid://b8oroaqu3byyl::::res://Assets/ships/spacelift.tscn<>uid://t6pt6jgktqhg::::res://Assets/items/crate.tscn
 intro_template.tscn::PackedScene::5840099394706408710::1732720205::0::1::::<><>::uid://cobdsbxg5b3a7::::res://Assets/materials/star_field.material<>res://scripts/shader_scripts/moving_dust.gdshader<>res://scripts/camera_3d.gd
 mission_01_intro.tscn::PackedScene::2230615674908578398::1733320056::0::1::::<><>::uid://cpg8t337ngfso::::res://scenes/levels/intro/intro_template.tscn<>uid://721i7ftf1bo4::::res://Assets/ships/shuttle_test.tscn
-::res://scenes/objects/::1733501241
+::res://scenes/objects/::1733501349
+asteroid.tscn::PackedScene::5865083518822825546::1733501349::0::1::::<><>::uid://bkcolntr61t7y::::res://Assets/blender/asteroid.blend<>uid://dgq71bjs43ywy::::res://Assets/textures/asteroid/Ground_Dirt_008_normal.jpg
 box_rigid.tscn::PackedScene::2577348122421425437::1730390570::0::1::::<><>::uid://dr1gejnuvf3dm::::res://scenes/componants/magnetize_to_ship_componant.tscn<>res://scripts/item_related_scripts/box_rigid.gd
-asteroid.tscn::PackedScene::5865083518822825546::1733501241::0::1::::<><>::uid://bkcolntr61t7y::::res://Assets/blender/asteroid.blend<>uid://dgq71bjs43ywy::::res://Assets/textures/asteroid/Ground_Dirt_008_normal.jpg
 ::res://scenes/ships/::1732544415
 carrier.tscn::PackedScene::5939996569327613960::1732109605::0::1::::<><>::res://scripts/ship_related_scripts/space_ship_template.gd<>res://scripts/ship_related_scripts/entry_door.gd<>res://scripts/ship_related_scripts/navigation_vfx_componant.gd<>res://scripts/shader_scripts/shuttle.gdshader<>uid://bp5j5gg01ju4l::::res://Assets/vfx/noise_combined.png<>uid://bgqmcn2x415v8::::res://Assets/vfx/rcs.png<>uid://dhd6kv7y2xtjb::::res://Assets/textures/shuttle_prototype1.png<>uid://cydch18hn53fx::::res://Assets/textures/shuttle_prototype1_normalmap.png<>res://scripts/ship_related_scripts/ship_data.gd<>res://scripts/ship_related_scripts/angle_velocity_arc.gd<>res://scripts/ship_related_scripts/ship_interior_world_container.gd<>uid://cmur1poabtgf7::::res://scenes/ships/carrier_interior_area.tscn
 carrier_interior_area.tscn::PackedScene::5657474475121947658::1730390517::0::1::::<><>::res://scripts/ship_related_scripts/interior_area.gd<>uid://c6txly6gdhvyc::::res://Assets/tileset/simple64x_tiles6.png
@@ -277,11 +277,11 @@ pause_menu.gd::GDScript::-1::1733323998::0::1::::<>Control<>::
 setting_quit.gd::GDScript::-1::1731421364::0::1::::<>MarginContainer<>::
 ::res://scripts/item_related_scripts/::1730390570
 box_rigid.gd::GDScript::-1::1727641879::0::1::::<>RigidBody2D<>::
-::res://scripts/shader_scripts/::1733501241
-casted_shadow.gdshader::Shader::-1::1733501241::0::1::::<><>::
-moving_dust.gdshader::Shader::-1::1733501241::0::1::::<><>::
-moving_stars.gdshader::Shader::-1::1733501241::0::1::::<><>::
-shuttle.gdshader::Shader::-1::1733501241::0::1::::<><>::
+::res://scripts/shader_scripts/::1733501358
+casted_shadow.gdshader::Shader::-1::1733501358::0::1::::<><>::
+moving_dust.gdshader::Shader::-1::1733501358::0::1::::<><>::
+moving_stars.gdshader::Shader::-1::1733501358::0::1::::<><>::
+shuttle.gdshader::Shader::-1::1733501358::0::1::::<><>::
 ::res://scripts/ship_related_scripts/::1733499100
 angle_velocity_arc.gd::GDScript::-1::1727561797::0::1::::<>Node2D<>::
 carrier.gd::GDScript::-1::1728997549::0::1::::<>RigidBody2D<>::

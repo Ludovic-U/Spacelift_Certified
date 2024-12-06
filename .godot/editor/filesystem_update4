@@ -1,4 +1,4 @@
-res://Assets/ships/spacelift.tscn
+res://scenes/objects/asteroid.tscn
 res://scripts/global.gd
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Assets/materials/metallic_blue_hull.material
@@ -17,6 +17,5 @@ res://scenes/levels/test_level.tscn
 res://Interface/menu/sucess_menu.tscn
 res://Interface/menu/game_menu.tscn
 res://scenes/levels/intro/default_intro.tscn
+res://Assets/ships/spacelift.tscn
 res://Interface/menu/setting_quit.tscn
-res://scripts/ship_related_scripts/space_ship_template.gd
-res://scenes/objects/asteroid.tscn
