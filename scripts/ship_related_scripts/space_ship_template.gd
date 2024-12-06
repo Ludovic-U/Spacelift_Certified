@@ -86,7 +86,10 @@ func _integrate_forces(state):
 
 func fire_thrusters() -> void:
 	#TODO: scale the vfx depending on the thrust 
+	
+	var any_thruster_visible:bool
 	for thruster:Sprite3D in $ThrusterVFX.get_children():
+		var is_thruster_already_visible:bool = thruster.visible
 		thruster.visible = false
 		if thrust.x > 0 && Forward_Engine.has(thruster):
 			thruster.visible = true
@@ -99,4 +102,14 @@ func fire_thrusters() -> void:
 		if rotation_dir > 0 && Yaw_Left_RCS.has(thruster):
 			thruster.visible = true
 		if rotation_dir < 0 && Yaw_Right_RCS.has(thruster):
-			thruster.visible = true
+			thruster.visible = true		
+		
+		if thruster.visible :
+			any_thruster_visible = true
+			if !is_thruster_already_visible:
+				$ThrusterSFX/rcs_burst.play()
+				pass
+	if any_thruster_visible && !$ThrusterSFX/rcs_loop.playing:
+		$ThrusterSFX/rcs_loop.play()
+	if !any_thruster_visible && $ThrusterSFX/rcs_loop.playing:
+		$ThrusterSFX/rcs_loop.stop()

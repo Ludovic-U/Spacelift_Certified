@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmtq0rl670ogq"]
+[gd_scene load_steps=5 format=3 uid="uid://bmtq0rl670ogq"]
 
 [ext_resource type="Script" path="res://scripts/game_controler.gd" id="1_dbfim"]
 [ext_resource type="PackedScene" uid="uid://oay4go1bnrs2" path="res://scenes/levels/intro/default_intro.tscn" id="2_nbcnw"]
 [ext_resource type="PackedScene" uid="uid://bwc2bhn5wyia6" path="res://Interface/menu/game_menu.tscn" id="3_1wugd"]
+[ext_resource type="AudioStream" uid="uid://c58xcbg0ql8yc" path="res://audio/music/Fantascape.mp3" id="4_alaje"]
 
 [node name="Game_Controller" type="Node" node_paths=PackedStringArray("WORLD_3D", "INTERFACE")]
 process_mode = 3
@@ -28,3 +29,8 @@ grow_vertical = 2
 [node name="GameMenu" parent="Interface" instance=ExtResource("3_1wugd")]
 z_index = 1
 layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_alaje")
+volume_db = -10.036
+autoplay = true

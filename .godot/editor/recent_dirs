@@ -1,3 +1,7 @@
+res://scenes/objects
+res://Assets/textures/asteroid
+res://audio/sfx
+res://Interface/themes/Sofia_Sans_Condensed/static
 res://Interface/menu
 res://Interface/themes
 res://Interface/menu/buttons
@@ -16,7 +20,3 @@ res://Assets/materials/
 res://Assets/textures
 res://Assets/textures/MetalPlates011_4K-JPG
 /home/student/Blender/blender-4.2.3-linux-x64
-res://scripts/Interface_scripts
-res://Interface
-res://Assets
-res://Interface/themes/Sofia_Sans_Condensed/static
