@@ -17,19 +17,23 @@ class_name SpaceShip
 @export var Yaw_Right_RCS:Array[Sprite3D]
 @export var Yaw_Left_RCS:Array[Sprite3D]
 
+var interior_cam_pos: Vector3 = Vector3.ZERO
+
 
 var isReparenting:bool = false
 var thrust:Vector3
 var rotation_dir:int = 0
 var ship_inventory:Array[Node2D]
 
-#@onready var sun:DirectionalLight2D = self.find_child("Sun", true, true)
+func _ready():
+	interior_cam_pos = %Camera3D.position
 
 func _process(_delta):
 	if Global.current_state == Global.GameStates.RUNNING && listen_to_inputs:
 		get_input()
+		fire_thrusters()
+	interio_cam_follow()
 	
-	fire_thrusters()
 	
 	#if sun:
 		#sun.rotation = -self.global_rotation
@@ -107,9 +111,25 @@ func fire_thrusters() -> void:
 		if thruster.visible :
 			any_thruster_visible = true
 			if !is_thruster_already_visible:
-				$ThrusterSFX/rcs_burst.play()
+				#$ThrusterSFX/rcs_burst.play()
 				pass
 	if any_thruster_visible && !$ThrusterSFX/rcs_loop.playing:
 		$ThrusterSFX/rcs_loop.play()
 	if !any_thruster_visible && $ThrusterSFX/rcs_loop.playing:
 		$ThrusterSFX/rcs_loop.stop()
+
+func interio_cam_follow() -> void:
+	%Camera3D.position = self.position + interior_cam_pos.rotated(Vector3(0, 1, 0), self.rotation.y)
+	%Camera3D.rotation = Vector3(deg_to_rad(-90), self.rotation.y, 0)
+	
+	if Global.current_state == Global.GameStates.RUNNING && !$Control.visible:
+		$Control.visible = true
+
+func _on_body_entered(body):
+	var body_velocity = Vector3.ZERO
+	if body is RigidBody3D:
+		body_velocity = body.linear_velocity
+		
+	if abs(body_velocity - self.linear_velocity).length() > 1.0:
+		$ThrusterSFX/rcs_burst.play()
+		pass #Audio_manager.play collision sound

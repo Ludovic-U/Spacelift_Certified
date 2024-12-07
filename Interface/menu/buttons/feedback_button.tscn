@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb6qc5s7juu65"]
+
+[ext_resource type="Script" path="res://Interface/menu/buttons/feedback_button.gd" id="1_5y651"]
+
+[node name="Feedback" type="Button"]
+theme_override_font_sizes/font_size = 30
+text = "⬆️ Feedback ⬇️"
+script = ExtResource("1_5y651")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]

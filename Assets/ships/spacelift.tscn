@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8oroaqu3byyl"]
+[gd_scene load_steps=18 format=3 uid="uid://b8oroaqu3byyl"]
 
 [ext_resource type="Script" path="res://scripts/ship_related_scripts/space_ship_template.gd" id="1_ivavh"]
 [ext_resource type="PackedScene" uid="uid://cwky1nd7hbqwm" path="res://Assets/blender/spacelift.blend" id="1_wpu7r"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bfcoun8dt8731" path="res://audio/sfx/rcs_burst2.wav" id="8_1fcbp"]
 [ext_resource type="Material" uid="uid://cyjv8fkyp6x4g" path="res://Assets/vfx/rcs.material" id="8_xqbb1"]
 [ext_resource type="AudioStream" uid="uid://dumk0wgxdv6ra" path="res://audio/sfx/rcs_loop2.wav" id="9_t2261"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/retro_tv.gdshader" id="12_2fpm8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oelu6"]
 size = Vector3(0.591248, 1.82642, 4.52319)
@@ -18,12 +19,25 @@ size = Vector3(0.591248, 1.82642, 4.52319)
 [sub_resource type="BoxShape3D" id="BoxShape3D_il28f"]
 size = Vector3(2.74219, 2.20337, 1.36353)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37l3u"]
+albedo_color = Color(0.224059, 0.248457, 0.359777, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yckfd"]
+material = SubResource("StandardMaterial3D_37l3u")
+size = Vector2(5, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u8l3r"]
+shader = ExtResource("12_2fpm8")
+shader_parameter/scanline_count = 150.0
+
 [node name="spacelift" type="RigidBody3D" node_paths=PackedStringArray("Forward_Engine", "Backward_RCS", "Transverse_Left_RCS", "Transverse_Right_RCS", "Yaw_Right_RCS", "Yaw_Left_RCS")]
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 mass = 160.0
 center_of_mass_mode = 1
+contact_monitor = true
+max_contacts_reported = 7
 angular_damp_mode = 1
 angular_damp = 0.1
 script = ExtResource("1_ivavh")
@@ -85,6 +99,7 @@ transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114
 
 [node name="B-YL" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(0.793087, -7.10543e-15, 0.128083, -3.55271e-15, 0.803363, -7.10543e-15, -0.128083, -5.57045e-15, 0.793087, -1.51909, 0.00639677, 0.295848)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -93,6 +108,7 @@ texture = ExtResource("7_j1f6j")
 
 [node name="B-YR" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(0.792396, -6.65246e-11, -0.110039, 6.59028e-11, 0.8, -9.08784e-12, 0.110039, -6.95228e-14, 0.792396, 1.53311, 0.00639677, 0.304247)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -101,6 +117,7 @@ texture = ExtResource("7_j1f6j")
 
 [node name="TR" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(-0.00208046, -3.55271e-15, 0.799997, 3.14332e-15, 0.8, -3.55271e-15, -0.799997, -2.02417e-15, -0.00208046, -1.49742, 0.00639677, 0.418643)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -109,6 +126,7 @@ texture = ExtResource("7_j1f6j")
 
 [node name="TL" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(-0.00120073, -6.65317e-11, -0.799999, -3.97668e-14, 0.8, -6.65246e-11, 0.799999, -6.24174e-14, -0.00120073, 1.52181, 0.00639677, 0.401803)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -117,6 +135,7 @@ texture = ExtResource("7_j1f6j")
 
 [node name="F-YR" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(-0.792841, 0, 0.106788, 3.55271e-15, 0.8, 2.66454e-15, -0.106788, -2.02417e-15, -0.792841, -1.50833, 0.00639677, 0.516245)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -125,6 +144,7 @@ texture = ExtResource("7_j1f6j")
 
 [node name="F-YL" type="Sprite3D" parent="ThrusterVFX"]
 transform = Transform3D(-0.790283, -6.65281e-11, -0.124306, -6.5711e-11, 0.8, -1.03983e-11, 0.124306, -6.59701e-14, -0.790283, 1.54297, 0.00639677, 0.524686)
+visible = false
 material_override = ExtResource("8_xqbb1")
 cast_shadow = 0
 offset = Vector2(0, 258)
@@ -152,5 +172,80 @@ shape = SubResource("BoxShape3D_oelu6")
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, -2.55484, -9.68575e-08, -0.0477758)
 shape = SubResource("BoxShape3D_il28f")
+
+[node name="Interior" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.184362, -0.849416, 0)
+mesh = SubResource("PlaneMesh_yckfd")
+skeleton = NodePath("../../Control/SubViewportContainer/SubViewport")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71811, 0.691761, -0.637771)
+light_color = Color(1, 0.588235, 0.0196078, 1)
+shadow_enabled = true
+omni_range = 5.001
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Interior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.71811, 0.691761, 0.724172)
+light_color = Color(1, 0.588235, 0.0196078, 1)
+shadow_enabled = true
+omni_range = 5.001
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+z_index = 1
+material = SubResource("ShaderMaterial_u8l3r")
+offset_left = -230.0
+offset_top = -468.0
+offset_right = -168.0
+offset_bottom = -318.0
+scale = Vector2(3.06997, 3.00286)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -263.0
+offset_top = -59.9993
+offset_right = -113.0
+offset_bottom = 1.00073
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -1.5708
+scale = Vector2(3, 3)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(150, 61)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="Control/SubViewportContainer/SubViewport"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.499941, 0.78, 0)
+projection = 1
+current = true
+size = 1.77416
+far = 4.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
 [editable path="spacelift"]

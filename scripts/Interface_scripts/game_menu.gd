@@ -5,7 +5,7 @@ func _ready():
 	for button:LevelButton in level_buttons:
 		button.show_mission_details.connect(_on_levelbutton_down)
 	
-	if Global.player_name != "anon":
+	if Global.player_name != "___":
 		$Left_column/MarginContainer/Main_menu/entername/LineEdit.text = Global.player_name
 
 func _on_levelbutton_down() -> void:
@@ -23,4 +23,5 @@ func _on_line_edit_text_changed(new_text)-> void:
 	Global.player_name = str(new_text).lstrip(" ").rstrip(" ")
 	if Global.player_name == "":
 		$Left_column/MarginContainer/Main_menu/entername/LineEdit.text = ""
+		Global.player_name == "___"
 		

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwuwei3opgbby"]
+[gd_scene load_steps=9 format=3 uid="uid://bwuwei3opgbby"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_1j534"]
 [ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="2_4wwag"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="2_jcwtx"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="3_cpgqe"]
+[ext_resource type="PackedScene" uid="uid://cptdclmo6wa8i" path="res://Assets/items/asteroid.tscn" id="5_xhq8p"]
 
 [sub_resource type="Gradient" id="Gradient_4glrf"]
 colors = PackedColorArray(0.101572, 0.0607348, 0, 1, 0, 0, 0, 1)
@@ -42,6 +43,12 @@ collectable_item_class = "Crate"
 [node name="spacelift" parent="." index="4" instance=ExtResource("3_cpgqe")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 0, 0, 0)
 listen_to_inputs = true
+
+[node name="Node3D" parent="." index="6" instance=ExtResource("5_xhq8p")]
+transform = Transform3D(0.849598, 0, -0.52743, 0, 1, 0, 0.52743, 0, 0.849598, 41.8283, 0, -11.0765)
+
+[node name="Node3D" parent="Node3D" index="3" instance=ExtResource("5_xhq8p")]
+transform = Transform3D(0.610525, 0.769296, 0.188265, 0.23923, 0.0474767, -0.969801, -0.755002, 0.637126, -0.155053, -65.874, 0, 40.8946)
 
 [editable path="shuttle_test"]
 [editable path="shuttle_test/shuttle"]

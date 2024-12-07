@@ -1,6 +1,6 @@
 extends Node
 
-var player_name:String = "anon"
+var player_name:String = "___"
 var player_id:String
 
 enum GameStates {RUNNING, PAUSED, MENU}

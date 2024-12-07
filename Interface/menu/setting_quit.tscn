@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0fvpg35lb5d8"]
+[gd_scene load_steps=5 format=3 uid="uid://b0fvpg35lb5d8"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_q7n1b"]
 [ext_resource type="Script" path="res://scripts/Interface_scripts/setting_quit.gd" id="2_ugngb"]
 [ext_resource type="FontFile" uid="uid://ca7mnlrqisiyu" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Bold.ttf" id="3_0s4r8"]
+[ext_resource type="PackedScene" uid="uid://cb6qc5s7juu65" path="res://Interface/menu/buttons/feedback_button.tscn" id="3_s46lx"]
 
 [node name="Setting_Quit" type="MarginContainer"]
 anchors_preset = 15
@@ -29,6 +30,9 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Settings"
+
+[node name="Feedback" parent="HBoxContainer" instance=ExtResource("3_s46lx")]
+layout_mode = 2
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
 visible = false

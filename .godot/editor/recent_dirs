@@ -1,10 +1,12 @@
+res://Assets
+res://scripts/shader_scripts
+res://Interface/menu/buttons
 res://scenes/objects
 res://Assets/textures/asteroid
 res://audio/sfx
 res://Interface/themes/Sofia_Sans_Condensed/static
 res://Interface/menu
 res://Interface/themes
-res://Interface/menu/buttons
 res://scenes/componants
 res://scripts
 res://Assets/items
@@ -12,7 +14,6 @@ res://scenes/levels/intro
 res://scenes/levels
 res://Interface/ship_ui
 res://Assets/materials
-res://scripts/shader_scripts
 res://Assets/vfx
 res://Assets/ships
 res://scripts/ship_related_scripts
