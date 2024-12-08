@@ -1,3 +1,6 @@
+AudioStreamPlayer
+StaticBody3D
+AnimationPlayer
 ColorRect
 HSeparator
 Button
@@ -9,6 +12,3 @@ Label
 Tree
 MenuBar
 MarginContainer
-PanelContainer
-Control
-Node3D

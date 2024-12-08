@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8oroaqu3byyl"]
+[gd_scene load_steps=19 format=3 uid="uid://b8oroaqu3byyl"]
 
 [ext_resource type="Script" path="res://scripts/ship_related_scripts/space_ship_template.gd" id="1_ivavh"]
 [ext_resource type="PackedScene" uid="uid://cwky1nd7hbqwm" path="res://Assets/blender/spacelift.blend" id="1_wpu7r"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bfcoun8dt8731" path="res://audio/sfx/rcs_burst2.wav" id="8_1fcbp"]
 [ext_resource type="Material" uid="uid://cyjv8fkyp6x4g" path="res://Assets/vfx/rcs.material" id="8_xqbb1"]
 [ext_resource type="AudioStream" uid="uid://dumk0wgxdv6ra" path="res://audio/sfx/rcs_loop2.wav" id="9_t2261"]
+[ext_resource type="AudioStream" uid="uid://djyl2l4r4tuys" path="res://audio/sfx/metalic_collision.wav" id="10_efjpo"]
 [ext_resource type="Shader" path="res://scripts/shader_scripts/retro_tv.gdshader" id="12_2fpm8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oelu6"]
@@ -93,6 +94,9 @@ pitch_scale = 0.51
 
 [node name="rcs_loop" type="AudioStreamPlayer" parent="ThrusterSFX"]
 stream = ExtResource("9_t2261")
+
+[node name="collision" type="AudioStreamPlayer" parent="ThrusterSFX"]
+stream = ExtResource("10_efjpo")
 
 [node name="ThrusterVFX" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, -4.37114e-08, -1, 4.37114e-08, 1, -4.37114e-08, 1, -4.37114e-08, -4.37114e-08, 0.388468, 3.1665e-08, -0.0477757)
@@ -208,6 +212,7 @@ grow_vertical = 0
 [node name="ColorRect" type="ColorRect" parent="Control"]
 z_index = 1
 material = SubResource("ShaderMaterial_u8l3r")
+layout_mode = 0
 offset_left = -230.0
 offset_top = -468.0
 offset_right = -168.0

@@ -32,5 +32,4 @@ layout_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_alaje")
-volume_db = -10.036
 autoplay = true

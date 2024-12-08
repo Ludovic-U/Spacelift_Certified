@@ -45,6 +45,7 @@ size = Vector3(6.04065, 1, 9.28284)
 size = Vector3(9.07007, 6.78851, 7.09912)
 
 [node name="shuttle_test" type="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_z = true

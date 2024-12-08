@@ -25,6 +25,8 @@ var thrust:Vector3
 var rotation_dir:int = 0
 var ship_inventory:Array[Node2D]
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	interior_cam_pos = %Camera3D.position
 
@@ -130,6 +132,6 @@ func _on_body_entered(body):
 	if body is RigidBody3D:
 		body_velocity = body.linear_velocity
 		
-	if abs(body_velocity - self.linear_velocity).length() > 1.0:
-		$ThrusterSFX/rcs_burst.play()
-		pass #Audio_manager.play collision sound
+	$ThrusterSFX/collision.volume_db = -15 + abs(body_velocity - self.linear_velocity).length() * 2.5
+	$ThrusterSFX/collision.pitch_scale = 1 - (rng.randf()/2)
+	$ThrusterSFX/collision.play()

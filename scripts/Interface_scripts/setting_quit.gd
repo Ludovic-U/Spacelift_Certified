@@ -1,8 +1,8 @@
 extends MarginContainer
 
 
-func _unhandled_input(event:InputEvent):
-	pass
+#func _unhandled_input(event:InputEvent):
+	#pass
 	#if event.is_action_pressed("ui_cancel"):
 		#Global.game_controller.add_scene(
 			#Global.game_controller, 

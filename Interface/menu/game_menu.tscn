@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwc2bhn5wyia6"]
+[gd_scene load_steps=13 format=3 uid="uid://bwc2bhn5wyia6"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_k6d6i"]
 [ext_resource type="FontFile" uid="uid://jydw0k85lbaq" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Black.ttf" id="2_08xmo"]
@@ -21,6 +21,46 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+
+[sub_resource type="Animation" id="Animation_b0hoo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vo3vc"]
+resource_name = "new_animation"
+
+[sub_resource type="Animation" id="Animation_wim4w"]
+resource_name = "rejected string"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ct51l"]
+_data = {
+"RESET": SubResource("Animation_b0hoo"),
+"new_animation": SubResource("Animation_vo3vc"),
+"rejected string": SubResource("Animation_wim4w")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddn0"]
 bg_color = Color(0, 0, 0, 0)
@@ -85,28 +125,35 @@ alignment = 1
 max_length = 15
 expand_to_text_length = true
 
+[node name="rejected_strin_animation" type="AnimationPlayer" parent="Left_column/MarginContainer/Main_menu/entername/LineEdit"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_ct51l")
+}
+
 [node name="HSeparator3" type="HSeparator" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
 theme_override_constants/separation = 40
 theme_override_styles/separator = SubResource("StyleBoxEmpty_dn0xd")
 
-[node name="Missions" type="Label" parent="Left_column/MarginContainer/Main_menu"]
+[node name="Campaign" type="Label" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
-text = "Standalone Missions
-"
+text = "Missions"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Left_column/MarginContainer/Main_menu"]
+[node name="ScrollContainer2" type="ScrollContainer" parent="Left_column/MarginContainer/Main_menu"]
 layout_mode = 2
-vertical_scroll_mode = 0
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="Level_selector" type="HBoxContainer" parent="Left_column/MarginContainer/Main_menu/ScrollContainer"]
+[node name="Level_selector" type="VBoxContainer" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 
-[node name="level_button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
+[node name="level_button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
 level_path = "res://scenes/levels/test_level.tscn"
 leaderboard_name = "mission_01"
@@ -118,7 +165,7 @@ details = {
 "leaderboard_name": "mission_01"
 }
 
-[node name="mission01" parent="Left_column/MarginContainer/Main_menu/ScrollContainer/Level_selector" instance=ExtResource("3_yfcf2")]
+[node name="mission01" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
 text = "Mission01"
 intro_path = "res://scenes/levels/intro/mission_01_intro.tscn"
@@ -129,32 +176,6 @@ details = {
 "Secondary": ["do aditionnal things", "have fun"],
 "Title": "First mission"
 }
-
-[node name="Campaign" type="Label" parent="Left_column/MarginContainer/Main_menu"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Campaign"
-
-[node name="ScrollContainer2" type="ScrollContainer" parent="Left_column/MarginContainer/Main_menu"]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 10
-
-[node name="Button" type="Button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/VBoxContainer"]
-layout_mode = 2
-text = "Chapter 1
-"
-
-[node name="Button2" type="Button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/VBoxContainer"]
-layout_mode = 2
-text = "Chapter 2
-"
 
 [node name="Right_column" type="PanelContainer" parent="."]
 unique_name_in_owner = true

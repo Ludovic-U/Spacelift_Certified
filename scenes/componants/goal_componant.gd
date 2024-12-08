@@ -23,6 +23,10 @@ func _ready():
 		UI_node.visible = false
 		Global.goal_list_ui.append(UI_node)
 		UI_node_data = UI_node.find_child("Data")
+		
+		for child in get_children():
+			if child.has_signal("update"):
+				child.update.connect(UI_node._on_goal_update)
 	#TODO: Intro
 	
 func _process(_delta):
@@ -30,18 +34,20 @@ func _process(_delta):
 		display_progress()
 			
 func display_progress() -> void:
-	var progress:Array[String]
-	for child in get_children():
-		if "progress_hidden" in child:
-			if !child.progress_hidden:
-				progress.append(child.progress)
-	UI_node_data.text = description + "\n"
-	for line in progress:
-		UI_node_data.text += "\t" + line + "\n"
+	if !hidden:
+		var progress:Array[String]
+		for child in get_children():
+			if "progress_hidden" in child:
+				if !child.progress_hidden:
+					progress.append(child.progress)
+		UI_node_data.text = description + "\n"
+		for line in progress:
+			UI_node_data.text += "\t" + line + "\n"
 	
 func activate() -> void:
 	current_state = GoalState.ACTIVE
-	UI_node.visible = true #TODO: animate this
+	if !hidden:
+		UI_node.visible = true #TODO: animate this
 	goal_started.emit()
 	
 #TODO: animate the goal_ui to show an update, receive a signal from subcomponants
@@ -75,8 +81,9 @@ func _on_goal_failed()-> void:
 			end_level.emit(false) #true for sucess, false for fail
 	
 func goal_fade_out(success:bool):
-	if success:
-		UI_node.modulate = Color(0, 1, 0)
-	else:
-		UI_node.modulate = Color(1, 0, 0)
+	if !hidden:
+		if success:
+			UI_node.modulate = Color(0, 1, 0)
+		else:
+			UI_node.modulate = Color(1, 0, 0)
 	#TODO: animate the goal_ui node to make it fade out

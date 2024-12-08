@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://csl7mjk2yyygb"]
+
+[ext_resource type="PackedScene" uid="uid://bkcolntr61t7y" path="res://Assets/blender/asteroid.blend" id="1_dgsxb"]
+[ext_resource type="Texture2D" uid="uid://dgq71bjs43ywy" path="res://Assets/textures/asteroid/Ground_Dirt_008_normal.jpg" id="2_wq6pg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpxji"]
+albedo_color = Color(0.217092, 0.129564, 0.0252597, 1)
+normal_enabled = true
+normal_texture = ExtResource("2_wq6pg")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7637u"]
+points = PackedVector3Array(-5.97061, -5.57279, -3.10816, 0.833899, 5.61863, -1.97294, 0.928762, 4.37398, 2.13273, -11.0641, 3.06381, 0.51879, 3.02152, -2.45875, 3.42919, 0.0803544, -1.66282, -6.08419, -8.81418, 0.240848, -6.25119, -9.86236, -2.52541, 2.7212, 5.77807, -0.585866, -2.56853, -8.7297, 4.9546, 2.70557, -5.11988, 4.64512, -5.2886, -10.7805, -5.08183, -0.324934, 1.17939, -4.94725, -0.0734849, -3.74351, -3.58104, 3.75605, -9.21582, 5.44556, -1.98758, 3.43668, 1.90917, -4.4837, 4.29497, 2.74839, 1.33002, 0.0883192, 2.16433, 3.76177, -11.6914, -0.0253696, -3.43196, -6.79989, -5.29354, -4.49472, -8.45876, 1.63512, 3.81902, -2.08862, -5.85753, -2.27769, -7.302, -4.67849, 2.66404, -10.8033, -3.1242, -3.98347, 2.84107, -3.04317, -3.6372, -1.05617, 1.31232, -6.25539, -11.0761, 0.535788, 2.2099, 4.56209, -2.96737, 0.437468, -4.02018, 5.73611, 1.02691, -5.14286, -5.86521, -0.0552136, 4.95894, 2.42049, -1.16718, -12.113, -1.13901, -1.44396)
+
+[node name="asteroid_medium" type="StaticBody3D"]
+
+[node name="asteroid" parent="." instance=ExtResource("1_dgsxb")]
+
+[node name="Cube" parent="asteroid" index="0"]
+transform = Transform3D(4.109, 0, 0, 0, 4.109, 0, 0, 0, 4.109, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_xpxji")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+transform = Transform3D(4.109, 0, 0, 0, 4.109, 0, 0, 0, 4.109, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_7637u")
+
+[editable path="asteroid"]

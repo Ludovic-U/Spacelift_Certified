@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwgggtlf6t815"]
+[gd_scene load_steps=9 format=3 uid="uid://cwgggtlf6t815"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_p6fj7"]
 [ext_resource type="Script" path="res://scripts/Interface_scripts/pause_menu.gd" id="2_y0d27"]
 [ext_resource type="PackedScene" uid="uid://c3txhws4x0lvb" path="res://Interface/menu/buttons/restart_level_button.tscn" id="3_eqw45"]
 [ext_resource type="PackedScene" uid="uid://datweer517wlq" path="res://Interface/menu/buttons/back_to_menu.tscn" id="4_en55v"]
+[ext_resource type="PackedScene" uid="uid://cb6qc5s7juu65" path="res://Interface/menu/buttons/feedback_button.tscn" id="5_pu3gc"]
 
 [sub_resource type="Gradient" id="Gradient_101mk"]
 offsets = PackedFloat32Array(0.126437, 0.425287, 0.591954, 0.856322)
@@ -81,6 +82,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 
 [node name="settings" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Settings"
@@ -94,6 +96,9 @@ visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Quit to Desktop"
+
+[node name="Feedback" parent="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_pu3gc")]
+layout_mode = 2
 
 [connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/continue" to="." method="_on_continue_button_down"]
 [connection signal="button_down" from="PanelContainer/VBoxContainer/MarginContainer/VBoxContainer/settings" to="." method="_on_settings_button_down"]

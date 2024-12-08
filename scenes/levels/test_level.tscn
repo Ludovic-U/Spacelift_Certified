@@ -62,6 +62,7 @@ progress_text = ""
 limit = 60.0
 
 [node name="2-1_Goal_wait" parent="Objectives" index="1" instance=ExtResource("3_o3i4r")]
+hidden = true
 description = "wait"
 
 [node name="TimeSystem" parent="Objectives/2-1_Goal_wait" index="0" instance=ExtResource("3_5eqju")]

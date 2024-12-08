@@ -1,9 +1,72 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo6vyvrt75iau"]
+[gd_scene load_steps=8 format=3 uid="uid://bo6vyvrt75iau"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_djthj"]
+[ext_resource type="Script" path="res://Interface/menu/goal_ui.gd" id="2_uoa77"]
+[ext_resource type="AudioStream" uid="uid://dw60iqpcjfir7" path="res://audio/UI/goal_update.wav" id="3_qnhnl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npns1"]
 bg_color = Color(0, 0.282353, 0.52549, 0.345098)
+
+[sub_resource type="Animation" id="Animation_gvyef"]
+resource_name = "update"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.890196, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Data:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(6.9644, 1),
+"update": 0,
+"values": [Color(1, 0.843137, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pb4tf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Data:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rhltt"]
+_data = {
+"RESET": SubResource("Animation_pb4tf"),
+"update": SubResource("Animation_gvyef")
+}
 
 [node name="GoalUI" type="PanelContainer"]
 clip_contents = true
@@ -15,6 +78,7 @@ offset_bottom = -0.360001
 size_flags_horizontal = 3
 theme = ExtResource("1_djthj")
 theme_override_styles/panel = SubResource("StyleBoxFlat_npns1")
+script = ExtResource("2_uoa77")
 
 [node name="Data" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -24,3 +88,11 @@ bla
 bla"
 fit_content = true
 scroll_active = false
+
+[node name="Update_Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rhltt")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qnhnl")

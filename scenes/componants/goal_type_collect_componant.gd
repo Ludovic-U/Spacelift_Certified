@@ -1,6 +1,7 @@
 class_name GoalCollect extends Node
 
 signal goal_completed
+signal update
 
 var progress:String
 @export var progress_hidden:bool = false
@@ -25,6 +26,7 @@ func _on_collect(body)-> void:
 	if body.get_script():
 		if body.get_script().get_global_name() == item_class:
 			number_collected += 1
+			update.emit()
 			progress = "(%d/%d) " % [number_collected, number_to_collect] + progress_text
 			if number_collected >= number_to_collect:
 				goal_completed.emit()
