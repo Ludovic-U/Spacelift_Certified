@@ -49,25 +49,25 @@ func _process(_delta):
 				
 func get_input():
 	#Longitudinal controles
-	if Input.is_action_pressed("W_key"):
+	if Input.is_action_pressed("move_forward"):
 		thrust = Vector3(engine_thrust, 0, 0)
-	elif Input.is_action_pressed("S_key"):
+	elif Input.is_action_pressed("move_backward"):
 		thrust = Vector3(rcs_backward_thrust * -1, 0, 0)
 	else:
 		thrust = Vector3()
 	
 	#Lateral controles
-	if Input.is_action_pressed("E_key"):
+	if Input.is_action_pressed("strafe_right"):
 		thrust = Vector3(thrust.x, 0, rcs_side_thrust)
-	elif Input.is_action_pressed("Q_key"):
+	elif Input.is_action_pressed("strafe_left"):
 		thrust = Vector3(thrust.x, 0, rcs_side_thrust * -1)
 	else:
 		thrust = Vector3(thrust.x, 0, 0)	
 	
 	rotation_dir = 0
-	if Input.is_action_pressed("D_key"):
+	if Input.is_action_pressed("turn_right"):
 		rotation_dir -= 1
-	if Input.is_action_pressed("A_key"):
+	if Input.is_action_pressed("turn_left"):
 		rotation_dir += 1
 	if Input.is_action_pressed("X_key"):
 		var rotated_velocity:Vector3 = linear_velocity.rotated(Vector3(0, 1, 0),  -rotation.y)
@@ -132,6 +132,8 @@ func _on_body_entered(body):
 	if body is RigidBody3D:
 		body_velocity = body.linear_velocity
 		
-	$ThrusterSFX/collision.volume_db = -15 + abs(body_velocity - self.linear_velocity).length() * 2.5
+	$ThrusterSFX/collision.volume_db = clamp(-20 + abs(body_velocity - self.linear_velocity).length() * 2,
+												-20,
+												5)
 	$ThrusterSFX/collision.pitch_scale = 1 - (rng.randf()/2)
 	$ThrusterSFX/collision.play()

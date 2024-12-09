@@ -1,6 +1,6 @@
 class_name GoalComponant extends Node
 
-signal end_level(success_state:bool) #1 for sucess, 0 for fail
+signal end_level(success_state:bool) #1 for sucess, 0 for fail. Automaticaly connects to Level if primary
 signal completed
 signal failed
 signal goal_started
@@ -15,6 +15,8 @@ var current_state: GoalState = GoalState.INACTIVE
 @export var description: String = "Do this"
 var UI_node:Control
 var UI_node_data:RichTextLabel
+
+#TODO: set a number of subgoal to complete before completing the goal
 
 
 func _ready():
@@ -49,10 +51,6 @@ func activate() -> void:
 	if !hidden:
 		UI_node.visible = true #TODO: animate this
 	goal_started.emit()
-	
-#TODO: animate the goal_ui to show an update, receive a signal from subcomponants
-func _on_goal_progress_update():
-	pass
 
 func _on_goal_completed()-> void:
 	display_progress()

@@ -19,7 +19,10 @@ func count_collectable_items()-> void:
 			if item.get_script():
 				if item.get_script().get_global_name() == item_class:
 					number_to_collect += 1
+		number_to_collect += number_collected
 	progress = "(%d/%d) " % [number_collected, number_to_collect] + progress_text
+	if number_collected >= number_to_collect:
+		goal_completed.emit()
 
 
 func _on_collect(body)-> void:

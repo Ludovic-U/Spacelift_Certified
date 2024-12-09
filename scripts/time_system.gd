@@ -27,11 +27,13 @@ func _process(delta):
 			if elapsed <= 0.0:
 				elapsed = 0.0
 				goal_completed.emit()
+				_on_pause()
 		if time_mode == "Chronometer" && limit <= 0:
 			elapsed += delta
 		elif time_mode == "Chronometer" && elapsed >= limit:
 			elapsed += delta
 			goal_completed.emit()
+			_on_pause()
 		var hhmmss = time_to_hhmmss(elapsed)
 #		#TODO: wrong second format
 		progress = "%02d:%02d:%04.2f" %[hhmmss["hours"], hhmmss["minutes"], hhmmss["seconds"]] + progress_text

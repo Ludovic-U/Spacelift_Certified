@@ -1,6 +1,10 @@
+AnimationPlayer
+CollisionShape3D
+Area3D
+Node
+Label
 AudioStreamPlayer
 StaticBody3D
-AnimationPlayer
 ColorRect
 HSeparator
 Button
@@ -8,7 +12,3 @@ HBoxContainer
 TextEdit
 VBoxContainer
 OptionButton
-Label
-Tree
-MenuBar
-MarginContainer

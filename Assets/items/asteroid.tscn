@@ -14,7 +14,7 @@ uv1_triplanar = true
 radius = 5.73197
 height = 19.8237
 
-[node name="Node3D" type="StaticBody3D"]
+[node name="asteroid_medium" type="StaticBody3D"]
 
 [node name="asteroid" parent="." instance=ExtResource("1_gcm5j")]
 
