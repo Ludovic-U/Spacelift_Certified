@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo6vyvrt75iau"]
+[gd_scene load_steps=9 format=3 uid="uid://bo6vyvrt75iau"]
 
 [ext_resource type="Theme" uid="uid://dr5g8csnucdrw" path="res://Interface/themes/blue_theme.tres" id="1_djthj"]
 [ext_resource type="Script" path="res://Interface/menu/goal_ui.gd" id="2_uoa77"]
 [ext_resource type="AudioStream" uid="uid://dw60iqpcjfir7" path="res://audio/UI/goal_update.wav" id="3_qnhnl"]
+[ext_resource type="AudioStream" uid="uid://bqll1q1kcl7b3" path="res://audio/UI/new_goal.wav" id="4_cywup"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_npns1"]
 bg_color = Color(0, 0.282353, 0.52549, 0.345098)
@@ -94,5 +95,8 @@ libraries = {
 "": SubResource("AnimationLibrary_rhltt")
 }
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="goal_update" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qnhnl")
+
+[node name="new_goal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cywup")

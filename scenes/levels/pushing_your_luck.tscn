@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bvwiurom4tnp2"]
+[gd_scene load_steps=24 format=3 uid="uid://bvwiurom4tnp2"]
 
 [ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_yegbf"]
 [ext_resource type="PackedScene" uid="uid://dvvlqlikl4t0p" path="res://Interface/menu/sucess_menu.tscn" id="2_p25cp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7epf4y33it0" path="res://scenes/componants/goal_componant.tscn" id="4_qonoa"]
 [ext_resource type="PackedScene" uid="uid://bv0o6nc11e8re" path="res://scenes/componants/goal_type_collect_componant.tscn" id="5_m3m5t"]
 [ext_resource type="PackedScene" uid="uid://d2dw2cp6v8kan" path="res://scenes/componants/save_data_componants.tscn" id="6_4fvjb"]
+[ext_resource type="Script" path="res://scenes/componants/animation_stater.gd" id="7_2ln7t"]
 [ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="7_nipoi"]
 [ext_resource type="PackedScene" uid="uid://d3i5updmjnlpd" path="res://scenes/componants/goal_type_reach_componants.tscn" id="7_xxolg"]
 [ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="8_5ecdy"]
@@ -13,82 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://csl7mjk2yyygb" path="res://Assets/items/asteroid_medium.tscn" id="10_n5q3j"]
 [ext_resource type="PackedScene" uid="uid://cptdclmo6wa8i" path="res://Assets/items/asteroid.tscn" id="11_wnaf2"]
 [ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="12_24ml2"]
-
-[sub_resource type="Animation" id="Animation_efgmi"]
-resource_name = "pirate_cinematic"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../shuttle_test:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -1.92184, 0), Vector3(-445.551, -1.92184, 48.6446)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../../spacelift:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(1, 0, 1.24255), Vector3(-444.14, 0, 49.9106)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../shuttle_test:freeze")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../spacelift:freeze")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../spacelift:linear_velocity")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 4.16667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector3(0, 0, 0), Vector3(2, 0, 15)]
-}
 
 [sub_resource type="Animation" id="Animation_njgj5"]
 length = 0.001
@@ -165,10 +90,195 @@ tracks/5/keys = {
 "values": [Vector3(6, 15, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_efgmi"]
+resource_name = "pirate_cinematic"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../shuttle_test:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.92184, 0), Vector3(-445.551, -1.92184, 48.6446)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../spacelift:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0, 1.24255), Vector3(-444.14, 0, 49.9106)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../shuttle_test:freeze")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 4.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../spacelift:freeze")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 4.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../spacelift:linear_velocity")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector3(0, 0, 0), Vector3(2, 0, 15)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_umvtx"]
 _data = {
 "RESET": SubResource("Animation_njgj5"),
 "pirate_cinematic": SubResource("Animation_efgmi")
+}
+
+[sub_resource type="Animation" id="Animation_8q0qm"]
+resource_name = "flee_cinematic"
+length = 20.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../shuttle_test:freeze")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../shuttle_test:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.166667, 10.0667, 10.9667, 15.1667, 17.6667, 19.9667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-445.551, -1.92184, 48.6446), Vector3(-454.669, -1.92184, 47.7763), Vector3(-454.669, -1.92184, 47.7763), Vector3(-459.32, -1.922, 11.113), Vector3(-474.62, -1.922, -86.5688), Vector3(-490.649, -1.922, -188.902)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../shuttle_test:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.166667, 10.0667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.141371, 0), Vector3(0, 1.71445, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wl6c7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../shuttle_test:freeze")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../shuttle_test:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-445.551, -1.92184, 48.6446)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../shuttle_test:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.141371, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53hap"]
+_data = {
+"RESET": SubResource("Animation_wl6c7"),
+"flee_cinematic": SubResource("Animation_8q0qm")
 }
 
 [sub_resource type="Gradient" id="Gradient_ey6vx"]
@@ -218,7 +328,7 @@ limit = 360.0
 [node name="TimeSystem_hidden" parent="Objectives/1-2_GoalComponant" index="2" instance=ExtResource("3_p8kut")]
 progress_hidden = true
 progress_text = ""
-limit = 30.0
+limit = 237.0
 
 [node name="1-3_GoalComponant" parent="Objectives" index="2" instance=ExtResource("4_qonoa")]
 description = "Good job !"
@@ -233,7 +343,7 @@ description = "• The pirates are coming back, get back to the ship NOW!!!"
 
 [node name="TimeSystem" parent="Objectives/2-1_GoalComponant" index="0" instance=ExtResource("3_p8kut")]
 progress_text = "s left"
-limit = 30.0
+limit = 40.0
 
 [node name="TimeSystem_hidden" parent="Objectives/2-1_GoalComponant" index="1" instance=ExtResource("3_p8kut")]
 progress_hidden = true
@@ -247,6 +357,16 @@ distance_approx = 5.0
 [node name="2-2_GoalComponant" parent="Objectives" index="4" instance=ExtResource("4_qonoa")]
 description = "• I'm out of here, with or without you!"
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objectives/2-2_GoalComponant" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_53hap")
+}
+
+[node name="AnimationStater" type="Node" parent="Objectives/2-2_GoalComponant" index="1" node_paths=PackedStringArray("animation")]
+script = ExtResource("7_2ln7t")
+animation = NodePath("../AnimationPlayer")
+animation_name = "flee_cinematic"
+
 [node name="SaveDataComponant" parent="Objectives" index="5" instance=ExtResource("6_4fvjb")]
 nodespath_and_properties = {
 "../../Objectives/1-2_GoalComponant/GoalTypeCollectComponant": "number_collected"
@@ -255,7 +375,7 @@ nodespath_and_properties = {
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
 visible = false
 
-[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="2"]
+[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="1"]
 material = ExtResource("7_nipoi")
 anchors_preset = 15
 anchor_right = 1.0
@@ -269,12 +389,9 @@ metadata/_edit_use_anchors_ = true
 target = NodePath("../spacelift")
 
 [node name="shuttle_test" parent="." index="4" instance=ExtResource("8_5ecdy")]
-transform = Transform3D(0.990024, 0, 0.140901, 0, 1, 0, -0.140901, 0, 0.990024, 0, -1.92184, 0)
+transform = Transform3D(0.990024, 0, 0.140901, 0, 1, 0, -0.140901, 0, 0.990024, -445.551, -1.92184, 48.6446)
 freeze_mode = 1
 collectable_item_class = "Crate"
-
-[node name="Flame" parent="shuttle_test/shuttle" index="22"]
-visible = true
 
 [node name="spacelift" parent="." index="5" instance=ExtResource("9_0y4t1")]
 transform = Transform3D(0.131305, 0, -0.991342, 0, 1, 0, 0.991342, 0, 0.131305, 1, 0, -1)
@@ -350,64 +467,166 @@ transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264
 [node name="crate6" parent="." index="12" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -338.089, 0, 183.778)
 
-[node name="crate7" parent="." index="13" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate33" parent="." index="13" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -397.402, 0, 176.671)
+
+[node name="crate34" parent="." index="14" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -386.469, 0, 170.111)
+
+[node name="crate35" parent="." index="15" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -380.729, 0, 181.318)
+
+[node name="crate36" parent="." index="16" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -398.495, 0, 159.998)
+
+[node name="crate39" parent="." index="17" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -307.184, 0, 99.0316)
+
+[node name="crate40" parent="." index="18" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -304.059, 0, 92.4717)
+
+[node name="crate41" parent="." index="19" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -290.51, 0, 103.678)
+
+[node name="crate42" parent="." index="20" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -308.277, 0, 82.3585)
+
+[node name="crate43" parent="." index="21" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.899092, 0, -0.437759, 0, 1, 0, 0.437759, 0, -0.899092, -303.004, 0, 234.941)
+
+[node name="crate44" parent="." index="22" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.899092, 0, -0.437759, 0, 1, 0, 0.437759, 0, -0.899092, -298.295, 0, 223.092)
+
+[node name="crate45" parent="." index="23" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.899092, 0, -0.437759, 0, 1, 0, 0.437759, 0, -0.899092, -296.972, 0, 228.516)
+
+[node name="crate46" parent="." index="24" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.899092, 0, -0.437759, 0, 1, 0, 0.437759, 0, -0.899092, -313.991, 0, 222.353)
+
+[node name="crate37" parent="." index="25" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -345.469, 0, 159.998)
+
+[node name="crate57" parent="." index="26" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -408.882, 0, 124.192)
+
+[node name="crate60" parent="." index="27" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -432.662, 0, 102.325)
+
+[node name="crate38" parent="." index="28" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -339.182, 0, 158.632)
+
+[node name="crate59" parent="." index="29" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -311.256, 0, 124.076)
+
+[node name="crate7" parent="." index="30" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -343.426, 0, 156.782)
 
-[node name="crate8" parent="." index="14" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate50" parent="." index="31" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -373.075, 0, 96.0387)
+
+[node name="crate51" parent="." index="32" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -366.789, 0, 94.6721)
+
+[node name="crate52" parent="." index="33" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -371.032, 0, 92.8225)
+
+[node name="crate8" parent="." index="34" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -405.827, 0, 188.519)
 
-[node name="crate9" parent="." index="15" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate58" parent="." index="35" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -444.129, 0, 202.65)
+
+[node name="crate9" parent="." index="36" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -533.938, 0, 125.914)
 
-[node name="crate10" parent="." index="16" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate10" parent="." index="37" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -534.701, 0, 125.765)
 
-[node name="crate11" parent="." index="17" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate11" parent="." index="38" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -533.784, 0, 125.15)
 
-[node name="crate12" parent="." index="18" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate12" parent="." index="39" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -534.547, 0, 125)
 
-[node name="crate13" parent="." index="19" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate13" parent="." index="40" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -533.633, 0, 124.4)
 
-[node name="crate14" parent="." index="20" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate14" parent="." index="41" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -534.395, 0, 124.25)
 
-[node name="crate15" parent="." index="21" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate27" parent="." index="42" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -436.217, 0, 129.751)
+
+[node name="crate28" parent="." index="43" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -436.476, 0, 129.018)
+
+[node name="crate29" parent="." index="44" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -435.481, 0, 129.496)
+
+[node name="crate30" parent="." index="45" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -435.739, 0, 128.763)
+
+[node name="crate31" parent="." index="46" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -434.758, 0, 129.246)
+
+[node name="crate32" parent="." index="47" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.327217, 0, 0.944949, 0, 1, 0, -0.944949, 0, -0.327217, -435.015, 0, 128.513)
+
+[node name="crate15" parent="." index="48" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -417.505, 0, 97.7106)
 
-[node name="crate16" parent="." index="22" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate16" parent="." index="49" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -418.283, 0, 97.5537)
 
-[node name="crate17" parent="." index="23" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate17" parent="." index="50" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -419.093, 0, 97.3904)
 
-[node name="crate18" parent="." index="24" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate47" parent="." index="51" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.729792, 0, 0.683669, 0, 1, 0, -0.683669, 0, -0.729792, -477.129, 0, 217.196)
+
+[node name="crate48" parent="." index="52" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.729792, 0, 0.683669, 0, 1, 0, -0.683669, 0, -0.729792, -477.708, 0, 216.653)
+
+[node name="crate49" parent="." index="53" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.729792, 0, 0.683669, 0, 1, 0, -0.683669, 0, -0.729792, -478.311, 0, 216.088)
+
+[node name="crate18" parent="." index="54" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -392.067, 0, 133.556)
 
-[node name="crate19" parent="." index="25" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate19" parent="." index="55" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -391.898, 0, 132.721)
 
-[node name="crate20" parent="." index="26" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate53" parent="." index="56" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -272.584, 0, 148.309)
+
+[node name="crate54" parent="." index="57" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.980264, 0, 0.197692, 0, 1, 0, -0.197692, 0, -0.980264, -272.415, 0, 147.474)
+
+[node name="crate55" parent="." index="58" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.999599, 0, 0.0283059, 0, 1, 0, -0.0283059, 0, -0.999599, -263.607, 0, 148.317)
+
+[node name="crate56" parent="." index="59" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+transform = Transform3D(-0.999599, 0, 0.0283059, 0, 1, 0, -0.0283059, 0, -0.999599, -263.582, 0, 147.465)
+
+[node name="crate20" parent="." index="60" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.988751, 0, 0.149569, 0, 1, 0, -0.149569, 0, 0.988751, -499.821, 0, 273.155)
 
-[node name="crate21" parent="." index="27" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate21" parent="." index="61" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.988751, 0, 0.149569, 0, 1, 0, -0.149569, 0, 0.988751, -503.068, 0, 271.647)
 
-[node name="crate22" parent="." index="28" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate22" parent="." index="62" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.988751, 0, 0.149569, 0, 1, 0, -0.149569, 0, 0.988751, -494.613, 0, 276.015)
 
-[node name="crate23" parent="." index="29" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate23" parent="." index="63" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.988751, 0, 0.149569, 0, 1, 0, -0.149569, 0, 0.988751, -491.199, 0, 279.457)
 
-[node name="crate24" parent="." index="30" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate24" parent="." index="64" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.904909, 0, 0.425606, 0, 1, 0, -0.425606, 0, 0.904909, -458.557, 0, 243.014)
 
-[node name="crate25" parent="." index="31" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate25" parent="." index="65" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.904909, 0, 0.425606, 0, 1, 0, -0.425606, 0, 0.904909, -458.23, 0, 243.708)
 
-[node name="crate26" parent="." index="32" groups=["collectibles"] instance=ExtResource("12_24ml2")]
+[node name="crate26" parent="." index="66" groups=["collectibles"] instance=ExtResource("12_24ml2")]
 transform = Transform3D(0.904909, 0, 0.425606, 0, 1, 0, -0.425606, 0, 0.904909, -457.886, 0, 244.44)
 
 [connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_start"]
@@ -423,13 +642,14 @@ transform = Transform3D(0.904909, 0, 0.425606, 0, 1, 0, -0.425606, 0, 0.904909, 
 [connection signal="goal_completed" from="Objectives/1-2_GoalComponant/TimeSystem_hidden" to="Objectives/1-2_GoalComponant/TimeSystem" method="_on_pause"]
 [connection signal="goal_started" from="Objectives/1-3_GoalComponant" to="Objectives/1-3_GoalComponant/TimeSystem" method="_on_start"]
 [connection signal="goal_completed" from="Objectives/1-3_GoalComponant/TimeSystem" to="Objectives/1-3_GoalComponant" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/2-1_GoalComponant" to="Objectives/1-3_GoalComponant" method="activate"]
 [connection signal="completed" from="Objectives/2-1_GoalComponant" to="Objectives/1-2_GoalComponant/TimeSystem_hidden" method="_on_pause"]
+[connection signal="completed" from="Objectives/2-1_GoalComponant" to="Objectives/1-3_GoalComponant" method="activate"]
 [connection signal="goal_started" from="Objectives/2-1_GoalComponant" to="Objectives/2-1_GoalComponant/TimeSystem" method="_on_start"]
 [connection signal="goal_started" from="Objectives/2-1_GoalComponant" to="Objectives/2-1_GoalComponant/TimeSystem_hidden" method="_on_start"]
 [connection signal="goal_completed" from="Objectives/2-1_GoalComponant/TimeSystem" to="Objectives/2-1_GoalComponant" method="_on_goal_failed"]
 [connection signal="goal_completed" from="Objectives/2-1_GoalComponant/TimeSystem_hidden" to="Objectives/2-2_GoalComponant" method="activate"]
 [connection signal="goal_completed" from="Objectives/2-1_GoalComponant/GoalTypeReachComponants" to="Objectives/2-1_GoalComponant" method="_on_goal_completed"]
+[connection signal="goal_started" from="Objectives/2-2_GoalComponant" to="Objectives/2-2_GoalComponant/AnimationStater" method="_on_start_animation"]
 [connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/1-2_GoalComponant/GoalTypeCollectComponant" method="_on_collect"]
 [connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/2-1_GoalComponant/GoalTypeReachComponants" method="_on_reach"]
 

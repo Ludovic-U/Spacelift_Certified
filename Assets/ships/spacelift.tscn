@@ -133,6 +133,7 @@ pitch_scale = 0.51
 
 [node name="rcs_loop" type="AudioStreamPlayer" parent="ThrusterSFX"]
 stream = ExtResource("9_t2261")
+volume_db = 7.0
 
 [node name="collision" type="AudioStreamPlayer" parent="ThrusterSFX"]
 stream = ExtResource("10_efjpo")

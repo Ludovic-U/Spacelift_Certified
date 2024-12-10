@@ -50,7 +50,7 @@ func activate() -> void:
 	current_state = GoalState.ACTIVE
 	if !hidden:
 		UI_node.visible = true #TODO: animate this
-#		TODO: put the node at the end of the list
+		UI_node.move_to_last()
 	goal_started.emit()
 
 func _on_goal_completed()-> void:

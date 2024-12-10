@@ -1,10 +1,10 @@
+Node
 AnimationPlayer
 Node3D
 Label
 VBoxContainer
 CollisionShape3D
 Area3D
-Node
 AudioStreamPlayer
 StaticBody3D
 ColorRect

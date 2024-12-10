@@ -276,7 +276,7 @@ nodespath_and_properties = {
 [node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
 visible = false
 
-[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="2"]
+[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="1"]
 material = ExtResource("7_lrgis")
 anchors_preset = 15
 anchor_right = 1.0

@@ -44,9 +44,9 @@ vec3 neon(float value, vec3 color) {
 
 float fresnel(float amount, vec3 normal, vec3 view) {
     return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
-}	
+}
 
-void vertex() 
+void vertex()
 {
 	vert_height = (-VERTEX.y + (model_height / 2.)) / model_height;
 	v_uv = UV;

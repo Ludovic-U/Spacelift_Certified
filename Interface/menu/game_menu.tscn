@@ -174,7 +174,7 @@ text = "Your first shift"
 intro_path = "res://scenes/levels/intro/intro_first_shift.tscn"
 level_path = "res://scenes/levels/first_shift.tscn"
 details = {
-"Description": "Yeah, yeah. I understand it your first time flying but it's time to grow up! I have a schedule, no time to waste, get back here ! ",
+"Description": "Yeah, yeah. I understand it's your first time flying this thing, but it's time to grow up! I have a schedule, no time to waste, get back here! ",
 "Primary": "End your training session and get back to the ship",
 "Secondary": [],
 "Title": "Your first shift"

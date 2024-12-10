@@ -16,11 +16,13 @@ res://addons/talo/samples/authentication/assets/theme.tres
 res://scripts/shader_scripts/casted_shadow.gdshader
 res://scripts/shader_scripts/moving_stars.gdshader
 res://Assets/vfx/engine_flame.gdshader
+res://scenes/componants/goal_componant.tscn
+res://scenes/componants/goal_componant.gd
 res://scenes/game.tscn
 res://Interface/menu/game_menu.tscn
 res://scenes/levels/intro/intro_unexpected_treasure.tscn
 res://scenes/levels/unexpected_treasure.tscn
-res://scenes/componants/goal_componant.gd
-res://scripts/time_system.gd
-res://scenes/levels/level_template.gd
-res://scenes/componants/goal_type_reach_componants.gd
+res://Interface/menu/goal_ui.gd
+res://Interface/menu/Goal_UI.tscn
+res://Assets/ships/spacelift.tscn
+res://scenes/componants/animation_stater.gd
