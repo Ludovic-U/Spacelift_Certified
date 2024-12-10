@@ -23,7 +23,8 @@ func leaderboard_add_entry(leaderboard_name:String, score:float, additional_prop
 	await Talo.leaderboards.add_entry(leaderboard_name, score, additional_properties)
 	print("entry succesfuly added to leaderboard: ", leaderboard_name)
 	
-func get_leaberboard(leaderboard_name:String, page:int = 0) -> void: 
+func get_leaberboard(leaderboard_name:String, page:int = 0) -> void:
+	await Talo.players.identify("username", Global.player_name)
 	await Talo.leaderboards.get_entries(leaderboard_name, page)
 	
 #TODO add transition parametter

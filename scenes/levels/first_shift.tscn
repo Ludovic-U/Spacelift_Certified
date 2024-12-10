@@ -25,65 +25,65 @@ dust = NodePath("WorldEnvironment/CanvasLayer/dust")
 next_goals = [NodePath("../1-2 GoalComponant")]
 description = "• Press W to move forward"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-1_GoalComponant" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/F-YR")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-1_GoalComponant" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/F-YR"), NodePath("../../../spacelift/ThrusterVFX/F-YL")]
+properties_to_check = Array[String](["visible", "visible"])
+properties_expected_value = Array[String](["true", "true"])
 
 [node name="1-2 GoalComponant" parent="Objectives" index="1" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../1-3 GoalComponant")]
 description = "• Press S to move backward"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-2 GoalComponant" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/B-YL")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-2 GoalComponant" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/B-YL"), NodePath("../../../spacelift/ThrusterVFX/B-YR")]
+properties_to_check = Array[String](["visible", "visible"])
+properties_expected_value = Array[String](["true", "true"])
 
 [node name="1-3 GoalComponant" parent="Objectives" index="2" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../1-4 GoalComponant")]
 description = "• Press A to rotate to the left"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-3 GoalComponant" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/F-YL")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-3 GoalComponant" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/B-YL"), NodePath("../../../spacelift/ThrusterVFX/F-YL")]
+properties_to_check = Array[String](["visible", "visible"])
+properties_expected_value = Array[String](["true", "true"])
 
 [node name="1-4 GoalComponant" parent="Objectives" index="3" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../1-5 GoalComponant2")]
 description = "• Press D to rotate to the right"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-4 GoalComponant" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/B-YR")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-4 GoalComponant" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/B-YR"), NodePath("../../../spacelift/ThrusterVFX/F-YR")]
+properties_to_check = Array[String](["visible", "visible"])
+properties_expected_value = Array[String](["true", "true"])
 
 [node name="1-5 GoalComponant2" parent="Objectives" index="4" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../1-6 GoalComponant3")]
 description = "• Press Q to strafe left"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-5 GoalComponant2" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/TL")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-5 GoalComponant2" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/TL")]
+properties_to_check = Array[String](["visible"])
+properties_expected_value = Array[String](["true"])
 
 [node name="1-6 GoalComponant3" parent="Objectives" index="5" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../1-7 GoalComponant4")]
 description = "• Press E to strafe right"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-6 GoalComponant3" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../spacelift/ThrusterVFX/TR")
-property_to_check = "visible"
-property_expected_value = "true"
+[node name="PropertyCheckComponant" parent="Objectives/1-6 GoalComponant3" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../spacelift/ThrusterVFX/TR")]
+properties_to_check = Array[String](["visible"])
+properties_expected_value = Array[String](["true"])
 
 [node name="1-7 GoalComponant4" parent="Objectives" index="6" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../2-0 GoalComponant")]
 description = "• Use MouseWheel to dezoom and locate the cargo ship"
 
-[node name="PropertyCheckComponant" parent="Objectives/1-7 GoalComponant4" index="0" node_paths=PackedStringArray("node_to_check") instance=ExtResource("2_t85vs")]
-node_to_check = NodePath("../../../Camera3D")
-property_to_check = "size"
+[node name="PropertyCheckComponant" parent="Objectives/1-7 GoalComponant4" index="0" node_paths=PackedStringArray("nodes_to_check") instance=ExtResource("2_t85vs")]
+nodes_to_check = [NodePath("../../../Camera3D")]
+properties_to_check = Array[String](["size"])
 comparison = 1
-property_expected_value = "300.0"
+properties_expected_value = Array[String](["300"])
 
 [node name="2-0 GoalComponant" parent="Objectives" index="7" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_aqqfd")]
 next_goals = [NodePath("../2-1 GoalComponant")]
@@ -114,7 +114,10 @@ description = "Good job !"
 
 [node name="TimeSystem" parent="Objectives/GoalComponant" index="0" instance=ExtResource("7_5bfbn")]
 progress_hidden = true
-limit = 5.0
+limit = 2.5
+
+[node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
 size = 63.349
@@ -200,22 +203,16 @@ collectable_item_class = "Crate"
 [connection signal="completed" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-1_GoalComponant/PropertyCheckComponant" to="Objectives/1-1_GoalComponant" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-2 GoalComponant" to="Objectives/1-2 GoalComponant/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-2 GoalComponant" to="Objectives/1-2 GoalComponant/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-2 GoalComponant/PropertyCheckComponant" to="Objectives/1-2 GoalComponant" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-3 GoalComponant" to="Objectives/1-3 GoalComponant/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-3 GoalComponant" to="Objectives/1-3 GoalComponant/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-3 GoalComponant/PropertyCheckComponant" to="Objectives/1-3 GoalComponant" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-4 GoalComponant" to="Objectives/1-4 GoalComponant/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-4 GoalComponant" to="Objectives/1-4 GoalComponant/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-4 GoalComponant/PropertyCheckComponant" to="Objectives/1-4 GoalComponant" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-5 GoalComponant2" to="Objectives/1-5 GoalComponant2/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-5 GoalComponant2" to="Objectives/1-5 GoalComponant2/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-5 GoalComponant2/PropertyCheckComponant" to="Objectives/1-5 GoalComponant2" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-6 GoalComponant3" to="Objectives/1-6 GoalComponant3/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-6 GoalComponant3" to="Objectives/1-6 GoalComponant3/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-6 GoalComponant3/PropertyCheckComponant" to="Objectives/1-6 GoalComponant3" method="_on_goal_completed"]
-[connection signal="completed" from="Objectives/1-7 GoalComponant4" to="Objectives/1-7 GoalComponant4/PropertyCheckComponant" method="stop"]
 [connection signal="goal_started" from="Objectives/1-7 GoalComponant4" to="Objectives/1-7 GoalComponant4/PropertyCheckComponant" method="start"]
 [connection signal="check" from="Objectives/1-7 GoalComponant4/PropertyCheckComponant" to="Objectives/1-7 GoalComponant4" method="_on_goal_completed"]
 [connection signal="goal_started" from="Objectives/2-0 GoalComponant" to="Objectives/2-0 GoalComponant/GoalTypeReachComponants" method="_on_check_area"]
@@ -223,7 +220,6 @@ collectable_item_class = "Crate"
 [connection signal="body_entered" from="Objectives/2-0 GoalComponant/GoalTypeReachComponants/Area3D" to="Objectives/2-0 GoalComponant/GoalTypeReachComponants" method="_on_reach"]
 [connection signal="goal_started" from="Objectives/2-1 GoalComponant" to="Objectives/2-1 GoalComponant/GoalTypeCollectComponant" method="count_collectable_items"]
 [connection signal="goal_completed" from="Objectives/2-1 GoalComponant/GoalTypeCollectComponant" to="Objectives/2-1 GoalComponant" method="_on_goal_completed"]
-[connection signal="update" from="Objectives/2-1 GoalComponant/GoalTypeCollectComponant" to="Objectives/2-1 GoalComponant" method="_on_goal_progress_update"]
 [connection signal="goal_started" from="Objectives/GoalComponant" to="Objectives/GoalComponant/TimeSystem" method="_on_start"]
 [connection signal="goal_completed" from="Objectives/GoalComponant/TimeSystem" to="Objectives/GoalComponant" method="_on_goal_completed"]
 [connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/2-1 GoalComponant/GoalTypeCollectComponant" method="_on_collect"]

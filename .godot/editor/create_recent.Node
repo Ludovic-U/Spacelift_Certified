@@ -1,8 +1,10 @@
 AnimationPlayer
+Node3D
+Label
+VBoxContainer
 CollisionShape3D
 Area3D
 Node
-Label
 AudioStreamPlayer
 StaticBody3D
 ColorRect
@@ -10,5 +12,3 @@ HSeparator
 Button
 HBoxContainer
 TextEdit
-VBoxContainer
-OptionButton

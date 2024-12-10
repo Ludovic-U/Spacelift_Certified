@@ -1,16 +1,79 @@
-[gd_scene load_steps=3 format=3 uid="uid://b80pgfjpe0e34"]
+[gd_scene load_steps=6 format=3 uid="uid://b80pgfjpe0e34"]
 
 [ext_resource type="Script" path="res://Interface/menu/leaderboard_entry.gd" id="1_hb7v7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8nf0n"]
 bg_color = Color(0.196078, 0.196078, 0.196078, 0.305882)
 
-[node name="leaderboard_entry" type="PanelContainer"]
+[sub_resource type="Animation" id="Animation_nqg6j"]
+resource_name = "score_highlight"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/pos:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.533333, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/HBoxContainer/name:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.533333, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/score:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0.533333, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_siiy3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/HBoxContainer/pos:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wv0qu"]
+_data = {
+"RESET": SubResource("Animation_siiy3"),
+"score_highlight": SubResource("Animation_nqg6j")
+}
+
+[node name="leaderboard_entry" type="PanelContainer" node_paths=PackedStringArray("animation")]
 offset_right = 960.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_8nf0n")
 script = ExtResource("1_hb7v7")
+animation = NodePath("AnimationPlayer")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -44,3 +107,8 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 29
 text = "Score"
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wv0qu")
+}

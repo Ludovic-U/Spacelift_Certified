@@ -154,6 +154,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 10
 
 [node name="level_button" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
+visible = false
 layout_mode = 2
 level_path = "res://scenes/levels/test_level.tscn"
 leaderboard_name = "mission_01"
@@ -165,28 +166,48 @@ details = {
 "leaderboard_name": "mission_01"
 }
 
-[node name="mission01" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
+[node name="First_shift" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
 layout_mode = 2
-text = "Mission01"
-intro_path = "res://scenes/levels/intro/mission_01_intro.tscn"
-level_path = "res://scenes/levels/mission_01.tscn"
-details = {
-"Description": "Some context about the first mission",
-"Primary": "the very first objective",
-"Secondary": ["do aditionnal things", "have fun"],
-"Title": "First mission"
-}
-
-[node name="First shift" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
-layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 29
 text = "Your first shift"
-intro_path = "res://scenes/levels/intro/mission_01_intro.tscn"
+intro_path = "res://scenes/levels/intro/intro_first_shift.tscn"
 level_path = "res://scenes/levels/first_shift.tscn"
 details = {
-"Description": "Some context about the first mission",
-"Primary": "the very first objective",
-"Secondary": ["do aditionnal things", "have fun"],
-"Title": "First mission"
+"Description": "Yeah, yeah. I understand it your first time flying but it's time to grow up! I have a schedule, no time to waste, get back here ! ",
+"Primary": "End your training session and get back to the ship",
+"Secondary": [],
+"Title": "Your first shift"
+}
+
+[node name="unexpected_treasure2" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 29
+text = "Unexpected treasure"
+intro_path = "res://scenes/levels/intro/intro_unexpected_treasure.tscn"
+level_path = "res://scenes/levels/unexpected_treasure.tscn"
+leaderboard_name = "unexpected_treasure"
+details = {
+"Description": "The radar picked up an unusual signal. It seems to be scatered crates nearby those asteroids, easy money for me! How did they end up here? It doesn't matter, retreive them! Quick! Before anyone else spot them. ",
+"Primary": "Load all the scatered crates into the cargo ship",
+"Secondary": [],
+"Title": "Unexpected treasure"
+}
+
+[node name="pushing_your_luck" parent="Left_column/MarginContainer/Main_menu/ScrollContainer2/Level_selector" instance=ExtResource("3_yfcf2")]
+layout_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 29
+text = "Pushing your luck"
+intro_path = "res://scenes/levels/intro/intro_pushing_your_luck.tscn"
+level_path = "res://scenes/levels/pushing_your_luck.tscn"
+leaderboard_name = "pushing_your_luck"
+details = {
+"Description": "An other bach of unattended crates!... Lucky me! It's weird... It must be a pirate hideout. Quick, retreive as much as possible crates, I'll give you 10... No. 6 minutes! Then we get out of here !",
+"Primary": "Load as much as possible crates into the cargo ship within the time limit",
+"Secondary": [],
+"Title": "Pushing your luck"
 }
 
 [node name="Right_column" type="PanelContainer" parent="."]

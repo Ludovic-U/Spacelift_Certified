@@ -20,4 +20,4 @@ func _on_reach(body):
 		goal_completed.emit()
 		
 func _process(_delta):
-	progress = "%4.2f" % (body_to_move.position.distance_to(area_to_reach.position) - distance_approx) + progress_text
+	progress = "%4.2f" % (body_to_move.global_position.distance_to(area_to_reach.global_position) - distance_approx) + progress_text

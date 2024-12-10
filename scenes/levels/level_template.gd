@@ -4,7 +4,7 @@ class_name Level extends Node3D
 @export var level_end_gui:PackedScene
 @export var leaderboard_name:String #TODO: upload to leaderboard componant ?
 @export var save_componant:SaveDataComponant
-#var score:Array
+var score:float
 
 @export_group("Required children")
 @export var camera: OrthogonalCamera
@@ -55,7 +55,7 @@ func _on_level_end(success_state:bool):
 	else : # if sucess
 		if leaderboard_name != "":
 			save_componant._on_collect_data()
-			var score:float = save_componant.collected_data[0]
+			score = float(save_componant.collected_data[0])
 			var additionnal_properties:Dictionary = {}
 			await Global.game_controller.leaderboard_add_entry(leaderboard_name, score, additionnal_properties)
 		

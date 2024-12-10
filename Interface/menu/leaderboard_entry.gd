@@ -1,5 +1,8 @@
 extends PanelContainer
 
+@export var animation:AnimationPlayer
+
+
 func _set_data(entry:TaloLeaderboardEntry) -> void:
 	$MarginContainer/HBoxContainer/pos.text = str(entry.position +1 )
 	$MarginContainer/HBoxContainer/name.text = str(entry.player_alias.identifier)

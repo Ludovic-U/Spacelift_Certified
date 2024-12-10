@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=3 uid="uid://dr5g8csnucdrw"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://dr5g8csnucdrw"]
 
 [ext_resource type="FontFile" uid="uid://ca7mnlrqisiyu" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Bold.ttf" id="1_fftnh"]
 [ext_resource type="FontFile" uid="uid://bbfpvegk8aa1a" path="res://Interface/themes/Sofia_Sans_Condensed/static/SofiaSansCondensed-Medium.ttf" id="2_ybsr3"]
@@ -14,6 +14,9 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujcb2"]
+bg_color = Color(0.209379, 0.365452, 0.926461, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obkln"]
 bg_color = Color(0.108528, 0.222435, 0.425396, 1)
@@ -85,6 +88,7 @@ Button/constants/outline_size = 1
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_fftnh")
 Button/styles/disabled = SubResource("StyleBoxFlat_ecv6i")
+Button/styles/focus = SubResource("StyleBoxFlat_ujcb2")
 Button/styles/hover = SubResource("StyleBoxFlat_obkln")
 Button/styles/normal = SubResource("StyleBoxFlat_s1lw2")
 Button/styles/pressed = SubResource("StyleBoxFlat_chxqv")

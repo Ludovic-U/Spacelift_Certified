@@ -10,7 +10,7 @@ func _ready():
 	if Global.mission_details != null:
 		title.text = m_details["Title"]
 		primary.text = m_details["Primary"]
-		secondary.text = str(m_details["Secondary"])
+		#secondary.text = str(m_details["Secondary"])
 		description.text = m_details["Description"]
 		if Global.mission_details.leaderboard_name != "":
 			var new_leaderboard = load("res://Interface/menu/leaderbord.tscn").instantiate()

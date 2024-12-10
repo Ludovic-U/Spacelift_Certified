@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvhgc7sg77t5w"]
+
+[ext_resource type="Script" path="res://scenes/componants/multiple_bool_check_componant.gd" id="1_fblfg"]
+
+[node name="MultipleBoolCheckComponant" type="Node"]
+script = ExtResource("1_fblfg")

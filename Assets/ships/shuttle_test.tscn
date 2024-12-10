@@ -1,13 +1,28 @@
-[gd_scene load_steps=21 format=3 uid="uid://721i7ftf1bo4"]
+[gd_scene load_steps=24 format=3 uid="uid://721i7ftf1bo4"]
 
 [ext_resource type="PackedScene" uid="uid://ca4qrkx1gxnhk" path="res://Assets/blender/shuttle.blend" id="1_3qhkr"]
 [ext_resource type="Script" path="res://Assets/ships/shuttle_test.gd" id="1_nya5q"]
 [ext_resource type="Material" uid="uid://cq7dlv7on5c52" path="res://Assets/materials/simple_darkgrey.material" id="3_2qpob"]
 [ext_resource type="Material" uid="uid://bjwo60u2kh0hv" path="res://Assets/materials/metallic_blue_hull.material" id="3_i8k35"]
 [ext_resource type="Material" uid="uid://v6e8fqe8rbig" path="res://Assets/materials/metalic_blue_sphere.material" id="3_t4yv7"]
-[ext_resource type="Shader" path="res://Assets/vfx/engine_flame.gdshader" id="5_b0pt8"]
 [ext_resource type="Material" uid="uid://c0u54rkpq81p7" path="res://Assets/materials/orange_light.material" id="6_aveu4"]
 [ext_resource type="Material" uid="uid://by6mvo7snw0ha" path="res://Assets/materials/green_light.material" id="7_k1wqg"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/engine_flame_2.gdshader" id="8_rautc"]
+
+[sub_resource type="Animation" id="Animation_wgjti"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_d3gdo"]
 resource_name = "blink_light"
@@ -38,45 +53,43 @@ tracks/1/keys = {
 "values": [1.0, 0.0, 1.0]
 }
 
-[sub_resource type="Animation" id="Animation_wgjti"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:transparency")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6igg2"]
 _data = {
 "RESET": SubResource("Animation_wgjti"),
 "blink_light": SubResource("Animation_d3gdo")
 }
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_a7jl3"]
-noise_type = 3
-seed = 3
-frequency = 0.0143
+[sub_resource type="Gradient" id="Gradient_y3ml6"]
+offsets = PackedFloat32Array(0.00664452, 1)
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_g4s1p"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_guslx"]
+fractal_octaves = 7
+fractal_gain = 0.55
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_too3f"]
 seamless = true
-noise = SubResource("FastNoiseLite_a7jl3")
+color_ramp = SubResource("Gradient_y3ml6")
+noise = SubResource("FastNoiseLite_guslx")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuiyl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tak3m"]
 render_priority = 0
-shader = ExtResource("5_b0pt8")
-shader_parameter/root_color = Color(0.00045705, 9.64433e-07, 2.93767e-11, 1)
-shader_parameter/tip_color = Color(1, 0.32549, 0.0705882, 1)
-shader_parameter/fire_alpha = 1.0
-shader_parameter/fire_speed = Vector2(0, 3)
-shader_parameter/fire_aperture = 0.106
-shader_parameter/noise_tex = SubResource("NoiseTexture2D_g4s1p")
+shader = ExtResource("8_rautc")
+shader_parameter/model_height = 80.0
+shader_parameter/dissolve_start = 0.485
+shader_parameter/dissolve_length = 0.07
+shader_parameter/gradient_bias = 2.664
+shader_parameter/noise_direction = Vector2(0, -1)
+shader_parameter/noise_speed = 3.0
+shader_parameter/noise_strength = 0.3
+shader_parameter/stretch_factor = -0.4
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_too3f")
+shader_parameter/_color = Color(0.263597, 0.432391, 0.920512, 1)
+shader_parameter/power_factor = 1.0
+shader_parameter/alpha_intensity_factor = 20.0
+shader_parameter/fresnel_factor = 1.0
+shader_parameter/fresnel_amplification = 14.0
+shader_parameter/fresnel_power = 2.0
+shader_parameter/enable_fresnel = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gucf4"]
 radius = 2.93954
@@ -87,11 +100,17 @@ size = Vector3(7.13977, 8.20044, 6.10791)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1dwxy"]
 size = Vector3(10.4451, 6.88678, 11.3306)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6abx"]
+size = Vector3(2.23248, 7.00629, 7.18945)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbi65"]
+size = Vector3(2.23248, 7.00629, 16.1568)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_mw67p"]
 size = Vector3(2.23248, 7.00629, 8.98059)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t4pga"]
-size = Vector3(6.04065, 1, 9.28284)
+size = Vector3(6.04065, 5.66748, 9.28284)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ivra"]
 size = Vector3(9.07007, 6.78851, 7.09912)
@@ -185,24 +204,24 @@ libraries = {
 }
 autoplay = "blink_light"
 
-[node name="Cube_001" parent="shuttle" index="22"]
-surface_material_override/0 = ExtResource("3_t4yv7")
-
-[node name="Cube_002" parent="shuttle" index="23"]
-surface_material_override/0 = ExtResource("3_t4yv7")
-
-[node name="Cube_004" parent="shuttle" index="24"]
-surface_material_override/0 = ExtResource("3_t4yv7")
-
-[node name="Cube_005" parent="shuttle" index="25"]
-surface_material_override/0 = ExtResource("3_t4yv7")
-
-[node name="Cube_007" parent="shuttle" index="26"]
-surface_material_override/0 = ExtResource("3_t4yv7")
-
-[node name="Flame" parent="shuttle" index="27"]
+[node name="Flame" parent="shuttle" index="22"]
 visible = false
-surface_material_override/0 = SubResource("ShaderMaterial_nuiyl")
+surface_material_override/0 = SubResource("ShaderMaterial_tak3m")
+
+[node name="Cube_001" parent="shuttle" index="23"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_002" parent="shuttle" index="24"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_004" parent="shuttle" index="25"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_005" parent="shuttle" index="26"]
+surface_material_override/0 = ExtResource("3_t4yv7")
+
+[node name="Cube_007" parent="shuttle" index="27"]
+surface_material_override/0 = ExtResource("3_t4yv7")
 
 [node name="col-propellanttank" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -5.98494, 4.19075, -3.9425)
@@ -216,9 +235,13 @@ shape = SubResource("BoxShape3D_xpw3k")
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -7.93293, 1.88583, 0.0220349)
 shape = SubResource("BoxShape3D_1dwxy")
 
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.999994, 8.72304e-11, -0.00397926, 8.68842e-11, 1, 8.72304e-11, 0.00397926, 8.68851e-11, -0.999994, 12.3094, 1.75421, -0.00685406)
+shape = SubResource("BoxShape3D_x6abx")
+
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 9.31427, 1.87098, -4.14294)
-shape = SubResource("BoxShape3D_mw67p")
+transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 5.72617, 1.87098, -4.1358)
+shape = SubResource("BoxShape3D_mbi65")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, 9.33069, 1.90591, 4.1103)
@@ -228,7 +251,7 @@ shape = SubResource("BoxShape3D_mw67p")
 transform = Transform3D(0.00198963, 8.69714e-11, -0.999998, -8.59745e-14, 1, 8.69714e-11, 0.999998, -8.59783e-14, 0.00198963, -6.14988, 0, 0.0184872)
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Cargo_Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00958252, 5.22241, -14.5977)
+transform = Transform3D(1, -7.65718e-19, 0, 0, 1, -7.76914e-16, 0, 2.40581e-18, 1, 0.00958251, 2.53401, -14.5977)
 shape = SubResource("BoxShape3D_t4pga")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cargo_Area3D"]

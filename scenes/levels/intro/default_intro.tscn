@@ -1,10 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://oay4go1bnrs2"]
 
-[ext_resource type="Texture2D" uid="uid://bs2k1msmijarp" path="res://Assets/textures/starry_sky.jpeg" id="2_28kfb"]
 [ext_resource type="Script" path="res://scripts/camera_3d.gd" id="2_33l07"]
-[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_stars.gdshader" id="2_sd36j"]
-[ext_resource type="Texture2D" uid="uid://dhd6kv7y2xtjb" path="res://Assets/textures/shuttle_prototype1.png" id="4_l7c1x"]
-[ext_resource type="Texture2D" uid="uid://cydch18hn53fx" path="res://Assets/textures/shuttle_prototype1_normalmap.png" id="5_6jp7g"]
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="3_x8y7r"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="4_g0yym"]
 [ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="6_idy3i"]
 [ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="7_6378h"]
 
@@ -12,68 +10,70 @@
 background_mode = 3
 background_canvas_max_layer = -1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hna6v"]
-shader = ExtResource("2_sd36j")
-shader_parameter/dimensions = Vector2(1920, 1080)
-shader_parameter/small_stars = 50.0
-shader_parameter/small_stars_far_size = 0.2
-shader_parameter/small_stars_near_size = 0.1
-shader_parameter/large_stars = 8.0
-shader_parameter/large_stars_far_size = 0.2
-shader_parameter/large_stars_near_size = 0.1
-shader_parameter/far_stars_color = Color(1, 1, 1, 0.580392)
-shader_parameter/near_stars_color = Color(0.262745, 0, 0.980392, 0.458824)
-shader_parameter/base_scroll_speed = 0.0
-shader_parameter/additional_scroll_speed = 2.0
-shader_parameter/scroll_direction = Vector2(0, 1)
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0, 0, 0.0823529, 1, 0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_46o6d"]
-transparency = 1
-albedo_texture = ExtResource("4_l7c1x")
-normal_enabled = true
-normal_texture = ExtResource("5_6jp7g")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
+frequency = 0.0018
+offset = Vector3(556.52, -103.45, 0)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ffbv4"]
-material = SubResource("StandardMaterial3D_46o6d")
-size = Vector2(2, 4)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uof4r"]
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4m2dy"]
-points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wkl45"]
+noise_type = 0
+seed = 1
+frequency = 0.0658
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bfceq"]
+width = 1080
+height = 1080
+noise = SubResource("FastNoiseLite_wkl45")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdq1o"]
+shader = ExtResource("4_g0yym")
+shader_parameter/resolution = Vector2(1080, 1080)
+shader_parameter/density = 31.8
+shader_parameter/alpha_threshold = 0.5
+shader_parameter/layers = 3.0
+shader_parameter/speed_difference = 0.5
+shader_parameter/brightness_difference = 0.1
+shader_parameter/offset = null
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bfceq")
 
 [node name="Default_Intro" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_w1gt4")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="WorldEnvironment"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="WorldEnvironment"]
+process_mode = 1
 layer = -1
-follow_viewport_enabled = true
 
-[node name="Sprite2D" type="Sprite2D" parent="WorldEnvironment/CanvasLayer"]
-modulate = Color(0.823529, 1, 1, 1)
-self_modulate = Color(0.389287, 0.389287, 0.389287, 1)
-material = SubResource("ShaderMaterial_hna6v")
-position = Vector2(961, 530)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_28kfb")
+[node name="stars" type="TextureRect" parent="WorldEnvironment/CanvasLayer2"]
+material = ExtResource("3_x8y7r")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_uof4r")
+metadata/_edit_use_anchors_ = true
+
+[node name="dust" type="ColorRect" parent="WorldEnvironment/CanvasLayer2"]
+material = SubResource("ShaderMaterial_bdq1o")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.488046, -0.755884, 0.436407, 0.471877, 0.649132, 0.596623, -0.734263, -0.085249, 0.673491, 0, 0, 0)
 shadow_enabled = true
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.9707, 0, 0)
-visible = false
-axis_lock_linear_y = true
-angular_velocity = Vector3(0, 0.349066, 0)
-angular_damp_mode = 1
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
-mesh = SubResource("PlaneMesh_ffbv4")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("ConvexPolygonShape3D_4m2dy")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 13.4011, 0.373977)

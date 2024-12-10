@@ -13,9 +13,14 @@ func _create_leaderboard(leaderboard_name:String)-> void:
 		$table/Label.queue_free()
 		for entry:TaloLeaderboardEntry in entries:
 			entry.position = entries.find(entry)
-			_create_entry(entry)
+			var highlight:bool = false
+			if Global.current_level:
+				highlight = "%4.2f" % Global.current_level.score == "%4.2f" % entry.score  && Global.player_name == entry.player_alias.identifier
+			_create_entry(entry, highlight)
 
-func _create_entry(entry:TaloLeaderboardEntry) -> void:
-	var entry_instance = entry_scene.instantiate()
+func _create_entry(entry:TaloLeaderboardEntry, highlight:bool) -> void:
+	var entry_instance:Control = entry_scene.instantiate()
 	entry_instance._set_data(entry)
 	$table.add_child(entry_instance)
+	if highlight:
+		entry_instance.animation.play("score_highlight")

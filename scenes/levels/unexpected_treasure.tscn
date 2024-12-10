@@ -1,0 +1,445 @@
+[gd_scene load_steps=19 format=3 uid="uid://cy25b06ct8kxd"]
+
+[ext_resource type="PackedScene" uid="uid://cjs3mqfmeqt87" path="res://scenes/levels/level_template.tscn" id="1_lmxj8"]
+[ext_resource type="PackedScene" uid="uid://dvvlqlikl4t0p" path="res://Interface/menu/sucess_menu.tscn" id="2_nare4"]
+[ext_resource type="PackedScene" uid="uid://bmlru40no1q1n" path="res://scenes/componants/goal_type_time_componant.tscn" id="3_enjlh"]
+[ext_resource type="PackedScene" uid="uid://ch7epf4y33it0" path="res://scenes/componants/goal_componant.tscn" id="4_he14s"]
+[ext_resource type="PackedScene" uid="uid://721i7ftf1bo4" path="res://Assets/ships/shuttle_test.tscn" id="4_hvwqg"]
+[ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="5_uvmgt"]
+[ext_resource type="PackedScene" uid="uid://bv0o6nc11e8re" path="res://scenes/componants/goal_type_collect_componant.tscn" id="5_vcwro"]
+[ext_resource type="PackedScene" uid="uid://d2dw2cp6v8kan" path="res://scenes/componants/save_data_componants.tscn" id="6_7vnwl"]
+[ext_resource type="PackedScene" uid="uid://csl7mjk2yyygb" path="res://Assets/items/asteroid_medium.tscn" id="6_ycfqj"]
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="7_lrgis"]
+[ext_resource type="PackedScene" uid="uid://cptdclmo6wa8i" path="res://Assets/items/asteroid.tscn" id="11_qdf0k"]
+[ext_resource type="PackedScene" uid="uid://t6pt6jgktqhg" path="res://Assets/items/crate.tscn" id="12_wh2q8"]
+
+[sub_resource type="Animation" id="Animation_7pq6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../shuttle_test:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.92184, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../spacelift:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 0, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../shuttle_test/shuttle/Flame:transparency")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../shuttle_test:freeze")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../spacelift:freeze")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../spacelift:linear_velocity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../spacelift:listen_to_inputs")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_r2h7r"]
+resource_name = "intro_cinematic"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../shuttle_test:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.99167),
+"transitions": PackedFloat32Array(1, 4.14107),
+"update": 0,
+"values": [Vector3(0, -1.92184, 0), Vector3(-87.743, -1.92184, 193.577)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../spacelift:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.99167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 0, -1), Vector3(-86.743, 0, 192.577)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../shuttle_test/shuttle/Flame:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.99167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../shuttle_test/shuttle/Flame:transparency")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.125, 3.99167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../shuttle_test:freeze")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.99167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../../spacelift:freeze")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3.99167),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../spacelift:linear_velocity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(15, 0, 10)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../spacelift:listen_to_inputs")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(4.26667),
+"transitions": PackedFloat32Array(0.965936),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ye37"]
+_data = {
+"RESET": SubResource("Animation_7pq6v"),
+"intro_cinematic": SubResource("Animation_r2h7r")
+}
+
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0.105147, 0.0654032, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
+frequency = 0.0018
+offset = Vector3(556.52, -775.45, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w2wkd"]
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
+
+[node name="Level" node_paths=PackedStringArray("save_componant", "camera", "dust") instance=ExtResource("1_lmxj8")]
+level_end_gui = ExtResource("2_nare4")
+leaderboard_name = "unexpected_treasure"
+save_componant = NodePath("Objectives/SaveDataComponant")
+camera = NodePath("Camera3D")
+dust = NodePath("WorldEnvironment/CanvasLayer/dust")
+
+[node name="1-1_GoalComponant" parent="Objectives" index="0" node_paths=PackedStringArray("next_goals")]
+next_goals = [NodePath("../1-2_GoalComponant")]
+hidden = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Objectives/1-1_GoalComponant" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_3ye37")
+}
+autoplay = "intro_cinematic"
+
+[node name="TimeSystem" parent="Objectives/1-1_GoalComponant" index="1" instance=ExtResource("3_enjlh")]
+limit = 5.0
+
+[node name="1-2_GoalComponant" parent="Objectives" index="1" node_paths=PackedStringArray("next_goals") instance=ExtResource("4_he14s")]
+next_goals = [NodePath("../1-3_GoalComponant")]
+description = "• Load all the crates in the ship,  be quick !"
+
+[node name="GoalTypeCollectComponant" parent="Objectives/1-2_GoalComponant" index="0" instance=ExtResource("5_vcwro")]
+progress_text = " crates retreived"
+item_class = "Crate"
+
+[node name="TimeSystem" parent="Objectives/1-2_GoalComponant" index="1" instance=ExtResource("3_enjlh")]
+progress_text = ""
+time_mode = "Chronometer"
+
+[node name="1-3_GoalComponant" parent="Objectives" index="2" instance=ExtResource("4_he14s")]
+description = "Good job !"
+
+[node name="TimeSystem" parent="Objectives/1-3_GoalComponant" index="0" instance=ExtResource("3_enjlh")]
+progress_hidden = true
+limit = 2.5
+
+[node name="SaveDataComponant" parent="Objectives" index="3" instance=ExtResource("6_7vnwl")]
+nodespath_and_properties = {
+"../../Objectives/1-2_GoalComponant/TimeSystem": "elapsed"
+}
+
+[node name="stars" parent="WorldEnvironment/CanvasLayer" index="0"]
+visible = false
+
+[node name="stars2" type="TextureRect" parent="WorldEnvironment/CanvasLayer" index="2"]
+material = ExtResource("7_lrgis")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_w2wkd")
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera3D" parent="." index="2" node_paths=PackedStringArray("target")]
+target = NodePath("../spacelift")
+
+[node name="shuttle_test" parent="." index="4" instance=ExtResource("4_hvwqg")]
+transform = Transform3D(0.372777, 0, 0.927921, 0, 1, 0, -0.927921, 0, 0.372777, 0, -1.92184, 0)
+freeze = true
+freeze_mode = 1
+collectable_item_class = "Crate"
+
+[node name="Flame" parent="shuttle_test/shuttle" index="22"]
+visible = true
+
+[node name="spacelift" parent="." index="5" instance=ExtResource("5_uvmgt")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 1, 0, -1)
+freeze = true
+freeze_mode = 1
+
+[node name="Terrain" type="Node3D" parent="." index="6"]
+
+[node name="asteroid_medium" parent="Terrain" index="0" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 185.889)
+
+[node name="asteroid" parent="Terrain" index="1" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.0713581, 0.997451, 0, -0.981603, 0.0702244, 0.177549, 0.177096, -0.0126695, 0.984112, -60.0729, 0, 41.2983)
+
+[node name="asteroid_medium2" parent="Terrain" index="2" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.584901, 0.811105, 0, -0.811105, 0.584901, 0, 0, 0, 1, -6.17734, 0, 104.562)
+
+[node name="asteroid_medium3" parent="Terrain" index="3" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.779075, 0, 0.62693, 0, 1, 0, -0.62693, 0, 0.779075, -120.628, 0, 155.019)
+
+[node name="asteroid_medium4" parent="Terrain" index="4" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.819472, -0.564013, -0.101756, 0, 0.177548, -0.984112, 0.573119, 0.806453, 0.145496, -56.633, 0, 278.729)
+
+[node name="asteroid_medium5" parent="Terrain" index="5" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.672806, 0, 0.739819, 0.50413, 0.731889, -0.458466, -0.541465, 0.681424, 0.492419, 150.586, 0, 250.642)
+
+[node name="asteroid_medium6" parent="Terrain" index="6" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.957016, 0, 0.290034, 0.189932, 0.755751, -0.626711, -0.219193, 0.65486, 0.723266, 134.899, -11.0579, 270.921)
+
+[node name="asteroid_medium7" parent="Terrain" index="7" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.982369, -0.149664, -0.112036, 0, 0.599275, -0.800543, 0.186953, 0.786429, 0.588709, 16.9727, 0, 357.638)
+
+[node name="asteroid_medium8" parent="Terrain" index="8" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.896772, 0, 0.442492, 0, 1, 0, -0.442492, 0, 0.896772, 58.4632, 0, 343.75)
+
+[node name="asteroid_medium9" parent="Terrain" index="9" instance=ExtResource("6_ycfqj")]
+transform = Transform3D(0.602707, 0, -0.797963, 0, 1, 0, 0.797963, 0, 0.602707, 167.306, 0, 160.119)
+
+[node name="asteroid_medium10" parent="Terrain" index="10" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.974897, -0.19542, -0.106706, 0, 0.479243, -0.877682, 0.222655, 0.85565, 0.467213, 102.945, 0, 228.7)
+
+[node name="asteroid_medium11" parent="Terrain" index="11" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(-0.0939646, -0.472392, -0.876366, -0.980785, 0.19509, 0, 0.17097, 0.859526, -0.481647, 143.039, 0, 185.441)
+
+[node name="asteroid_medium12" parent="Terrain" index="12" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(-0.774794, 0.17028, -0.608851, -0.0612638, 0.938291, 0.340377, 0.629239, 0.301022, -0.71655, 165.84, 0, 296.387)
+
+[node name="asteroid_medium13" parent="Terrain" index="13" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.639681, 0, -0.768641, 0, 1, 0, 0.768641, 0, 0.639681, -49.6716, 0, 361.939)
+
+[node name="asteroid_medium14" parent="Terrain" index="14" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.386228, 0, -0.922403, 0, 1, 0, 0.922403, 0, 0.386228, 206.172, 0, 209.052)
+
+[node name="asteroid_medium15" parent="Terrain" index="15" instance=ExtResource("11_qdf0k")]
+transform = Transform3D(0.925004, 0, 0.379957, 0, 1, 0, -0.379957, 0, 0.925004, 27.1659, 0, 292.914)
+
+[node name="crate" parent="." index="7" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 104.776, 0, 237.252)
+
+[node name="crate2" parent="." index="8" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.145, 0, 235.756)
+
+[node name="crate3" parent="." index="9" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(0.284501, 0, -0.958676, 0, 1, 0, 0.958676, 0, 0.284501, 105.264, 0, 235.102)
+
+[node name="crate4" parent="." index="10" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(0.284501, 0, -0.958676, 0, 1, 0, 0.958676, 0, 0.284501, 107.657, 0, 237.906)
+
+[node name="crate5" parent="." index="11" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.027, 0, 240.146)
+
+[node name="crate6" parent="." index="12" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.1715, 0, 246.625)
+
+[node name="crate7" parent="." index="13" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.6027, 0, 272.033)
+
+[node name="crate8" parent="." index="14" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.8921, 0, 213.52)
+
+[node name="crate9" parent="." index="15" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.252, 0, 264.629)
+
+[node name="crate10" parent="." index="16" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.029, 0, 264.625)
+
+[node name="crate11" parent="." index="17" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.252, 0, 265.409)
+
+[node name="crate12" parent="." index="18" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.029, 0, 265.405)
+
+[node name="crate13" parent="." index="19" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.252, 0, 266.174)
+
+[node name="crate14" parent="." index="20" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 176.029, 0, 266.17)
+
+[node name="crate15" parent="." index="21" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.6923, 0, 315.294)
+
+[node name="crate16" parent="." index="22" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.486, 0, 315.294)
+
+[node name="crate17" parent="." index="23" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.3123, 0, 315.294)
+
+[node name="crate18" parent="." index="24" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6696, 0, 285.185)
+
+[node name="crate19" parent="." index="25" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.6696, 0, 286.037)
+
+[node name="crate20" parent="." index="26" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 151.324, 0, 175.941)
+
+[node name="crate21" parent="." index="27" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 148.339, 0, 173.966)
+
+[node name="crate22" parent="." index="28" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 156.045, 0, 179.548)
+
+[node name="crate23" parent="." index="29" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 158.906, 0, 183.463)
+
+[node name="crate24" parent="." index="30" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(0.958387, 0, 0.285471, 0, 1, 0, -0.285471, 0, 0.958387, 196.632, 0, 152.312)
+
+[node name="crate25" parent="." index="31" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(0.958387, 0, 0.285471, 0, 1, 0, -0.285471, 0, 0.958387, 196.851, 0, 153.047)
+
+[node name="crate26" parent="." index="32" groups=["collectibles"] instance=ExtResource("12_wh2q8")]
+transform = Transform3D(0.958387, 0, 0.285471, 0, 1, 0, -0.285471, 0, 0.958387, 197.082, 0, 153.822)
+
+[connection signal="goal_started" from="Objectives/1-1_GoalComponant" to="Objectives/1-1_GoalComponant/TimeSystem" method="_on_start"]
+[connection signal="goal_completed" from="Objectives/1-1_GoalComponant/TimeSystem" to="Objectives/1-1_GoalComponant" method="_on_goal_completed"]
+[connection signal="completed" from="Objectives/1-2_GoalComponant" to="Objectives/1-2_GoalComponant/TimeSystem" method="_on_pause"]
+[connection signal="goal_started" from="Objectives/1-2_GoalComponant" to="Objectives/1-2_GoalComponant/GoalTypeCollectComponant" method="count_collectable_items"]
+[connection signal="goal_started" from="Objectives/1-2_GoalComponant" to="Objectives/1-2_GoalComponant/TimeSystem" method="_on_start"]
+[connection signal="goal_completed" from="Objectives/1-2_GoalComponant/GoalTypeCollectComponant" to="Objectives/1-2_GoalComponant" method="_on_goal_completed"]
+[connection signal="goal_started" from="Objectives/1-3_GoalComponant" to="Objectives/1-3_GoalComponant/TimeSystem" method="_on_start"]
+[connection signal="goal_completed" from="Objectives/1-3_GoalComponant/TimeSystem" to="Objectives/1-3_GoalComponant" method="_on_goal_completed"]
+[connection signal="body_entered" from="shuttle_test/Cargo_Area3D" to="Objectives/1-2_GoalComponant/GoalTypeCollectComponant" method="_on_collect"]
+
+[editable path="shuttle_test"]
+[editable path="shuttle_test/shuttle"]

@@ -59,11 +59,13 @@ size_flags_vertical = 3
 [node name="primary" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 41
 text = "Primary Objective"
 
 [node name="primary_text" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 29
 text = "do things"
 fit_content = true
 
@@ -73,17 +75,22 @@ theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_og07j")
 
 [node name="secondary" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 41
 text = "Secondary Objectives"
 
 [node name="secondary_text" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 29
 text = "do more things"
 fit_content = true
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 theme_override_styles/separator = SubResource("StyleBoxEmpty_og07j")
@@ -91,11 +98,13 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_og07j")
 [node name="description" type="Label" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 41
 text = "Description"
 
 [node name="description_text" type="RichTextLabel" parent="VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 29
 text = "some context"
 fit_content = true
 

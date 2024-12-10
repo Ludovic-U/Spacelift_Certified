@@ -48,37 +48,19 @@ theme_override_font_sizes/font_size = 147
 text = "Mission Success !"
 horizontal_alignment = 1
 
-[node name="restart_level" parent="." instance=ExtResource("3_ol2yh")]
-layout_mode = 1
-offset_top = 814.0
-offset_bottom = 882.0
-
-[node name="back_to_menu" parent="." instance=ExtResource("4_y24ts")]
-layout_mode = 1
-offset_top = 892.0
-offset_bottom = 960.0
-
-[node name="Feedback" parent="." instance=ExtResource("5_v373p")]
-layout_mode = 0
-offset_left = 817.0
-offset_top = 971.0
-offset_right = 1108.0
-offset_bottom = 1016.0
-theme_override_font_sizes/font_size = 44
-
-[node name="Button3" type="Button" parent="."]
-visible = false
+[node name="score" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -146.0
-offset_top = 948.0
-offset_right = 146.0
-offset_bottom = 1016.0
+offset_left = -143.0
+offset_top = 169.0
+offset_right = 144.0
+offset_bottom = 241.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 50
-text = "Quit to desktop"
+theme_override_font_sizes/font_size = 60
+text = "Your score is : "
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -86,9 +68,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -451.0
-offset_top = 240.0
+offset_top = 274.0
 offset_right = 451.0
-offset_bottom = 834.0
+offset_bottom = 817.0
 grow_horizontal = 2
 horizontal_scroll_mode = 0
 
@@ -98,3 +80,34 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -245.0
+offset_right = 130.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit to desktop"
+
+[node name="restart_level" parent="VBoxContainer" instance=ExtResource("3_ol2yh")]
+layout_mode = 2
+
+[node name="Feedback" parent="VBoxContainer" instance=ExtResource("5_v373p")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+
+[node name="back_to_menu" parent="VBoxContainer" instance=ExtResource("4_y24ts")]
+layout_mode = 2

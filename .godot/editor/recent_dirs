@@ -1,13 +1,13 @@
+res://scenes/levels
+res://Interface/menu
+res://scripts/shader_scripts
 res://Assets/materials
 res://scenes/componants
 res://Interface/themes
-res://Interface/menu
-res://scenes/levels
 res://audio/sfx
 res://Assets/items
 res://audio/UI
 res://Assets
-res://scripts/shader_scripts
 res://Interface/menu/buttons
 res://Assets/textures/asteroid
 res://Interface/themes/Sofia_Sans_Condensed/static

@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://5spy7tv5s7er"]
+
+[ext_resource type="Material" uid="uid://cobdsbxg5b3a7" path="res://Assets/materials/star_field.material" id="3_p3mjq"]
+[ext_resource type="Shader" path="res://scripts/shader_scripts/moving_dust.gdshader" id="4_mxjwq"]
+[ext_resource type="PackedScene" uid="uid://cptdclmo6wa8i" path="res://Assets/items/asteroid.tscn" id="5_hodc1"]
+[ext_resource type="PackedScene" uid="uid://csl7mjk2yyygb" path="res://Assets/items/asteroid_medium.tscn" id="6_v62ev"]
+[ext_resource type="PackedScene" uid="uid://b8oroaqu3byyl" path="res://Assets/ships/spacelift.tscn" id="8_yrtlg"]
+
+[sub_resource type="Environment" id="Environment_w1gt4"]
+background_mode = 3
+background_canvas_max_layer = -1
+
+[sub_resource type="Gradient" id="Gradient_4glrf"]
+colors = PackedColorArray(0, 0, 0.0823529, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8s3j7"]
+frequency = 0.0018
+offset = Vector3(556.52, -103.45, 0)
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uof4r"]
+color_ramp = SubResource("Gradient_4glrf")
+noise = SubResource("FastNoiseLite_8s3j7")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_u18aq"]
+noise_type = 0
+seed = 1
+frequency = 0.0658
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mbqko"]
+width = 1080
+height = 1080
+noise = SubResource("FastNoiseLite_u18aq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iplfu"]
+shader = ExtResource("4_mxjwq")
+shader_parameter/resolution = Vector2(1080, 1080)
+shader_parameter/density = 31.8
+shader_parameter/alpha_threshold = 0.5
+shader_parameter/layers = 3.0
+shader_parameter/speed_difference = 0.5
+shader_parameter/brightness_difference = 0.1
+shader_parameter/offset = null
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_mbqko")
+
+[node name="Default_Intro" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w1gt4")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="WorldEnvironment"]
+process_mode = 1
+layer = -1
+
+[node name="stars" type="TextureRect" parent="WorldEnvironment/CanvasLayer2"]
+material = ExtResource("3_p3mjq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_uof4r")
+metadata/_edit_use_anchors_ = true
+
+[node name="dust2" type="ColorRect" parent="WorldEnvironment/CanvasLayer2"]
+material = SubResource("ShaderMaterial_iplfu")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 100, 0)
+projection = 1
+current = true
+fov = 37.8493
+size = 63.349
+far = 400.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.458007, 0.0509277, -0.887488, 0.340235, 0.912297, 0.227937, 0.821261, -0.406351, 0.400511, -9.53674e-07, 3.4366, 3.95513)
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_opacity = 0.98
+shadow_blur = 1.275
+
+[node name="spacelift" parent="." instance=ExtResource("8_yrtlg")]
+transform = Transform3D(-0.0118505, 0, 0.99993, 0, 1, 0, -0.99993, 0, -0.0118505, 0, 0, 0)
+listen_to_inputs = true
+
+[node name="asteroid" parent="." instance=ExtResource("5_hodc1")]
+transform = Transform3D(0.722762, 0, -0.691097, 0, 1, 0, 0.691097, 0, 0.722762, -25.2077, 0, 12.2524)
+
+[node name="asteroid_medium" parent="." instance=ExtResource("6_v62ev")]
+transform = Transform3D(0.917581, -1.37747e-08, 0.397548, -0.175613, 0.897143, 0.405333, -0.356658, -0.441741, 0.823201, 5.29063, -0.000366211, -44.944)
+
+[editable path="spacelift"]
+[editable path="spacelift/spacelift"]
