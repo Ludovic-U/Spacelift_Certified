@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Spacelift Certified"
-config/version="0.1"
+config/version="1.0"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://Assets/textures/shuttle_prototype1_normalmap.png"
+config/icon="res://Assets/thruster_icon.png"
 
 [autoload]
 

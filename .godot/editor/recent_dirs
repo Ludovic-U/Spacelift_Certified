@@ -1,3 +1,9 @@
+/home/student/NuPhoenicis/exports/window
+/home/student/.local/share/godot/export_templates/4.3.stable/
+/home/student/NuPhoenicis/exports/linux
+/home/student/NuPhoenicis
+/home/student/.local/share/godot/export_templates/4.3.stable
+res://Assets/
 res://scenes/componants
 res://audio/UI
 res://scenes/levels
@@ -18,5 +24,3 @@ res://Assets/vfx
 res://Assets/ships
 res://scripts/ship_related_scripts
 res://Assets/materials/
-res://Assets/textures
-/home/student/Blender/blender-4.2.3-linux-x64
